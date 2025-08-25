@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "KotaDB - Database for Distributed Human-AI Cognition",
-  description: "A high-performance database designed for intelligent document storage, search, and relationship management. Built for the future of collaborative knowledge work.",
+  description:
+    "A high-performance database designed for intelligent document storage, search, and relationship management. Built for the future of collaborative knowledge work.",
 };
 
 export default function RootLayout({

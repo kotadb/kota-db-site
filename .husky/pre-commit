@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run lint-staged for formatting and linting
+pnpm exec lint-staged
+
+# Run type checking
+pnpm run typecheck
+
+# Check for console.log statements
+if grep -r "console\.log" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/; then
+  echo "Error: console.log statements found. Please remove them before committing."
+  exit 1
+fi
+
+# Check for absolute imports (should use relative or @/ alias)
+if grep -r "from ['\"]/" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/; then
+  echo "Warning: Absolute path imports detected. Consider using relative imports or @/ alias."
+fi

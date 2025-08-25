@@ -1,0 +1,71 @@
+# Component Labels
+"component: frontend":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/app/**"
+          - "src/components/**"
+          - "src/styles/**"
+          - "**/*.tsx"
+          - "**/*.css"
+
+"component: backend":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/api/**"
+          - "src/lib/server/**"
+          - "**/api/**"
+
+"component: database":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/lib/db/**"
+          - "**/migrations/**"
+          - "**/schema/**"
+
+"component: api":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/app/api/**"
+          - "src/lib/api/**"
+
+"component: docs":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs-site/**"
+          - "**/*.md"
+          - "README.md"
+
+# Type Labels
+"type: feature":
+  - head-branch: ["^feature/", "feat/"]
+
+"type: bugfix":
+  - head-branch: ["^fix/", "bug/", "hotfix/"]
+
+"type: documentation":
+  - head-branch: ["^docs/"]
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.md"]
+
+"type: refactor":
+  - head-branch: ["^refactor/"]
+
+"type: test":
+  - head-branch: ["^test/"]
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.test.ts"
+          - "**/*.test.tsx"
+          - "**/*.spec.ts"
+          - "**/*.spec.tsx"
+
+"type: ci":
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+          - ".husky/**"
+          - "**/*.yml"
+          - "**/*.yaml"
+# Size Labels (handled by separate action)
+# Priority Labels (manually assigned)
+# Status Labels (manually assigned)
