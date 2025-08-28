@@ -2,37 +2,37 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 font-[family-name:var(--font-roboto)] overflow-x-hidden w-full">
       {/* Navigation */}
       <nav className="fixed top-0 w-full backdrop-blur-lg bg-white/80 dark:bg-slate-950/80 z-50 border-b border-slate-200/50 dark:border-slate-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-teal-600 dark:from-teal-400 dark:to-teal-200 bg-clip-text text-transparent">
+        <div className="w-full mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16 max-w-7xl mx-auto">
+            <div className="flex items-center min-w-0">
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-slate-900 to-teal-600 dark:from-teal-400 dark:to-teal-200 bg-clip-text text-transparent truncate">
                 KotaDB
               </h1>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 sm:gap-3 md:gap-6 flex-shrink-0">
               <Link
                 href="https://github.com/jayminwest/kota-db"
                 target="_blank"
-                className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200"
+                className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200 text-xs sm:text-sm md:text-base whitespace-nowrap"
               >
                 GitHub
               </Link>
               <Link
                 href="https://github.com/jayminwest/kota-db#documentation"
                 target="_blank"
-                className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200"
+                className="hidden md:inline-block text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200 whitespace-nowrap"
               >
                 Docs
               </Link>
               <Link
                 href="https://github.com/jayminwest/kota-db#quickstart"
                 target="_blank"
-                className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white px-5 py-2 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg"
+                className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm md:text-base whitespace-nowrap"
               >
-                Get Started
+                Start
               </Link>
             </div>
           </div>
@@ -40,33 +40,51 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-50/20 via-transparent to-slate-100/20 dark:from-teal-900/10 dark:via-transparent dark:to-slate-800/10" />
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-slate-50 mb-6 leading-tight">
-            Database for Distributed
+      <section className="hero-section pt-32 pb-32 min-h-screen flex items-center px-4 sm:px-6 lg:px-8 relative w-full">
+        {/* Animated background */}
+        <div className="absolute inset-0">
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]" />
+
+          {/* Animated gradient orbs - mobile optimized */}
+          <div className="absolute top-0 -left-4 w-48 h-48 sm:w-72 sm:h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob dark:mix-blend-screen dark:opacity-10" />
+          <div className="absolute top-0 -right-4 w-48 h-48 sm:w-72 sm:h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000 dark:mix-blend-screen dark:opacity-10" />
+          <div className="absolute -bottom-8 left-20 w-48 h-48 sm:w-72 sm:h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000 dark:mix-blend-screen dark:opacity-10" />
+
+          {/* Floating code symbols - hidden on mobile */}
+          <div className="absolute inset-0 hidden sm:block">
+            <div className="absolute top-1/4 left-1/4 text-teal-500/10 text-4xl md:text-6xl font-mono animate-float-slow">{`</>`}</div>
+            <div className="absolute top-3/4 right-1/3 text-cyan-500/10 text-3xl md:text-4xl font-mono animate-float-slower">{`{}`}</div>
+            <div className="absolute bottom-1/4 left-1/3 text-emerald-500/10 text-4xl md:text-5xl font-mono animate-float">{`()`}</div>
+            <div className="absolute top-1/2 right-1/4 text-teal-500/10 text-2xl md:text-3xl font-mono animate-float-slow">{`[]`}</div>
+          </div>
+        </div>
+
+        <div className="w-full max-w-7xl mx-auto text-center relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-slate-50 mb-6 leading-tight">
+            Codebase Intelligence
             <span className="bg-gradient-to-r from-teal-500 via-teal-400 to-cyan-400 dark:from-teal-400 dark:via-teal-300 dark:to-cyan-300 bg-clip-text text-transparent">
               {" "}
-              Human-AI Cognition
+              Platform
             </span>
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed">
-            A high-performance database designed for intelligent document
-            storage, search, and relationship management. Built for the future
-            of collaborative knowledge work.
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
+            Understands your code&apos;s relationships, dependencies, and
+            structure. Powers LLM tooling like Claude Code for dramatically
+            improved codebase understanding and navigation.
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
             <Link
               href="https://github.com/jayminwest/kota-db#quickstart"
               target="_blank"
-              className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
             >
               Quick Start
             </Link>
             <Link
               href="https://github.com/jayminwest/kota-db"
               target="_blank"
-              className="bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white border border-slate-700 dark:border-slate-600 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
+              className="bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white border border-slate-700 dark:border-slate-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
             >
               View on GitHub
             </Link>
@@ -75,10 +93,10 @@ export default function Home() {
       </section>
 
       {/* Features Grid */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 w-full">
+        <div className="w-full max-w-7xl mx-auto">
           <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
-            Built for Modern Knowledge Management
+            Built for Codebase Intelligence
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
@@ -98,11 +116,11 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Native Markdown
+                Symbol Extraction
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Store documents in native Markdown format with full preservation
-                of structure and content.
+                Automatically extracts functions, classes, and relationships
+                from your entire codebase.
               </p>
             </div>
 
@@ -123,11 +141,11 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Smart Search
+                Dependency Tracking
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Multiple search indexes including B+ Tree, Trigram, and upcoming
-                graph & semantic search.
+                Full relationship graph showing what calls what, enabling
+                instant impact analysis.
               </p>
             </div>
 
@@ -148,11 +166,11 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                High Performance
+                Lightning Fast
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Achieve 3,600+ document operations per second with optimized
-                Rust implementation.
+                &lt;3ms search latency with trigram indexing. 210x faster than
+                traditional approaches.
               </p>
             </div>
 
@@ -173,11 +191,11 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Crash-Safe
+                Impact Analysis
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Write-Ahead Logging (WAL) ensures data integrity and crash
-                recovery capabilities.
+                Understand what breaks when you change code. See all affected
+                functions and dependencies.
               </p>
             </div>
 
@@ -198,11 +216,11 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Type-Safe Clients
+                LLM Integration
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Native client libraries for Rust, Python, and TypeScript with
-                full type safety.
+                MCP server support for seamless integration with Claude Code and
+                other AI coding assistants.
               </p>
             </div>
 
@@ -223,11 +241,11 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Zero Dependencies
+                Dual Storage
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                No external database dependencies. Everything runs in a single,
-                efficient process.
+                Optimized separation of documents and graph data for maximum
+                performance at scale.
               </p>
             </div>
           </div>
@@ -235,21 +253,21 @@ export default function Home() {
       </section>
 
       {/* Code Example */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 w-full overflow-hidden">
+        <div className="w-full max-w-7xl mx-auto">
+          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-6 sm:mb-8 md:mb-16 px-2">
             Simple and Intuitive API
           </h3>
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-3">
-              <div className="bg-gradient-to-br from-slate-900 to-slate-950 rounded-2xl p-8 overflow-x-auto shadow-2xl border border-slate-800">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-teal-400 text-sm font-medium">
+          <div className="w-full">
+            <div className="w-full max-w-none">
+              <div className="bg-gradient-to-br from-slate-900 to-slate-950 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-slate-800 mx-auto">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <span className="text-teal-400 text-xs sm:text-sm font-medium">
                     Python Example
                   </span>
-                  <button className="text-slate-400 hover:text-teal-400 transition-colors duration-200">
+                  <button className="text-slate-400 hover:text-teal-400 transition-colors duration-200 flex-shrink-0">
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -263,30 +281,30 @@ export default function Home() {
                     </svg>
                   </button>
                 </div>
-                <pre className="text-sm">
-                  <code className="language-python text-slate-300">{`from kota_db import KotaDB, DocumentBuilder
+                <div className="overflow-x-auto w-full">
+                  <pre className="text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre w-full">
+                    <code className="language-python text-slate-300 block w-full">{`from kotadb import KotaDB
 
-# Connect to KotaDB
+# Connect to KotaDB server
 db = KotaDB("http://localhost:8080")
 
-# Insert a document with builder pattern
-doc_id = db.insert_with_builder(
-    DocumentBuilder()
-    .path("/knowledge/python-patterns.md")
-    .title("Python Design Patterns")
-    .content("# Python Patterns\\n\\nExploring design patterns...")
-    .add_tag("python")
-    .add_tag("patterns")
-)
+# Ingest entire codebase with symbol extraction
+db.ingest_repository(".")
 
-# Search documents
-results = db.search("design patterns")
-for doc in results:
-    print(f"Found: {doc.title} at {doc.path}")
+# Find all functions that use a specific class
+callers = db.find_callers("FileStorage")
+print(f"Found {len(callers)} functions calling FileStorage")
 
-# Query with natural language
-docs = db.query("show me all Python tutorials from last week")`}</code>
-                </pre>
+# Analyze impact of changing a function
+impact = db.impact_analysis("StorageError")
+for func in impact.affected_functions:
+    print(f"  {func.name} in {func.file}:{func.line}")
+
+# Search for code patterns with under 3ms latency
+results = db.search("error handling")
+print(f"Found {len(results)} matches in {results.latency_ms}ms")`}</code>
+                  </pre>
+                </div>
               </div>
             </div>
           </div>
@@ -294,26 +312,26 @@ docs = db.query("show me all Python tutorials from last week")`}</code>
           <div className="grid md:grid-cols-3 gap-8 mt-8">
             <div className="text-center">
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Rust
+                Symbol Tracking
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Native performance with safe concurrency
+                17,128+ symbols extracted from KotaDB&apos;s own codebase
               </p>
             </div>
             <div className="text-center">
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Python
+                Impact Analysis
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Pythonic API for data science workflows
+                Instantly see what breaks when you change code
               </p>
             </div>
             <div className="text-center">
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                TypeScript
+                LLM Ready
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Type-safe client for web applications
+                MCP server for Claude Code and AI assistants
               </p>
             </div>
           </div>
@@ -321,16 +339,16 @@ docs = db.query("show me all Python tutorials from last week")`}</code>
       </section>
 
       {/* Installation */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900 w-full overflow-hidden">
+        <div className="w-full max-w-7xl mx-auto">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-8 sm:mb-12 md:mb-16 px-2">
             Get Started in Seconds
           </h3>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-6 flex items-center">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+            <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <h4 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-50 mb-4 sm:mb-6 flex items-center">
                 <svg
-                  className="w-6 h-6 mr-3 text-teal-500"
+                  className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-teal-500 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -338,17 +356,17 @@ docs = db.query("show me all Python tutorials from last week")`}</code>
                 </svg>
                 Docker Compose
               </h4>
-              <div className="bg-slate-950 rounded-xl p-5 overflow-x-auto">
-                <code className="text-teal-400 text-sm font-mono">
+              <div className="bg-slate-950 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 overflow-x-auto">
+                <code className="text-teal-400 text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-nowrap block">
                   docker-compose -f docker-compose.quickstart.yml up -d
                 </code>
               </div>
             </div>
 
-            <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-6 flex items-center">
+            <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <h4 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-50 mb-4 sm:mb-6 flex items-center">
                 <svg
-                  className="w-6 h-6 mr-3 text-emerald-500"
+                  className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-emerald-500 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -362,8 +380,8 @@ docs = db.query("show me all Python tutorials from last week")`}</code>
                 </svg>
                 Quick Install Script
               </h4>
-              <div className="bg-slate-950 rounded-xl p-5 overflow-x-auto">
-                <code className="text-teal-400 text-sm font-mono">
+              <div className="bg-slate-950 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 overflow-x-auto">
+                <code className="text-teal-400 text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre-wrap break-all sm:break-normal block">
                   curl -sSL
                   https://raw.githubusercontent.com/jayminwest/kota-db/main/quickstart/install.sh
                   | bash
@@ -388,8 +406,8 @@ docs = db.query("show me all Python tutorials from last week")`}</code>
       </section>
 
       {/* Performance Stats */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-950">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-950 w-full">
+        <div className="w-full max-w-7xl mx-auto">
           <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
             Built for Scale
           </h3>
@@ -432,27 +450,28 @@ docs = db.query("show me all Python tutorials from last week")`}</code>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-teal-900 to-slate-950 relative overflow-hidden">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-teal-900 to-slate-950 relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 via-transparent to-slate-800/10 opacity-30" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h3 className="text-4xl lg:text-5xl font-bold text-white mb-8">
-            Ready to Transform Your Knowledge Management?
+        <div className="w-full max-w-4xl mx-auto text-center relative z-10">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 leading-tight">
+            Ready to Supercharge Your Development Tools?
           </h3>
-          <p className="text-xl text-teal-100 mb-10">
-            Join the future of distributed human-AI cognition with KotaDB.
+          <p className="text-base sm:text-lg md:text-xl text-teal-100 mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0">
+            Give your LLM coding assistants deep codebase understanding with
+            KotaDB.
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
             <Link
               href="https://github.com/jayminwest/kota-db"
               target="_blank"
-              className="bg-teal-400 hover:bg-teal-300 text-slate-900 px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              className="bg-teal-400 hover:bg-teal-300 text-slate-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
             >
               Get Started Free
             </Link>
             <Link
               href="https://github.com/jayminwest/kota-db#documentation"
               target="_blank"
-              className="bg-transparent hover:bg-white/10 text-white border-2 border-teal-400 hover:border-teal-300 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
+              className="bg-transparent hover:bg-white/10 text-white border-2 border-teal-400 hover:border-teal-300 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300"
             >
               Read Documentation
             </Link>
@@ -461,15 +480,15 @@ docs = db.query("show me all Python tutorials from last week")`}</code>
       </section>
 
       {/* Footer */}
-      <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-950 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto">
+      <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-950 border-t border-slate-800 w-full">
+        <div className="w-full max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h4 className="text-2xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent mb-4">
                 KotaDB
               </h4>
               <p className="text-slate-400">
-                Database for distributed human-AI cognition.
+                Codebase intelligence platform for LLM tooling.
               </p>
             </div>
             <div>

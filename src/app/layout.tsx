@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const roboto = Roboto({
+  weight: ["300", "400", "500", "700", "900"],
+  variable: "--font-roboto",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const robotoMono = Roboto_Mono({
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-roboto-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "KotaDB - Database for Distributed Human-AI Cognition",
+  title: "KotaDB - Codebase Intelligence Platform",
   description:
-    "A high-performance database designed for intelligent document storage, search, and relationship management. Built for the future of collaborative knowledge work.",
+    "A codebase intelligence platform that understands your code's relationships, dependencies, and structure. Powers LLM tooling like Claude Code for dramatically improved codebase understanding.",
 };
 
 export default function RootLayout({
@@ -26,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${roboto.variable} ${robotoMono.variable} font-sans antialiased`}
       >
         {children}
       </body>
