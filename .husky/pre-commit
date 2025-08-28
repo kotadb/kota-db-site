@@ -7,8 +7,8 @@ pnpm exec lint-staged
 # Run type checking
 pnpm run typecheck
 
-# Check for console.log statements
-if grep -r "console\.log" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/; then
+# Check for console.log statements (excluding observability and testing utilities)
+if grep -r "console\.log" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/ | grep -v "lib/observability" | grep -v "lib/testing" | grep -q .; then
   echo "Error: console.log statements found. Please remove them before committing."
   exit 1
 fi

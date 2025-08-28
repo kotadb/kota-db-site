@@ -1,0 +1,65 @@
+name: Core Quality Gates
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  core-gates:
+    name: Core Quality Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type checking
+        run: pnpm typecheck
+
+      - name: Linting
+        run: pnpm lint
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Check for console.log statements
+        run: |
+          if grep -r "console\.log" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/; then
+            echo "Error: console.log statements found. Please remove them."
+            exit 1
+          fi
+
+      - name: Check for absolute imports
+        run: |
+          if grep -r "from ['\"]/" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/; then
+            echo "Error: Absolute path imports detected. Use @/ alias instead."
+            exit 1
+          fi
+
+      - name: Build
+        run: pnpm build
+
+      - name: Unit tests
+        run: pnpm test --run
+
+      - name: Test coverage
+        run: pnpm test:coverage
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
