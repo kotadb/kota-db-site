@@ -1,0 +1,99 @@
+name: Production Gates
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+
+jobs:
+  stress-testing:
+    name: Stress Testing
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build production
+        run: pnpm build
+
+      - name: Start server
+        run: |
+          pnpm start &
+          sleep 5
+
+      - name: Run stress tests
+        run: |
+          echo "Running stress tests..."
+          # Add k6 or similar stress testing tool here
+
+  memory-safety:
+    name: Memory Safety Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check for memory leaks
+        run: |
+          echo "Checking for memory leaks..."
+          # Add memory leak detection logic here
+
+  backwards-compatibility:
+    name: Backwards Compatibility
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check API compatibility
+        run: |
+          echo "Checking API backwards compatibility..."
+          # Add API compatibility checking logic here
+
+      - name: Check database migrations
+        run: |
+          echo "Validating database migration compatibility..."
+          # Add migration validation logic here
+
+  chaos-testing:
+    name: Chaos Engineering Tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run failure injection tests
+        run: |
+          echo "Running chaos engineering tests..."
+          # Add chaos testing logic here

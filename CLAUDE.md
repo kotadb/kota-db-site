@@ -1,268 +1,225 @@
-# KotaDB Site - AI Agent Instructions
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
-KotaDB documentation and landing page built with Next.js 15, following LLM-Assisted Development Success Patterns.
+KotaDB is a documentation and landing page built with Next.js 15 (App Router), TypeScript with strict settings, and Tailwind CSS v4. The project follows **LLM-Assisted Development Success Patterns** with zero-tolerance quality standards, creating a "pit of success" architecture where the easiest path for agents is also the correct one.
 
 ## Essential Commands
 
 ```bash
 # Development
-pnpm dev              # Start development server with Turbopack
+pnpm dev              # Start dev server with Turbopack on localhost:3000
 pnpm build            # Build for production
 pnpm start            # Start production server
 
 # Quality Assurance (MUST RUN BEFORE COMMITS)
-pnpm typecheck        # TypeScript type checking
-pnpm lint             # ESLint with strict rules
-pnpm format           # Format with Prettier
-pnpm format:check     # Check formatting
-pnpm quality          # Run all quality checks
+pnpm quality          # Run all checks (typecheck + lint + format:check)
+pnpm typecheck        # TypeScript type checking (strict mode)
+pnpm lint             # ESLint with strict rules (no warnings allowed)
+pnpm format           # Format code with Prettier
+pnpm format:check     # Check formatting without modifying
 
-# Testing (when implemented)
-pnpm test             # Run all tests
-pnpm test:watch       # Run tests in watch mode
-pnpm test:coverage    # Generate coverage report
+# Testing
+pnpm test             # Run Vitest tests
+pnpm test:watch       # Watch mode for tests
+pnpm test:coverage    # Generate coverage report (threshold: 80%)
+pnpm test:ui          # Vitest UI
+
+# Single test execution
+pnpm test path/to/file.test.ts
 ```
 
-## Architecture Decisions
+## High-Level Architecture
 
-### Technology Stack
+### Project Structure
 
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript with strictest settings
-- **Styling**: Tailwind CSS v4
-- **Documentation**: Astro (in docs-site/)
-- **Package Manager**: pnpm
-- **Quality Tools**: ESLint, Prettier, Husky, lint-staged
+- **Main site** (`/src`): Next.js 15 landing page with marketing content
+- **Documentation** (`/docs-site`): Separate Astro-based documentation site
+- **Testing**: Vitest with Happy DOM, anti-mock philosophy (use real implementations with failure injection)
+- **Quality Gates**: Three-tier CI/CD pipeline (Core → Quality → Production gates)
+- **Observability**: Structured logging, distributed tracing, metrics collection
 
-### Zero-Tolerance Quality Standards
+### Key Architectural Patterns (LLM-Optimized)
 
-1. **No TypeScript errors** - All strict flags enabled
-2. **No ESLint warnings** - Errors only, no warnings allowed
-3. **No console.log statements** - Use proper logging
-4. **No formatting issues** - Prettier enforced
-5. **No unhandled promises** - All async operations handled
-6. **No unused variables/imports** - Keep code clean
-7. **Conventional commits required** - feat/fix/docs/etc.
+1. **Validated Types Pattern**: Prevent invalid construction at runtime
+   - Location: `src/lib/validators/`
+   - Base validator: `src/lib/validators/base.validator.ts`
+   - Pattern: Schema → Type inference → Parse function → Factory creation
 
-### File Structure Patterns
+2. **Builder Pattern**: Fluent APIs that guide correct usage
+   - Location: `src/lib/builders/`
+   - Examples: `DatabaseBuilder`, `ApiClientBuilder`
+   - Provides preset configurations: `.development()`, `.production()`, `.test()`
 
-```
-src/
-├── app/                 # Next.js app router pages
-├── components/          # Reusable React components
-│   ├── ui/             # Basic UI components
-│   └── features/       # Feature-specific components
-├── lib/                # Core business logic
-│   ├── validators/     # Input validation with Zod
-│   ├── factories/      # Factory functions
-│   └── utils/          # Utility functions
-├── hooks/              # Custom React hooks
-└── types/              # TypeScript type definitions
-```
+3. **Factory Pattern**: One-line access to production-ready components
+   - Location: `src/lib/factories/`
+   - Example: `DatabaseFactory.createProduction()` assembles all safety features
+
+4. **Anti-Mock Testing**: Real implementations with failure injection
+   - Location: `src/lib/testing/`
+   - Failure injection: `failure-injection.ts`
+   - Real implementations: `real-implementations.ts`
+   - Chaos testing orchestration supported
+
+5. **Comprehensive Observability**:
+   - Structured logging: `src/lib/observability/logger.ts`
+   - Distributed tracing: `src/lib/observability/tracer.ts`
+   - Metrics collection: `src/lib/observability/metrics.ts`
+   - Decorators: `@Trace`, `@Metric` for automatic instrumentation
+
+6. **Component Library**: Composable, reusable UI components
+   - Location: `src/components/ui/`
+   - Central exports: `src/components/ui/index.ts`
+   - Pattern: Variant-based styling with CVA (class-variance-authority)
+
+7. **Import Strategy**:
+   - Use `@/` alias for src imports
+   - Never use absolute paths starting with `/`
+   - Order: builtin → external → internal
+
+## Critical Quality Standards
+
+### TypeScript Configuration
+
+- **ALL strict flags enabled** including:
+  - `noUncheckedIndexedAccess`: Array access requires null checks
+  - `exactOptionalPropertyTypes`: Distinguishes `undefined` from optional
+  - `verbatimModuleSyntax`: Explicit type imports required
+  - `noPropertyAccessFromIndexSignature`: Forces bracket notation for index signatures
+
+### Pre-commit Enforcement
+
+The `.husky/pre-commit` hook blocks commits that violate:
+
+- TypeScript errors (any strict mode violation)
+- ESLint errors (warnings treated as errors)
+- Prettier formatting
+- `console.log` statements (automatic detection and rejection)
+- Absolute path imports (warning only)
+
+### Testing Philosophy
+
+- **No mocks**: Test with real implementations + failure injection
+- **Coverage thresholds**: 80% for branches, functions, lines, statements
+- **Test location**: Colocated with source as `*.test.ts` or `*.spec.ts`
+- **Setup**: Global test setup in `src/test/setup.ts`
 
 ## Development Workflow
 
-### Branch Strategy
+### Git Flow Branching Strategy
 
-- `main` - Production-ready code
-- `develop` - Integration branch
-- `feature/*` - New features
-- `fix/*` - Bug fixes
-- `docs/*` - Documentation updates
+```bash
+# Main branches
+main          # Production-ready code
+develop       # Integration branch
 
-### Commit Message Format
+# Feature branches
+feature/      # New features (from develop)
+bugfix/       # Bug fixes (from develop)
+release/      # Release preparation (from develop)
+hotfix/       # Emergency fixes (from main)
 
-```
+# Commit format (enforced)
 <type>(<scope>): <subject>
-
-Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
-Example: feat(auth): add login functionality
+# Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
 ```
 
-### Issue-Driven Development
+### GitHub-First Communication
 
-Every change should map to a GitHub issue with labels:
+Every change maps to a GitHub issue with structured labels:
 
-- **Component**: [backend, frontend, database, api]
-- **Priority**: [critical, high, medium, low]
-- **Effort**: [small <1d, medium 1-3d, large >3d]
-- **Status**: [needs-investigation, blocked, in-progress, ready-review]
+- **Component**: `[backend, frontend, database, api]`
+- **Priority**: `[critical, high, medium, low]`
+- **Effort**: `[small <1d, medium 1-3d, large >3d]`
+- **Status**: `[needs-investigation, blocked, in-progress, ready-review]`
+- **Type**: `[bug, feature, enhancement, documentation, test, refactor, performance, security]`
 
-## Code Patterns
+Label configuration: `.github/labels.yml`
 
-### Factory Pattern Example
+## Common Gotchas & Solutions
+
+### TypeScript Strictness
 
 ```typescript
-// lib/factories/database.factory.ts
-export class DatabaseFactory {
-  static createProduction(config: DatabaseConfig): Database {
-    return new Database({
-      ...config,
-      retryPolicy: new ExponentialBackoffRetry(),
-      validator: new StrictValidator(),
-      logger: new StructuredLogger(),
-      cache: new RedisCache(),
-    });
-  }
+// ❌ WRONG - noUncheckedIndexedAccess violation
+const item = array[0];
+item.property; // Error: Object is possibly 'undefined'
+
+// ✅ CORRECT
+const item = array[0];
+if (item) {
+  item.property;
 }
 ```
 
-### Validated Types Pattern
+### Import Paths
 
 ```typescript
-// lib/validators/user.validator.ts
+// ❌ WRONG - Absolute path
+import { Button } from "/src/components/ui/Button";
+
+// ✅ CORRECT - Alias
+import { Button } from "@/components/ui/Button";
+```
+
+### Validation Pattern
+
+```typescript
+// Always validate unknown data
 import { z } from "zod";
 
-export const UserSchema = z.object({
-  email: z.string().email(),
-  name: z.string().min(1).max(100),
-  age: z.number().int().positive().max(150),
+const Schema = z.object({
+  /* ... */
 });
+type ValidatedType = z.infer<typeof Schema>;
 
-export type User = z.infer<typeof UserSchema>;
-
-export function createUser(input: unknown): User {
-  return UserSchema.parse(input);
+function processData(input: unknown): ValidatedType {
+  return Schema.parse(input); // Throws if invalid
 }
 ```
 
-### Component Pattern
+## Environment Details
 
-```typescript
-// components/ui/Button.tsx
-import { type ButtonHTMLAttributes, type FC } from 'react';
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
-}
-
-export const Button: FC<ButtonProps> = ({
-  variant = 'primary',
-  size = 'md',
-  className,
-  children,
-  ...props
-}) => {
-  // Implementation
-  return <button {...props}>{children}</button>;
-};
-```
-
-## Testing Philosophy
-
-### Anti-Mock Approach
-
-- Use real implementations with failure injection
-- Test actual I/O operations, not simulated ones
-- Implement chaos testing with real failure scenarios
-
-### Test Categories
-
-1. **Unit Tests**: Pure functions, validators, utilities
-2. **Integration Tests**: API endpoints, database operations
-3. **E2E Tests**: User workflows, critical paths
-4. **Chaos Tests**: Failure injection, recovery scenarios
-
-## Communication Protocol
-
-### GitHub-First
-
-- Progress updates in issue/PR comments
-- Architectural decisions in ADRs (docs/adr/)
-- Knowledge accumulation through PR descriptions
-
-### Handoff Protocol
-
-When switching agent sessions:
-
-1. Update relevant GitHub issues with progress
-2. Commit all changes with descriptive messages
-3. Leave clear TODO comments for next steps
-4. Update this file if new patterns emerge
-
-## Quality Gates
-
-### Core Gates (Pre-commit)
-
-- Formatting (Prettier)
-- Linting (ESLint)
-- Type checking (TypeScript)
-- No console.log statements
-- Conventional commit format
-
-### CI/CD Gates (GitHub Actions)
-
-- All core gates
-- Unit tests pass
-- Integration tests pass
-- Build succeeds
-- No security vulnerabilities
-- Performance benchmarks met
-
-## Performance Standards
-
-- Lighthouse score > 95
-- Bundle size < 200KB (initial)
-- Time to Interactive < 3s
-- No memory leaks
-- No performance regressions
-
-## Security Requirements
-
-- No secrets in code
-- All inputs validated
-- XSS protection enabled
-- CSRF tokens implemented
-- Dependencies regularly updated
-- Security headers configured
-
-## Common Issues & Solutions
-
-### TypeScript Strict Mode Issues
-
-If you encounter strict mode errors:
-
-1. Fix the actual issue, don't bypass with `any` or `!`
-2. Use proper type guards and narrowing
-3. Leverage discriminated unions for complex types
-
-### Import Resolution
-
-- Use `@/` alias for src/ imports
-- Keep imports organized (builtin > external > internal)
-- No circular dependencies
-
-### State Management
-
-- Use React's built-in state for component state
-- Use Context API for cross-component state
-- Consider Zustand for complex global state
+- **Node**: Check `.nvmrc` for version
+- **Package Manager**: pnpm (required)
+- **IDE Config**: Prettier + ESLint integration recommended
+- **Git Hooks**: Auto-installed via Husky on `pnpm install`
 
 ## DO NOT
 
-- Create files without clear purpose
-- Add unnecessary documentation files
-- Mock dependencies in tests
-- Use `any` type or non-null assertions
-- Ignore linting/formatting errors
-- Commit without running quality checks
+- Use `any` type or `!` assertions
 - Add console.log statements
-- Create complex abstractions prematurely
+- Mock dependencies in tests
+- Ignore linting/formatting errors
+- Commit without running `pnpm quality`
+- Create files without clear purpose
 
 ## ALWAYS
 
-- Run `pnpm quality` before committing
+- Run `pnpm quality` before commits
 - Follow existing patterns in codebase
-- Write self-documenting code
-- Use TypeScript strict mode
 - Handle errors explicitly
-- Test with real implementations
+- Test with real implementations (not mocks)
 - Update GitHub issues with progress
-- Keep commits atomic and focused
+- Use TypeScript strict mode features properly
+- Communicate progress via GitHub issues/PRs
+- Use builder/factory patterns for complex objects
+- Validate all external inputs with Zod
+- Include observability (logging/tracing/metrics)
 
----
+## LLM-Assisted Development Principles
 
-_This document is the single source of truth for AI agents. Update it when patterns evolve._
+This project implements the following success patterns for AI collaboration:
+
+1. **Pit of Success Architecture**: Validated types, builders, and factories make correct code easier to write than incorrect code
+2. **Anti-Mock Testing**: Test with real implementations and failure injection for better agent understanding
+3. **GitHub-First Communication**: All progress tracked in issues/PRs for seamless agent handoffs
+4. **Systematic Risk Reduction**: Layered safety mechanisms (validation → testing → observability → quality gates)
+5. **Three-Tier Quality Gates**: Core gates (format/lint/test) → Quality gates (integration/security) → Production gates (stress/compatibility)
+6. **Progressive Context Building**: Knowledge accumulates through issues, PRs, and commit history
+
+The goal is to create a virtuous feedback cycle where:
+
+- Agents follow established patterns → Better context for future agents → Higher quality output → Reinforces good patterns
