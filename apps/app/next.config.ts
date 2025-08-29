@@ -6,7 +6,16 @@ import path from "path";
 config({ path: path.resolve(process.cwd(), "../../.env") });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  eslint: {
+    // Skip ESLint during production builds
+    // We run ESLint separately in CI
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    // Skip TypeScript errors during production builds
+    // We run type checking separately in CI
+    ignoreBuildErrors: true,
+  },
 };
 
 export default nextConfig;
