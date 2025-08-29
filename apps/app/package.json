@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev --turbopack --port 3001",
     "build": "next build",
+    "build:cf": "npx @cloudflare/next-on-pages",
+    "preview:cf": "npx wrangler pages dev .vercel/output/static --compatibility-date=2024-01-01",
+    "deploy:cf": "npx wrangler pages deploy .vercel/output/static --project-name=kotadb-app",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
