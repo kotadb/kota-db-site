@@ -8,19 +8,63 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
+    let mounted = true;
+
     const checkAuth = async () => {
+      // First, check if this is an OAuth callback by looking for auth tokens in URL
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      const searchParams = new URLSearchParams(window.location.search);
+
+      const hasAuthParams =
+        hashParams.has("access_token") ||
+        searchParams.has("code") ||
+        hashParams.has("token_type");
+
+      if (hasAuthParams) {
+        // This is likely an OAuth callback, wait a bit longer for Supabase to process
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      }
+
       const {
         data: { session },
       } = await supabase.auth.getSession();
 
+      if (!mounted) return;
+
       if (session) {
         router.push("/dashboard");
-      } else {
+      } else if (!hasAuthParams) {
+        // Only redirect to login if this wasn't an OAuth callback attempt
         window.location.href = "https://kotadb.io/login";
+      } else {
+        // If it was an OAuth callback but no session, wait a bit more then try again
+        setTimeout(() => {
+          if (mounted) {
+            window.location.reload();
+          }
+        }, 1000);
       }
     };
 
+    // Listen for auth state changes (handles OAuth callback)
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (!mounted) return;
+
+        if (event === "SIGNED_IN" && session) {
+          router.push("/dashboard");
+        } else if (event === "SIGNED_OUT") {
+          window.location.href = "https://kotadb.io/login";
+        }
+      },
+    );
+
     checkAuth();
+
+    return () => {
+      mounted = false;
+      authListener.subscription.unsubscribe();
+    };
   }, [router]);
 
   return (
