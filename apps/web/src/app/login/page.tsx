@@ -13,7 +13,8 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
+      console.log("Initiating GitHub OAuth...");
+      const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "github",
         options: {
           redirectTo: `https://app.kotadb.io`,
@@ -21,14 +22,17 @@ export default function LoginPage() {
         },
       });
 
+      console.log("OAuth response:", { data, error });
+
       if (error) {
         console.error("Login error:", error);
-        alert("Failed to login with GitHub. Please try again.");
+        alert(`Failed to login with GitHub: ${error.message}`);
+        setLoading(false);
       }
+      // Note: if successful, user will be redirected to GitHub, so we don't set loading to false
     } catch (error) {
       console.error("Login error:", error);
       alert("An error occurred. Please try again.");
-    } finally {
       setLoading(false);
     }
   };
