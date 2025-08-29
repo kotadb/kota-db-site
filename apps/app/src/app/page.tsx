@@ -16,7 +16,7 @@ export default function Home() {
       if (session) {
         router.push("/dashboard");
       } else {
-        window.location.href = process.env["NEXT_PUBLIC_APP_URL"] + "/login";
+        window.location.href = "https://kotadb.io/login";
       }
     };
 
