@@ -33,7 +33,7 @@ export default function Home() {
       // Handle OAuth errors
       if (hasError) {
         console.error("OAuth error:", searchParams.get("error"));
-        window.location.href = "https://kotadb.io/login";
+        router.push("/login");
         return;
       }
 
@@ -59,8 +59,8 @@ export default function Home() {
         router.push("/dashboard");
       } else if (!hasAuthParams) {
         console.log("No session and no auth params, redirecting to login");
-        // Only redirect to login if this wasn't an OAuth callback attempt
-        window.location.href = "https://kotadb.io/login";
+        // Redirect to local login page
+        router.push("/login");
       } else {
         console.log("OAuth callback but no session, retrying...");
         // If it was an OAuth callback but no session, wait a bit more then try again
@@ -87,7 +87,7 @@ export default function Home() {
           router.push("/dashboard");
         } else if (event === "SIGNED_OUT") {
           console.log("User signed out, redirecting to login");
-          window.location.href = "https://kotadb.io/login";
+          router.push("/login");
         }
       },
     );

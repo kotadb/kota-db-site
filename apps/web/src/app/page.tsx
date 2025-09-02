@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EmailCapture } from "@/components/EmailCapture";
 
 export default function Home() {
   return (
@@ -62,31 +63,41 @@ export default function Home() {
 
         <div className="w-full max-w-7xl mx-auto text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-slate-50 mb-6 leading-tight">
-            Codebase Intelligence
+            Beyond grep:
             <span className="bg-gradient-to-r from-teal-500 via-teal-400 to-cyan-400 dark:from-teal-400 dark:via-teal-300 dark:to-cyan-300 bg-clip-text text-transparent">
               {" "}
-              Platform
+              True Codebase Intelligence
             </span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            Understands your code&apos;s relationships, dependencies, and
-            structure. Powers LLM tooling like Claude Code for dramatically
-            improved codebase understanding and navigation.
+            While grep searches text, KotaDB understands your code&apos;s
+            relationships, dependencies, and structure. Powers LLM tooling like
+            Claude Code with semantic search that&apos;s 210x faster than
+            traditional approaches.
           </p>
+
+          {/* Email Capture for Waitlist */}
+          <div className="max-w-md mx-auto mb-8 px-4 sm:px-0">
+            <EmailCapture source="hero_section" />
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
             <Link
               href="https://github.com/jayminwest/kota-db#quickstart"
               target="_blank"
-              className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200 text-sm"
             >
-              Quick Start
+              View Documentation
             </Link>
+            <span className="text-slate-400 dark:text-slate-600 hidden sm:inline">
+              •
+            </span>
             <Link
               href="https://github.com/jayminwest/kota-db"
               target="_blank"
-              className="bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white border border-slate-700 dark:border-slate-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
+              className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200 text-sm"
             >
-              View on GitHub
+              GitHub Repository
             </Link>
           </div>
         </div>
@@ -95,9 +106,14 @@ export default function Home() {
       {/* Features Grid */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 w-full">
         <div className="w-full max-w-7xl mx-auto">
-          <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
-            Built for Codebase Intelligence
+          <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-8">
+            Why grep Falls Short
           </h3>
+          <p className="text-lg text-center text-slate-600 dark:text-slate-400 mb-16 max-w-4xl mx-auto">
+            Traditional text search tools like grep can find strings, but they
+            can&apos;t understand code structure, relationships, or context.
+            KotaDB was built for the modern age of AI-assisted development.
+          </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
               <div className="w-14 h-14 bg-gradient-to-br from-teal-100 to-teal-200 dark:from-teal-800 dark:to-teal-900 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
@@ -116,11 +132,12 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Symbol Extraction
+                Semantic Understanding
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Automatically extracts functions, classes, and relationships
-                from your entire codebase.
+                Unlike grep&apos;s text matching, KotaDB extracts and
+                understands functions, classes, and their relationships across
+                your entire codebase.
               </p>
             </div>
 
@@ -141,10 +158,11 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Dependency Tracking
+                Beyond Text Search
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Full relationship graph showing what calls what, enabling
+                grep finds text patterns. KotaDB builds a full relationship
+                graph showing what calls what, enabling true semantic search and
                 instant impact analysis.
               </p>
             </div>
@@ -166,11 +184,12 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Lightning Fast
+                Blazing Performance
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                &lt;3ms search latency with trigram indexing. 210x faster than
-                traditional approaches.
+                While grep processes text linearly, KotaDB uses trigram indexing
+                for &lt;3ms search latency—210x faster than grep-based
+                approaches.
               </p>
             </div>
 
@@ -191,11 +210,12 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Impact Analysis
+                Smart Impact Analysis
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Understand what breaks when you change code. See all affected
-                functions and dependencies.
+                grep can&apos;t tell you what breaks when you change code.
+                KotaDB&apos;s dependency graph shows exactly which functions and
+                files are affected by any change.
               </p>
             </div>
 
@@ -216,11 +236,12 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                LLM Integration
+                AI-First Design
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                MCP server support for seamless integration with Claude Code and
-                other AI coding assistants.
+                Built for the AI era. grep outputs text—KotaDB provides
+                structured data perfect for LLMs. MCP server enables seamless
+                Claude Code integration.
               </p>
             </div>
 
@@ -252,18 +273,151 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Comparison Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900 w-full">
+        <div className="w-full max-w-7xl mx-auto">
+          <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
+            grep vs KotaDB: The Evolution of Code Search
+          </h3>
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 dark:from-red-950/50 dark:to-red-900/50 border border-red-200 dark:border-red-800">
+              <h4 className="text-2xl font-semibold text-red-800 dark:text-red-400 mb-6 flex items-center">
+                <svg
+                  className="w-8 h-8 mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"
+                  />
+                </svg>
+                grep: 1970s Text Search
+              </h4>
+              <ul className="space-y-4 text-red-700 dark:text-red-300">
+                <li className="flex items-start">
+                  <span className="text-red-500 mr-3 mt-1">×</span>
+                  <span>Only finds literal text matches</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-red-500 mr-3 mt-1">×</span>
+                  <span>
+                    No understanding of code structure or relationships
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-red-500 mr-3 mt-1">×</span>
+                  <span>Can&apos;t analyze dependencies or impact</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-red-500 mr-3 mt-1">×</span>
+                  <span>Outputs unstructured text unsuitable for LLMs</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-red-500 mr-3 mt-1">×</span>
+                  <span>Slow linear search through entire codebase</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-red-500 mr-3 mt-1">×</span>
+                  <span>False positives from comments and strings</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-teal-50 to-emerald-100 dark:from-teal-950/50 dark:to-emerald-900/50 border border-teal-200 dark:border-teal-800">
+              <h4 className="text-2xl font-semibold text-teal-800 dark:text-teal-400 mb-6 flex items-center">
+                <svg
+                  className="w-8 h-8 mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+                KotaDB: Modern Intelligence
+              </h4>
+              <ul className="space-y-4 text-teal-700 dark:text-teal-300">
+                <li className="flex items-start">
+                  <span className="text-teal-500 mr-3 mt-1">✓</span>
+                  <span>
+                    Semantic understanding of functions, classes, and methods
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-teal-500 mr-3 mt-1">✓</span>
+                  <span>Complete relationship graph of dependencies</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-teal-500 mr-3 mt-1">✓</span>
+                  <span>Instant impact analysis showing affected code</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-teal-500 mr-3 mt-1">✓</span>
+                  <span>Structured data optimized for AI tools and LLMs</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-teal-500 mr-3 mt-1">✓</span>
+                  <span>
+                    Sub-3ms search with trigram indexing (210x faster)
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-teal-500 mr-3 mt-1">✓</span>
+                  <span>
+                    Context-aware results focused on actual code symbols
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Code Example */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 w-full overflow-hidden">
         <div className="w-full max-w-7xl mx-auto">
           <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-6 sm:mb-8 md:mb-16 px-2">
-            Simple and Intuitive API
+            grep vs KotaDB: See the Difference
           </h3>
-          <div className="w-full">
-            <div className="w-full max-w-none">
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <div>
+              <div className="bg-gradient-to-br from-red-900 to-red-950 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-red-800 mx-auto">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <span className="text-red-400 text-xs sm:text-sm font-medium">
+                    grep: Traditional Approach
+                  </span>
+                </div>
+                <div className="overflow-x-auto w-full">
+                  <pre className="text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre w-full">
+                    <code className="text-red-300 block w-full">{`# Find all files containing "FileStorage"
+$ grep -r "FileStorage" .
+./utils.py:class FileStorage:
+./main.py:    # FileStorage comment
+./test.py:storage = FileStorage()
+
+# No context, no relationships
+# Can't tell which is actual usage
+# Manual parsing required
+# Slow on large codebases`}</code>
+                  </pre>
+                </div>
+              </div>
+            </div>
+
+            <div>
               <div className="bg-gradient-to-br from-slate-900 to-slate-950 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-slate-800 mx-auto">
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <span className="text-teal-400 text-xs sm:text-sm font-medium">
-                    Python Example
+                    KotaDB: Intelligent Analysis
                   </span>
                   <button className="text-slate-400 hover:text-teal-400 transition-colors duration-200 flex-shrink-0">
                     <svg
@@ -285,24 +439,21 @@ export default function Home() {
                   <pre className="text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre w-full">
                     <code className="language-python text-slate-300 block w-full">{`from kotadb import KotaDB
 
-# Connect to KotaDB server
 db = KotaDB("http://localhost:8080")
-
-# Ingest entire codebase with symbol extraction
 db.ingest_repository(".")
 
-# Find all functions that use a specific class
+# Find actual callers (not comments!)
 callers = db.find_callers("FileStorage")
-print(f"Found {len(callers)} functions calling FileStorage")
+# Returns: [Function(save_file, utils.py:45), 
+#           Function(load_data, main.py:12)]
 
-# Analyze impact of changing a function
-impact = db.impact_analysis("StorageError")
+# Impact analysis shows ripple effects  
+impact = db.impact_analysis("FileStorage")
+print(f"Changing FileStorage affects:")
 for func in impact.affected_functions:
-    print(f"  {func.name} in {func.file}:{func.line}")
+    print(f"  {func.name}() in {func.file}")
 
-# Search for code patterns with under 3ms latency
-results = db.search("error handling")
-print(f"Found {len(results)} matches in {results.latency_ms}ms")`}</code>
+# <3ms response time, structured results`}</code>
                   </pre>
                 </div>
               </div>
@@ -449,29 +600,39 @@ print(f"Found {len(results)} matches in {results.latency_ms}ms")`}</code>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section with Email Capture */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-teal-900 to-slate-950 relative overflow-hidden w-full">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 via-transparent to-slate-800/10 opacity-30" />
         <div className="w-full max-w-4xl mx-auto text-center relative z-10">
           <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 leading-tight">
-            Ready to Supercharge Your Development Tools?
+            Be First to Experience True Code Intelligence
           </h3>
           <p className="text-base sm:text-lg md:text-xl text-teal-100 mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0">
-            Give your LLM coding assistants deep codebase understanding with
-            KotaDB.
+            Join the waitlist to get early access when we launch. Be among the
+            first to give your AI coding assistants the semantic search they
+            deserve.
           </p>
+
+          {/* Email Capture for CTA */}
+          <div className="max-w-md mx-auto mb-8 px-4 sm:px-0">
+            <div className="email-capture-cta">
+              <EmailCapture source="cta_section" />
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
             <Link
               href="https://github.com/jayminwest/kota-db"
               target="_blank"
-              className="bg-teal-400 hover:bg-teal-300 text-slate-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              className="text-teal-200 hover:text-teal-100 transition-all duration-200 text-sm"
             >
-              Get Started Free
+              Explore on GitHub
             </Link>
+            <span className="text-teal-300/50 hidden sm:inline">•</span>
             <Link
               href="https://github.com/jayminwest/kota-db#documentation"
               target="_blank"
-              className="bg-transparent hover:bg-white/10 text-white border-2 border-teal-400 hover:border-teal-300 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300"
+              className="text-teal-200 hover:text-teal-100 transition-all duration-200 text-sm"
             >
               Read Documentation
             </Link>
