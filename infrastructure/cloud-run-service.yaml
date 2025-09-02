@@ -1,0 +1,68 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: kotadb-api
+  annotations:
+    run.googleapis.com/execution-environment: gen2
+    run.googleapis.com/ingress: all
+    run.googleapis.com/launch-stage: GA
+spec:
+  template:
+    metadata:
+      annotations:
+        # Autoscaling configuration
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "10"
+        run.googleapis.com/vpc-access-connector: kotadb-connector
+        run.googleapis.com/vpc-access-egress: private-ranges-only
+    spec:
+      serviceAccountName: kotadb-service@kotadb-production.iam.gserviceaccount.com
+      containerConcurrency: 100
+      timeoutSeconds: 300
+      containers:
+        - image: us-central1-docker.pkg.dev/kotadb-production/kotadb-registry/kotadb:latest
+          name: kotadb
+          ports:
+            - containerPort: 8080
+              name: http1
+          env:
+            - name: RUST_LOG
+              value: "info"
+            - name: KOTADB_PORT
+              value: "8080"
+            - name: KOTADB_HOST
+              value: "0.0.0.0"
+            - name: KOTADB_DATA_DIR
+              value: "/mnt/data"
+          resources:
+            limits:
+              cpu: "2"
+              memory: "1Gi"
+            requests:
+              cpu: "1"
+              memory: "512Mi"
+          volumeMounts:
+            - name: kotadb-data
+              mountPath: /mnt/data
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 2
+      volumes:
+        - name: kotadb-data
+          nfs:
+            server: "10.0.0.2" # Replace with actual Filestore IP
+            path: "/kotadb_data"
+            readOnly: false

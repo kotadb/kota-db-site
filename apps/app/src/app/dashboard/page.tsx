@@ -22,7 +22,7 @@ export default function DashboardPage() {
       } = await supabase.auth.getSession();
 
       if (!session) {
-        window.location.href = process.env["NEXT_PUBLIC_APP_URL"] + "/login";
+        router.push("/login");
         return;
       }
 
@@ -35,7 +35,7 @@ export default function DashboardPage() {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         if (!session) {
-          window.location.href = process.env["NEXT_PUBLIC_APP_URL"] + "/login";
+          router.push("/login");
         }
       },
     );
@@ -47,8 +47,7 @@ export default function DashboardPage() {
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    window.location.href =
-      process.env["NEXT_PUBLIC_APP_URL"] || "http://localhost:3000";
+    router.push("/login");
   };
 
   const openBilling = () => {
