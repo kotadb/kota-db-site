@@ -36,7 +36,7 @@
     "zod": "^4.1.1"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.14",
+    "@cloudflare/next-on-pages": "^1.13.16",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.8.0",
