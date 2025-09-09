@@ -17,9 +17,9 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KotaDB - Codebase Intelligence Platform",
+  title: "KotaDB - The Single Search Entry Point Claude Code Deserves",
   description:
-    "A codebase intelligence platform that understands your code's relationships, dependencies, and structure. Powers LLM tooling like Claude Code for dramatically improved codebase understanding.",
+    "End Claude Code's tool juggling complexity. KotaDB automatically routes queries to ripgrep, fd, or symbol index, then enhances results with relationship intelligence. Zero cognitive overhead, faster results.",
 };
 
 export default function RootLayout({

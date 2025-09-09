@@ -63,17 +63,16 @@ export default function Home() {
 
         <div className="w-full max-w-7xl mx-auto text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-slate-50 mb-6 leading-tight">
-            Beyond grep:
+            The Single Search Entry Point
             <span className="bg-gradient-to-r from-teal-500 via-teal-400 to-cyan-400 dark:from-teal-400 dark:via-teal-300 dark:to-cyan-300 bg-clip-text text-transparent">
               {" "}
-              True Codebase Intelligence
+              Claude Code Deserves
             </span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            While grep searches text, KotaDB understands your code&apos;s
-            relationships, dependencies, and structure. Powers LLM tooling like
-            Claude Code with semantic search that&apos;s 210x faster than
-            traditional approaches.
+            Claude Code juggles multiple search tools—KotaDB becomes the single
+            entry point that automatically routes queries to the best tool, then
+            enhances results with relationship intelligence.
           </p>
 
           {/* Email Capture for Waitlist */}
@@ -107,12 +106,12 @@ export default function Home() {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 w-full">
         <div className="w-full max-w-7xl mx-auto">
           <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-8">
-            Why grep Falls Short
+            End Tool-Juggling Complexity
           </h3>
           <p className="text-lg text-center text-slate-600 dark:text-slate-400 mb-16 max-w-4xl mx-auto">
-            Traditional text search tools like grep can find strings, but they
-            can&apos;t understand code structure, relationships, or context.
-            KotaDB was built for the modern age of AI-assisted development.
+            Claude Code currently juggles ripgrep, grep, find, and glob—creating
+            friction and cognitive overhead. KotaDB eliminates this complexity
+            with intelligent tool routing and relationship-enhanced results.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
@@ -132,12 +131,13 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Semantic Understanding
+                Intelligent Tool Routing
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Unlike grep&apos;s text matching, KotaDB extracts and
-                understands functions, classes, and their relationships across
-                your entire codebase.
+                Query &quot;async fn parse&quot; → Uses ripgrep for speed. Query
+                &quot;**/*.toml&quot; → Uses fd for file finding. Query
+                &quot;FileStorage&quot; → Hits symbol index directly. All
+                automatically.
               </p>
             </div>
 
@@ -158,12 +158,12 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Beyond Text Search
+                Relationship Intelligence
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                grep finds text patterns. KotaDB builds a full relationship
-                graph showing what calls what, enabling true semantic search and
-                instant impact analysis.
+                Every search result is enhanced with &quot;who calls these
+                functions?&quot; and &quot;which files depend on these
+                configs?&quot; No manual follow-up queries needed.
               </p>
             </div>
 
@@ -184,12 +184,12 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Blazing Performance
+                Zero Cognitive Overhead
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                While grep processes text linearly, KotaDB uses trigram indexing
-                for &lt;3ms search latency—210x faster than grep-based
-                approaches.
+                Claude Code only talks to KotaDB. No more manual tool selection,
+                no more juggling different commands. AI gets faster, more
+                relevant results without complexity.
               </p>
             </div>
 
@@ -210,12 +210,12 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Smart Impact Analysis
+                Best Tool, Every Time
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                grep can&apos;t tell you what breaks when you change code.
-                KotaDB&apos;s dependency graph shows exactly which functions and
-                files are affected by any change.
+                KotaDB handles tool selection and makes results smarter with
+                relationship context. The benefit: faster, more relevant results
+                without tool-juggling complexity.
               </p>
             </div>
 
@@ -236,12 +236,12 @@ export default function Home() {
                 </svg>
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                AI-First Design
+                Single Search Interface
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Built for the AI era. grep outputs text—KotaDB provides
-                structured data perfect for LLMs. MCP server enables seamless
-                Claude Code integration.
+                Claude Code sends all search queries to KotaDB. KotaDB
+                automatically routes to ripgrep, fd, or symbol index, then
+                enriches results with relationship data.
               </p>
             </div>
 
@@ -277,7 +277,7 @@ export default function Home() {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900 w-full">
         <div className="w-full max-w-7xl mx-auto">
           <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
-            grep vs KotaDB: The Evolution of Code Search
+            Multiple Tools vs Single Entry Point
           </h3>
           <div className="grid lg:grid-cols-2 gap-12">
             <div className="p-8 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 dark:from-red-950/50 dark:to-red-900/50 border border-red-200 dark:border-red-800">
@@ -295,34 +295,32 @@ export default function Home() {
                     d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"
                   />
                 </svg>
-                grep: 1970s Text Search
+                Current: Tool Juggling
               </h4>
               <ul className="space-y-4 text-red-700 dark:text-red-300">
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>Only finds literal text matches</span>
+                  <span>Claude Code juggles ripgrep, grep, find, glob</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>
-                    No understanding of code structure or relationships
-                  </span>
+                  <span>AI has to manually decide which tool to use</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>Can&apos;t analyze dependencies or impact</span>
+                  <span>Creates friction and cognitive overhead</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>Outputs unstructured text unsuitable for LLMs</span>
+                  <span>Each tool returns different result formats</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>Slow linear search through entire codebase</span>
+                  <span>No relationship context in search results</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>False positives from comments and strings</span>
+                  <span>Manual follow-up queries required</span>
                 </li>
               </ul>
             </div>
@@ -342,38 +340,32 @@ export default function Home() {
                     d="M13 10V3L4 14h7v7l9-11h-7z"
                   />
                 </svg>
-                KotaDB: Modern Intelligence
+                KotaDB: Single Entry Point
               </h4>
               <ul className="space-y-4 text-teal-700 dark:text-teal-300">
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>
-                    Semantic understanding of functions, classes, and methods
-                  </span>
+                  <span>Claude Code only talks to KotaDB</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Complete relationship graph of dependencies</span>
+                  <span>KotaDB automatically routes to best tool</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Instant impact analysis showing affected code</span>
+                  <span>Enhances results with relationship intelligence</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Structured data optimized for AI tools and LLMs</span>
+                  <span>Unified, structured output format for AI</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>
-                    Sub-3ms search with trigram indexing (210x faster)
-                  </span>
+                  <span>Zero cognitive overhead for tool selection</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>
-                    Context-aware results focused on actual code symbols
-                  </span>
+                  <span>Faster, more relevant results without complexity</span>
                 </li>
               </ul>
             </div>
@@ -385,7 +377,7 @@ export default function Home() {
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 w-full overflow-hidden">
         <div className="w-full max-w-7xl mx-auto">
           <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-6 sm:mb-8 md:mb-16 px-2">
-            grep vs KotaDB: See the Difference
+            Tool Juggling vs Single Interface: See the Difference
           </h3>
 
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
@@ -393,21 +385,23 @@ export default function Home() {
               <div className="bg-gradient-to-br from-red-900 to-red-950 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-red-800 mx-auto">
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <span className="text-red-400 text-xs sm:text-sm font-medium">
-                    grep: Traditional Approach
+                    Current: Claude Code Tool Juggling
                   </span>
                 </div>
                 <div className="overflow-x-auto w-full">
                   <pre className="text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre w-full">
-                    <code className="text-red-300 block w-full">{`# Find all files containing "FileStorage"
-$ grep -r "FileStorage" .
-./utils.py:class FileStorage:
-./main.py:    # FileStorage comment
-./test.py:storage = FileStorage()
+                    <code className="text-red-300 block w-full">{`# Claude Code decides: should I use ripgrep? grep? find? glob?
+# For text search:
+claude> Uses ripgrep tool
+claude> Parses unstructured output
 
-# No context, no relationships
-# Can't tell which is actual usage
-# Manual parsing required
-# Slow on large codebases`}</code>
+# For file patterns:  
+claude> Uses find tool or glob tool
+claude> Different output formats
+
+# For symbols:
+claude> Maybe grep? Or ripgrep with specific flags?
+claude> Manual tool selection, cognitive overhead`}</code>
                   </pre>
                 </div>
               </div>
@@ -417,7 +411,7 @@ $ grep -r "FileStorage" .
               <div className="bg-gradient-to-br from-slate-900 to-slate-950 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-slate-800 mx-auto">
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <span className="text-teal-400 text-xs sm:text-sm font-medium">
-                    KotaDB: Intelligent Analysis
+                    KotaDB: Single Entry Point
                   </span>
                   <button className="text-slate-400 hover:text-teal-400 transition-colors duration-200 flex-shrink-0">
                     <svg
@@ -437,23 +431,20 @@ $ grep -r "FileStorage" .
                 </div>
                 <div className="overflow-x-auto w-full">
                   <pre className="text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre w-full">
-                    <code className="language-python text-slate-300 block w-full">{`from kotadb import KotaDB
+                    <code className="language-python text-slate-300 block w-full">{`# Claude Code sends ALL queries to KotaDB
+claude> query: "async fn parse"
+kotadb> routes to ripgrep, adds relationship context
+kotadb> returns: functions + who calls them
 
-db = KotaDB("http://localhost:8080")
-db.ingest_repository(".")
+claude> query: "**/*.toml" 
+kotadb> routes to fd, adds dependency context
+kotadb> returns: files + which configs depend on them
 
-# Find actual callers (not comments!)
-callers = db.find_callers("FileStorage")
-# Returns: [Function(save_file, utils.py:45), 
-#           Function(load_data, main.py:12)]
+claude> query: "FileStorage"
+kotadb> routes to symbol index, adds usage context  
+kotadb> returns: symbols + all usage patterns
 
-# Impact analysis shows ripple effects  
-impact = db.impact_analysis("FileStorage")
-print(f"Changing FileStorage affects:")
-for func in impact.affected_functions:
-    print(f"  {func.name}() in {func.file}")
-
-# <3ms response time, structured results`}</code>
+# Single interface, intelligent routing, enhanced results`}</code>
                   </pre>
                 </div>
               </div>
@@ -463,26 +454,26 @@ for func in impact.affected_functions:
           <div className="grid md:grid-cols-3 gap-8 mt-8">
             <div className="text-center">
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Symbol Tracking
+                Automatic Tool Routing
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                17,128+ symbols extracted from KotaDB&apos;s own codebase
+                KotaDB chooses ripgrep, fd, or symbol index automatically
               </p>
             </div>
             <div className="text-center">
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Impact Analysis
+                Relationship Enhancement
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Instantly see what breaks when you change code
+                Every result enhanced with &quot;who calls this?&quot; context
               </p>
             </div>
             <div className="text-center">
               <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                LLM Ready
+                Zero Cognitive Load
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                MCP server for Claude Code and AI assistants
+                Claude Code only talks to KotaDB—no more tool decisions
               </p>
             </div>
           </div>
@@ -605,12 +596,12 @@ for func in impact.affected_functions:
         <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 via-transparent to-slate-800/10 opacity-30" />
         <div className="w-full max-w-4xl mx-auto text-center relative z-10">
           <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 leading-tight">
-            Be First to Experience True Code Intelligence
+            End Claude Code&apos;s Tool Juggling
           </h3>
           <p className="text-base sm:text-lg md:text-xl text-teal-100 mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0">
-            Join the waitlist to get early access when we launch. Be among the
-            first to give your AI coding assistants the semantic search they
-            deserve.
+            Join the waitlist for the single search entry point Claude Code
+            deserves. Be first to experience zero-friction search with automatic
+            tool routing and relationship intelligence.
           </p>
 
           {/* Email Capture for CTA */}

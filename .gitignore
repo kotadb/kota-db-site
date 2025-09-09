@@ -43,3 +43,5 @@ next-env.d.ts
 docs-site/
 .next/
 node_modules/
+.env.local
+DEPLOYMENT_NOTES.md
