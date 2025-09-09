@@ -4,6 +4,11 @@ import { generateApiKey, type ApiKey } from "@kotadb/shared";
 import { useState, useEffect } from "react";
 
 import { supabase } from "@/lib/supabase";
+import {
+  validateApiKeys,
+  validateApiKey,
+  formatError,
+} from "@/lib/type-guards";
 
 interface ApiKeyManagerProps {
   userId: string;
@@ -32,8 +37,8 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
         .is("revoked_at", null)
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
-      setApiKeys((data as ApiKey[]) || []);
+      if (error) throw new Error(formatError(error));
+      setApiKeys(validateApiKeys(data));
     } catch (error) {
       console.error("Error fetching API keys:", error);
     } finally {
@@ -65,13 +70,13 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
         .select()
         .single();
 
-      const data = result.data as ApiKey | null;
-      const error = result.error;
+      const { data, error } = result as { data: unknown; error: unknown };
 
-      if (error) throw error;
+      if (error) throw new Error(formatError(error));
 
       if (data) {
-        setApiKeys([data, ...apiKeys]);
+        const validatedData = validateApiKey(data);
+        setApiKeys([validatedData, ...apiKeys]);
         setNewKey(key);
         setShowNewKey(true);
       }
@@ -98,7 +103,7 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
         .update({ revoked_at: new Date().toISOString() })
         .eq("id", id);
 
-      if (error) throw error;
+      if (error) throw new Error(formatError(error));
 
       setApiKeys(apiKeys.filter((key) => key.id !== id));
     } catch (error) {

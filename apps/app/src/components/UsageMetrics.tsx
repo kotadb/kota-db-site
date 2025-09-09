@@ -4,6 +4,7 @@ import type { UsageMetric } from "@kotadb/shared";
 import { useState, useEffect } from "react";
 
 import { supabase } from "@/lib/supabase";
+import { validateUsageMetrics, formatError } from "@/lib/type-guards";
 
 interface UsageMetricsProps {
   userId: string;
@@ -39,9 +40,9 @@ export default function UsageMetrics({ userId }: UsageMetricsProps) {
         .gte("date", thirtyDaysAgo.toISOString().split("T")[0])
         .order("date", { ascending: false });
 
-      if (error) throw error;
+      if (error) throw new Error(formatError(error));
 
-      const metricsData = (data as UsageMetric[]) || [];
+      const metricsData = validateUsageMetrics(data);
       setMetrics(metricsData);
 
       // Calculate summary

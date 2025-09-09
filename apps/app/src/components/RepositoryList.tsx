@@ -4,6 +4,11 @@ import type { Repository } from "@kotadb/shared";
 import { useState, useEffect } from "react";
 
 import { supabase } from "@/lib/supabase";
+import {
+  validateRepositories,
+  validateRepository,
+  formatError,
+} from "@/lib/type-guards";
 
 interface RepositoryListProps {
   userId: string;
@@ -30,8 +35,8 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
         .eq("user_id", userId)
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
-      setRepositories((data as Repository[]) || []);
+      if (error) throw new Error(formatError(error));
+      setRepositories(validateRepositories(data));
     } catch (error) {
       console.error("Error fetching repositories:", error);
     } finally {
@@ -63,17 +68,20 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
         .select()
         .single();
 
-      const data = result.data as Repository | null;
-      const error = result.error;
+      const { data, error } = result as {
+        data: unknown;
+        error: { code?: string } | null;
+      };
 
       if (error) {
         if (error.code === "23505") {
           alert("This repository has already been added");
         } else {
-          throw error;
+          throw new Error(formatError(error));
         }
       } else if (data) {
-        setRepositories([data, ...repositories]);
+        const validatedData = validateRepository(data);
+        setRepositories([validatedData, ...repositories]);
         setGithubUrl("");
 
         // TODO: Trigger indexing job
@@ -97,7 +105,7 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
         .delete()
         .eq("id", id);
 
-      if (error) throw error;
+      if (error) throw new Error(formatError(error));
 
       setRepositories(repositories.filter((repo) => repo.id !== id));
     } catch (error) {
