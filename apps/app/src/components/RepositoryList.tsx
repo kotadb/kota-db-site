@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
 import type { Repository } from "@kotadb/shared";
+import { useState, useEffect } from "react";
+
+import { supabase } from "@/lib/supabase";
 
 interface RepositoryListProps {
   userId: string;
@@ -16,7 +17,7 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
 
   useEffect(() => {
     if (userId) {
-      fetchRepositories();
+      void fetchRepositories();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
@@ -30,7 +31,7 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
         .order("created_at", { ascending: false });
 
       if (error) throw error;
-      setRepositories(data || []);
+      setRepositories((data as Repository[]) || []);
     } catch (error) {
       console.error("Error fetching repositories:", error);
     } finally {
@@ -51,7 +52,7 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
       const urlParts = githubUrl.split("/").filter(Boolean);
       const repoName = urlParts.slice(-2).join("/");
 
-      const { data, error } = await supabase
+      const result = await supabase
         .from("repositories")
         .insert({
           user_id: userId,
@@ -61,6 +62,9 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
         })
         .select()
         .single();
+
+      const data = result.data as Repository | null;
+      const error = result.error;
 
       if (error) {
         if (error.code === "23505") {
@@ -73,7 +77,6 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
         setGithubUrl("");
 
         // TODO: Trigger indexing job
-        console.log("Repository added, indexing will start soon");
       }
     } catch (error) {
       console.error("Error adding repository:", error);
@@ -136,7 +139,7 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
             className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
           />
           <button
-            onClick={addRepository}
+            onClick={() => void addRepository()}
             disabled={adding}
             className="px-6 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
@@ -180,7 +183,7 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
                     </div>
                   </div>
                   <button
-                    onClick={() => deleteRepository(repo.id)}
+                    onClick={() => void deleteRepository(repo.id)}
                     className="ml-4 text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
                   >
                     <svg

@@ -1,9 +1,10 @@
 "use client";
 
-import { supabase } from "@/lib/supabase";
-import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+import { supabase } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -83,7 +84,10 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <form onSubmit={handleEmailLogin} className="space-y-4 mb-4">
+          <form
+            onSubmit={(e) => void handleEmailLogin(e)}
+            className="space-y-4 mb-4"
+          >
             <div>
               <label
                 htmlFor="email"
@@ -139,7 +143,7 @@ export default function LoginPage() {
           </div>
 
           <button
-            onClick={handleGitHubLogin}
+            onClick={() => void handleGitHubLogin()}
             disabled={loading}
             className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-700 dark:hover:bg-slate-600 text-white py-3 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
           >
