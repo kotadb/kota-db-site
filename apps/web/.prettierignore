@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+.next/
+dist/
+build/
+.vercel/
+
+# Generated files
+.turbo/
+*.log
+*.tsbuildinfo
+
+# Environment files
+.env*
+!.env.example
+
+# IDE files
+.vscode/
+.idea/

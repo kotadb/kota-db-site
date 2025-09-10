@@ -1,8 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
 import { generateApiKey, type ApiKey } from "@kotadb/shared";
+import { useState, useEffect } from "react";
+
+import { supabase } from "@/lib/supabase";
+import {
+  validateApiKeys,
+  validateApiKey,
+  formatError,
+} from "@/lib/type-guards";
 
 interface ApiKeyManagerProps {
   userId: string;
@@ -17,7 +23,7 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
 
   useEffect(() => {
     if (userId) {
-      fetchApiKeys();
+      void fetchApiKeys();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
@@ -31,8 +37,8 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
         .is("revoked_at", null)
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
-      setApiKeys(data || []);
+      if (error) throw new Error(formatError(error));
+      setApiKeys(validateApiKeys(data));
     } catch (error) {
       console.error("Error fetching API keys:", error);
     } finally {
@@ -50,9 +56,10 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
     setGenerating(true);
 
     try {
-      const { key, hash, prefix } = generateApiKey();
+      const apiKeyData = generateApiKey();
+      const { key, hash, prefix } = apiKeyData;
 
-      const { data, error } = await supabase
+      const result = await supabase
         .from("api_keys")
         .insert({
           user_id: userId,
@@ -63,10 +70,13 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
         .select()
         .single();
 
-      if (error) throw error;
+      const { data, error } = result as { data: unknown; error: unknown };
+
+      if (error) throw new Error(formatError(error));
 
       if (data) {
-        setApiKeys([data, ...apiKeys]);
+        const validatedData = validateApiKey(data);
+        setApiKeys([validatedData, ...apiKeys]);
         setNewKey(key);
         setShowNewKey(true);
       }
@@ -93,7 +103,7 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
         .update({ revoked_at: new Date().toISOString() })
         .eq("id", id);
 
-      if (error) throw error;
+      if (error) throw new Error(formatError(error));
 
       setApiKeys(apiKeys.filter((key) => key.id !== id));
     } catch (error) {
@@ -103,7 +113,7 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
   };
 
   const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
+    void navigator.clipboard.writeText(text);
     alert("API key copied to clipboard");
   };
 
@@ -119,7 +129,7 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
         </h2>
 
         <button
-          onClick={generateNewKey}
+          onClick={() => void generateNewKey()}
           disabled={generating}
           className="px-6 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
@@ -196,7 +206,7 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
                     </p>
                   </div>
                   <button
-                    onClick={() => revokeKey(key.id)}
+                    onClick={() => void revokeKey(key.id)}
                     className="ml-4 text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
                   >
                     Revoke

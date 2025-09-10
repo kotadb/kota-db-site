@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
 import type { UsageMetric } from "@kotadb/shared";
+import { useState, useEffect } from "react";
+
+import { supabase } from "@/lib/supabase";
+import { validateUsageMetrics, formatError } from "@/lib/type-guards";
 
 interface UsageMetricsProps {
   userId: string;
@@ -20,7 +22,7 @@ export default function UsageMetrics({ userId }: UsageMetricsProps) {
 
   useEffect(() => {
     if (userId) {
-      fetchMetrics();
+      void fetchMetrics();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
@@ -38,19 +40,20 @@ export default function UsageMetrics({ userId }: UsageMetricsProps) {
         .gte("date", thirtyDaysAgo.toISOString().split("T")[0])
         .order("date", { ascending: false });
 
-      if (error) throw error;
+      if (error) throw new Error(formatError(error));
 
-      const metricsData = data || [];
+      const metricsData = validateUsageMetrics(data);
       setMetrics(metricsData);
 
       // Calculate summary
       const totals = metricsData.reduce(
         (acc, metric) => ({
           totalQueries: acc.totalQueries + metric.queries_count,
-          totalContext: acc.totalContext + parseFloat(metric.context_saved_mb),
+          totalContext:
+            acc.totalContext + parseFloat(String(metric.context_saved_mb)),
           totalStorage: Math.max(
             acc.totalStorage,
-            parseFloat(metric.storage_used_mb),
+            parseFloat(String(metric.storage_used_mb)),
           ),
           monthlyQueries: acc.monthlyQueries + metric.queries_count,
         }),
@@ -188,10 +191,10 @@ export default function UsageMetrics({ userId }: UsageMetricsProps) {
                       {formatNumber(metric.queries_count)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-                      {formatMB(parseFloat(metric.context_saved_mb))}
+                      {formatMB(parseFloat(String(metric.context_saved_mb)))}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-                      {formatMB(parseFloat(metric.storage_used_mb))}
+                      {formatMB(parseFloat(String(metric.storage_used_mb)))}
                     </td>
                   </tr>
                 ))}

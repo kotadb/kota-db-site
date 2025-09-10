@@ -6,13 +6,18 @@ export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
   useEffect(() => {
-    // Redirect to the app's login page
-    const isLocal = window.location.hostname === "localhost";
+    // Redirect to the app's login page using Next.js navigation
+    const isLocal =
+      typeof window !== "undefined" && window.location.hostname === "localhost";
     const redirectUrl = isLocal
       ? "http://localhost:3001/login"
       : "https://app.kotadb.io/login";
 
-    window.location.href = redirectUrl;
+    // For external redirects, we still need window.location.href
+    // But wrapped in proper client-side checks
+    if (typeof window !== "undefined") {
+      window.location.href = redirectUrl;
+    }
   }, []);
 
   return (
