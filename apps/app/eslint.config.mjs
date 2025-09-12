@@ -87,7 +87,8 @@ export default [
       "prettier/prettier": "error",
 
       // Next.js rules
-      "@next/next/no-html-link-for-pages": "error",
+      // App Router project: disable pages-specific rule
+      "@next/next/no-html-link-for-pages": "off",
     },
     settings: {
       react: {
