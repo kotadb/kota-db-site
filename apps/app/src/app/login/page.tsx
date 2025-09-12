@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -19,21 +19,19 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const { error: signInError } =
+        await getSupabase().auth.signInWithPassword({ email, password });
 
-      if (error) {
-        console.error("Login error:", error);
-        alert(`Failed to login: ${error.message}`);
+      if (signInError) {
+        console.error("Login error:", signInError);
+        alert(`Failed to login: ${signInError.message}`);
         setLoading(false);
       } else {
         // Redirect to dashboard on successful login
         router.push("/dashboard");
       }
-    } catch (error) {
-      console.error("Login error:", error);
+    } catch (err: unknown) {
+      console.error("Login error:", err);
       alert("An error occurred. Please try again.");
       setLoading(false);
     }
@@ -49,7 +47,7 @@ export default function LoginPage() {
           : process.env["NEXT_PUBLIC_DASHBOARD_URL"] || "https://app.kotadb.io";
       const redirectTo = `${origin}/dashboard`;
 
-      const { error } = await supabase.auth.signInWithOAuth({
+      const { error: oauthError } = await getSupabase().auth.signInWithOAuth({
         provider: "github",
         options: {
           redirectTo,
@@ -57,13 +55,13 @@ export default function LoginPage() {
         },
       });
 
-      if (error) {
-        console.error("Login error:", error);
-        alert(`Failed to login with GitHub: ${error.message}`);
+      if (oauthError) {
+        console.error("Login error:", oauthError);
+        alert(`Failed to login with GitHub: ${oauthError.message}`);
         setLoading(false);
       }
-    } catch (error) {
-      console.error("Login error:", error);
+    } catch (err: unknown) {
+      console.error("Login error:", err);
       alert("An error occurred. Please try again.");
       setLoading(false);
     }
