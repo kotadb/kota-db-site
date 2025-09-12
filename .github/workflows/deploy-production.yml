@@ -31,6 +31,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Lint (web)
+        working-directory: ./apps/web
+        run: pnpm run lint
+
+      - name: Typecheck (web)
+        working-directory: ./apps/web
+        run: pnpm run typecheck
+
       - name: Build marketing site
         working-directory: ./apps/web
         env:
@@ -82,6 +90,14 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Lint (app)
+        working-directory: ./apps/app
+        run: pnpm run lint
+
+      - name: Typecheck (app)
+        working-directory: ./apps/app
+        run: pnpm run typecheck
 
       - name: Build dashboard
         working-directory: ./apps/app
