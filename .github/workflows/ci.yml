@@ -41,12 +41,14 @@ jobs:
 
       - name: Check for console.log (excluding testing/observability)
         run: |
-          # Fail if console.log appears outside known testing/observability code
-          if grep -R "console\.log" \
-            --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
-            --exclude-dir=testing --exclude-dir=__tests__ --exclude-dir=observability \
-            apps/**/src/; then
-            echo "Error: console.log statements found (outside exceptions)" >&2
+          # Search only within src directories of apps/** and exclude known safe folders
+          MATCHES=$(grep -R "console\.log\(" apps \
+            --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' \
+            --exclude-dir='testing' --exclude-dir='__tests__' --exclude-dir='observability' | \
+            grep '/src/' || true)
+          if [ -n "$MATCHES" ]; then
+            echo "Error: console.log statements found (outside exceptions):" >&2
+            echo "$MATCHES" >&2
             exit 1
           fi
 
