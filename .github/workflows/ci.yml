@@ -39,10 +39,14 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Check for console.log
+      - name: Check for console.log (excluding testing/observability)
         run: |
-          if grep -R "console\.log" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" apps/**/src/; then
-            echo "Error: console.log statements found"
+          # Fail if console.log appears outside known testing/observability code
+          if grep -R "console\.log" \
+            --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+            --exclude-dir=testing --exclude-dir=__tests__ --exclude-dir=observability \
+            apps/**/src/; then
+            echo "Error: console.log statements found (outside exceptions)" >&2
             exit 1
           fi
 

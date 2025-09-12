@@ -306,7 +306,7 @@ export default function Home() {
                 <div className="overflow-x-auto w-full">
                   <pre className="text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre w-full">
                     <code className="text-red-300 block w-full">{`# You know the drill:
-human> "Here's how my auth system works..."
+          human> "Here&apos;s how my auth system works..."
 human> "This function connects to..."
 human> "The database layer is..."
 
@@ -398,7 +398,7 @@ kotadb> *shows architectural patterns and usage*
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[var(--background)] w-full overflow-hidden">
         <div className="w-full max-w-7xl mx-auto">
           <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[var(--foreground)] mb-8 sm:mb-12 md:mb-16 px-2">
-            Ready to unlock Claude Code's potential?
+            Ready to unlock Claude Code&apos;s potential?
           </h3>
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
             <div className="bg-[var(--card-bg)] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-[var(--card-border)] shadow-lg hover:shadow-xl transition-shadow duration-300">
