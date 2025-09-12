@@ -170,7 +170,8 @@ export function EmailCapture({
         )}
 
         <p className="text-xs text-[var(--foreground-secondary)]">
-          Join 500+ developers giving Claude Code the intelligence it deserves. No spam, unsubscribe anytime.
+          Join 500+ developers giving Claude Code the intelligence it deserves.
+          No spam, unsubscribe anytime.
         </p>
       </form>
     </div>

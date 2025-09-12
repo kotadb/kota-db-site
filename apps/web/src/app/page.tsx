@@ -13,10 +13,12 @@ export default function Home() {
                 <div className="w-8 h-8 bg-[var(--accent)] rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-lg">K</span>
                 </div>
-                <span className="text-xl font-bold text-[var(--foreground)]">KotaDB</span>
+                <span className="text-xl font-bold text-[var(--foreground)]">
+                  KotaDB
+                </span>
               </Link>
             </div>
-            
+
             <div className="flex items-center space-x-8">
               <div className="hidden md:flex items-center space-x-8">
                 <Link
@@ -34,7 +36,7 @@ export default function Home() {
                   GitHub
                 </Link>
               </div>
-              
+
               <div className="flex items-center space-x-4">
                 <ThemeToggle />
                 <Link
@@ -68,7 +70,8 @@ export default function Home() {
 
           {/* Subtitle */}
           <p className="text-lg sm:text-xl text-[var(--foreground-secondary)] max-w-2xl mx-auto leading-relaxed">
-            One file. Infinite context. Transform Claude Code from guessing to knowing your codebase.
+            One file. Infinite context. Transform Claude Code from guessing to
+            knowing your codebase.
           </p>
 
           {/* Launch CTA */}
@@ -79,8 +82,18 @@ export default function Home() {
               className="group bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
               Get Started
-              <svg className="ml-2 w-4 h-4 inline-block group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              <svg
+                className="ml-2 w-4 h-4 inline-block group-hover:translate-x-1 transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
               </svg>
             </Link>
             <Link
@@ -123,21 +136,32 @@ export default function Home() {
               Enterprise-grade intelligence layer for Claude Code.
             </p>
           </div>
-          
+
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Context Understanding */}
             <div className="group relative">
               <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
                 <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <svg
+                    className="w-6 h-6 text-[var(--accent)]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-[var(--foreground)] mb-3">
                   Instant Context
                 </h3>
                 <p className="text-[var(--foreground-secondary)] leading-relaxed mb-6">
-                  Claude Code understands your entire codebase structure, dependencies, and relationships in seconds.
+                  Claude Code understands your entire codebase structure,
+                  dependencies, and relationships in seconds.
                 </p>
                 <div className="text-sm text-[var(--accent)] font-medium">
                   Deep code analysis →
@@ -149,15 +173,26 @@ export default function Home() {
             <div className="group relative">
               <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
                 <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="w-6 h-6 text-[var(--accent)]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-[var(--foreground)] mb-3">
                   Zero Config
                 </h3>
                 <p className="text-[var(--foreground-secondary)] leading-relaxed mb-6">
-                  One file, 30 seconds. No complex setup, no configuration hell, no learning curve.
+                  One file, 30 seconds. No complex setup, no configuration hell,
+                  no learning curve.
                 </p>
                 <div className="text-sm text-[var(--accent)] font-medium">
                   Instant deployment →
@@ -169,15 +204,26 @@ export default function Home() {
             <div className="group relative">
               <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
                 <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  <svg
+                    className="w-6 h-6 text-[var(--accent)]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                    />
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-[var(--foreground)] mb-3">
                   Enterprise Ready
                 </h3>
                 <p className="text-[var(--foreground-secondary)] leading-relaxed mb-6">
-                  Built for scale. Optimized storage, intelligent caching, production-grade performance.
+                  Built for scale. Optimized storage, intelligent caching,
+                  production-grade performance.
                 </p>
                 <div className="text-sm text-[var(--accent)] font-medium">
                   Production scale →
@@ -260,7 +306,10 @@ export default function Home() {
               <ul className="space-y-4 text-teal-700 dark:text-teal-300">
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Claude Code has direct, intelligent access to your entire codebase</span>
+                  <span>
+                    Claude Code has direct, intelligent access to your entire
+                    codebase
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
@@ -268,19 +317,28 @@ export default function Home() {
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Claude Code knows who calls what, dependencies, impact analysis</span>
+                  <span>
+                    Claude Code knows who calls what, dependencies, impact
+                    analysis
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Sub-millisecond queries across millions of symbols</span>
+                  <span>
+                    Sub-millisecond queries across millions of symbols
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Claude Code becomes genuinely intelligent about your code</span>
+                  <span>
+                    Claude Code becomes genuinely intelligent about your code
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>This is what Claude Code-native development looks like</span>
+                  <span>
+                    This is what Claude Code-native development looks like
+                  </span>
                 </li>
               </ul>
             </div>
@@ -506,15 +564,18 @@ kotadb> *shows architectural patterns and usage*
       </section>
 
       {/* CTA Section with Email Capture */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full" style={{ background: 'var(--gradient-primary)' }}>
+      <section
+        className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full"
+        style={{ background: "var(--gradient-primary)" }}
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-black/20 opacity-30" />
         <div className="w-full max-w-4xl mx-auto text-center relative z-10">
           <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 leading-tight">
             Ready to deploy intelligence?
           </h3>
           <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0">
-            Transform Claude Code from guessing to knowing your codebase. 
-            Deploy the intelligence layer your team deserves in under 30 seconds.
+            Transform Claude Code from guessing to knowing your codebase. Deploy
+            the intelligence layer your team deserves in under 30 seconds.
           </p>
 
           {/* Launch CTA */}
@@ -525,8 +586,18 @@ kotadb> *shows architectural patterns and usage*
               className="group bg-white text-[var(--accent)] hover:bg-white/90 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-200 shadow-xl hover:shadow-2xl hover:-translate-y-1"
             >
               Deploy Now
-              <svg className="ml-2 w-5 h-5 inline-block group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              <svg
+                className="ml-2 w-5 h-5 inline-block group-hover:translate-x-1 transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
               </svg>
             </Link>
           </div>
@@ -598,7 +669,9 @@ kotadb> *shows architectural patterns and usage*
               </ul>
             </div>
             <div>
-              <h5 className="text-[var(--foreground)] font-semibold mb-4">Community</h5>
+              <h5 className="text-[var(--foreground)] font-semibold mb-4">
+                Community
+              </h5>
               <ul className="space-y-2">
                 <li>
                   <Link
@@ -630,7 +703,9 @@ kotadb> *shows architectural patterns and usage*
               </ul>
             </div>
             <div>
-              <h5 className="text-[var(--foreground)] font-semibold mb-4">Connect</h5>
+              <h5 className="text-[var(--foreground)] font-semibold mb-4">
+                Connect
+              </h5>
               <ul className="space-y-2">
                 <li>
                   <Link
