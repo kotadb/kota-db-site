@@ -11,7 +11,7 @@ export default function LoginPage() {
       typeof window !== "undefined" && window.location.hostname === "localhost";
     const dashboardBase = isLocal
       ? "http://localhost:3001"
-      : process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://app.kotadb.io";
+      : process.env["NEXT_PUBLIC_DASHBOARD_URL"] || "https://app.kotadb.io";
     const redirectUrl = `${dashboardBase}/login`;
 
     // For external redirects, we still need window.location.href
