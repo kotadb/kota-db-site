@@ -37,23 +37,37 @@ jobs:
 
       - name: Check for console.log statements
         run: |
-          if grep -r "console\.log" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/; then
-            echo "Error: console.log statements found. Please remove them."
+          MATCHES=$(grep -R "console\.log\(" apps \
+            --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' \
+            --exclude-dir='testing' --exclude-dir='__tests__' --exclude-dir='observability' | \
+            grep '/src/' || true)
+          if [ -n "$MATCHES" ]; then
+            echo "Error: console.log statements found (outside exceptions):" >&2
+            echo "$MATCHES" >&2
             exit 1
           fi
 
       - name: Check for absolute imports
         run: |
-          if grep -r "from ['\"]/" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/; then
-            echo "Error: Absolute path imports detected. Use @/ alias instead."
+          ABS=$(grep -R "from ['\"]/" apps \
+            --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' | \
+            grep '/src/' || true)
+          if [ -n "$ABS" ]; then
+            echo "Error: Absolute path imports detected. Use @/ alias instead." >&2
+            echo "$ABS" >&2
             exit 1
           fi
 
       - name: Build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://example.com
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: test_anon_key
+          NEXT_PUBLIC_APP_URL: https://example.com
+          NEXT_PUBLIC_DASHBOARD_URL: https://example.com
         run: pnpm build
 
       - name: Unit tests
-        run: pnpm test --run
+        run: pnpm test
 
       - name: Test coverage
         run: pnpm test:coverage
