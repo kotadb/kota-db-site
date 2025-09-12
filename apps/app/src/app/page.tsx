@@ -5,6 +5,9 @@ import { useEffect } from "react";
 
 import { supabase } from "@/lib/supabase";
 
+// Prevent prerender; this page depends on client-only auth state
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   const router = useRouter();
 

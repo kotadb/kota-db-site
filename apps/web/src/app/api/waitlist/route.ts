@@ -3,9 +3,9 @@ import { z } from "zod";
 import { supabase } from "@/lib/supabase";
 import { Resend } from "resend";
 
-// Initialize Resend with API key (only if configured)
-const resendApiKey = process.env["RESEND_API_KEY"];
-const resend = resendApiKey ? new Resend(resendApiKey) : null;
+// Ensure this route is always dynamic and not prerendered during build
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 // Validation schema for waitlist submission
 const WaitlistSchema = z.object({
@@ -61,8 +61,10 @@ export async function POST(request: NextRequest) {
       throw error;
     }
 
-    // Send confirmation email if Resend is configured
-    if (resend && process.env["RESEND_FROM_EMAIL"]) {
+    // Send confirmation email if Resend is configured (initialize lazily at request time)
+    const resendApiKey = process.env["RESEND_API_KEY"];
+    if (resendApiKey && process.env["RESEND_FROM_EMAIL"]) {
+      const resend = new Resend(resendApiKey);
       try {
         await resend.emails.send({
           from: process.env["RESEND_FROM_EMAIL"],
@@ -100,7 +102,7 @@ export async function POST(request: NextRequest) {
         });
 
         // Send notification to admin
-        if (resend && process.env["RESEND_ADMIN_EMAIL"]) {
+        if (process.env["RESEND_ADMIN_EMAIL"]) {
           await resend.emails.send({
             from: process.env["RESEND_FROM_EMAIL"],
             to: process.env["RESEND_ADMIN_EMAIL"],

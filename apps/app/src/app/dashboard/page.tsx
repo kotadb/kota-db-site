@@ -8,6 +8,9 @@ import RepositoryList from "@/components/RepositoryList";
 import UsageMetrics from "@/components/UsageMetrics";
 import { supabase } from "@/lib/supabase";
 
+// Prevent prerender; this page depends on client-only auth state
+export const dynamic = "force-dynamic";
+
 export default function DashboardPage() {
   const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
   const [loading, setLoading] = useState(true);
