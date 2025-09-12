@@ -43,10 +43,11 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const isLocal = window.location.hostname === "localhost";
-      const redirectTo = isLocal
-        ? `http://localhost:3001/dashboard`
-        : `https://app.kotadb.io/dashboard`;
+      const origin =
+        typeof window !== "undefined"
+          ? window.location.origin
+          : process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://app.kotadb.io";
+      const redirectTo = `${origin}/dashboard`;
 
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "github",
@@ -157,7 +158,7 @@ export default function LoginPage() {
             <p className="text-sm text-slate-600 dark:text-slate-400">
               Don&apos;t have an account?{" "}
               <Link
-                href="https://kotadb.io/pricing"
+                href={`${process.env.NEXT_PUBLIC_APP_URL}/pricing`}
                 className="text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 font-medium"
               >
                 View pricing
@@ -169,14 +170,14 @@ export default function LoginPage() {
         <p className="text-center text-sm text-slate-500 mt-6">
           By signing in, you agree to our{" "}
           <Link
-            href="https://kotadb.io/terms"
+            href={`${process.env.NEXT_PUBLIC_APP_URL}/terms`}
             className="underline hover:text-slate-700"
           >
             Terms of Service
           </Link>{" "}
           and{" "}
           <Link
-            href="https://kotadb.io/privacy"
+            href={`${process.env.NEXT_PUBLIC_APP_URL}/privacy`}
             className="underline hover:text-slate-700"
           >
             Privacy Policy

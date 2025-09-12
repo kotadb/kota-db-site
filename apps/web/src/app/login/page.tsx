@@ -9,9 +9,10 @@ export default function LoginPage() {
     // Redirect to the app's login page using Next.js navigation
     const isLocal =
       typeof window !== "undefined" && window.location.hostname === "localhost";
-    const redirectUrl = isLocal
-      ? "http://localhost:3001/login"
-      : "https://app.kotadb.io/login";
+    const dashboardBase = isLocal
+      ? "http://localhost:3001"
+      : process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://app.kotadb.io";
+    const redirectUrl = `${dashboardBase}/login`;
 
     // For external redirects, we still need window.location.href
     // But wrapped in proper client-side checks
