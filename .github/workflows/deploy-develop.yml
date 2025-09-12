@@ -1,14 +1,14 @@
-name: Deploy to Production
+name: Deploy Develop (Staging)
 
 on:
   push:
     branches:
-      - main
+      - develop
   workflow_dispatch:
 
 jobs:
-  deploy-web:
-    name: Deploy Marketing Site via Wrangler
+  deploy-web-develop:
+    name: Deploy Web (develop) via Wrangler
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -31,18 +31,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build marketing site
+      - name: Build web (develop)
         working-directory: ./apps/web
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
-          NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID: ${{ secrets.NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID }}
-          NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID: ${{ secrets.NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID }}
-          NEXT_PUBLIC_APP_URL: https://kotadb.io
-          NEXT_PUBLIC_DASHBOARD_URL: https://app.kotadb.io
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.DEV_NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.DEV_NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_TEST_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID: ${{ secrets.NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID_TEST }}
+          NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID: ${{ secrets.NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID_TEST }}
+          NEXT_PUBLIC_APP_URL: https://develop.kotadb.io
+          NEXT_PUBLIC_DASHBOARD_URL: https://app.develop.kotadb.io
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_TEST_SECRET_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.DEV_SUPABASE_SERVICE_ROLE_KEY }}
         run: |
           pnpm run build
           pnpm run build:cf
@@ -50,17 +50,17 @@ jobs:
       - name: Install Wrangler CLI
         run: npm i -g wrangler@3
 
-      - name: Deploy to Cloudflare Pages (wrangler)
+      - name: Deploy web (develop) via Wrangler
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           wrangler pages deploy ./apps/web/.vercel/output/static \
             --project-name=kotadb-web \
-            --branch=main
+            --branch=develop
 
-  deploy-app:
-    name: Deploy Dashboard via Wrangler
+  deploy-app-develop:
+    name: Deploy App (develop) via Wrangler
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -83,16 +83,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build dashboard
+      - name: Build app (develop)
         working-directory: ./apps/app
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
-          NEXT_PUBLIC_APP_URL: https://kotadb.io
-          NEXT_PUBLIC_DASHBOARD_URL: https://app.kotadb.io
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.DEV_NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.DEV_NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_TEST_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_APP_URL: https://develop.kotadb.io
+          NEXT_PUBLIC_DASHBOARD_URL: https://app.develop.kotadb.io
         run: |
           pnpm run build
           pnpm run build:cf
@@ -100,11 +98,11 @@ jobs:
       - name: Install Wrangler CLI
         run: npm i -g wrangler@3
 
-      - name: Deploy Dashboard (wrangler)
+      - name: Deploy app (develop) via Wrangler
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           wrangler pages deploy ./apps/app/.vercel/output/static \
             --project-name=kotadb-app \
-            --branch=main
+            --branch=develop

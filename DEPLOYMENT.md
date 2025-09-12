@@ -10,8 +10,34 @@
 ✅ **GitHub Actions CI/CD**
 
 - Automated deployments on push to `main`
-- Preview deployments for pull requests
-- All secrets configured (except Cloudflare API token)
+- Preview/staging deployments from `develop`
+- Optional PR previews for `apps/web`
+
+## Branching & Environments
+
+- `main` → Production
+  - Deploys both `apps/web` (kotadb.io) and `apps/app` (app.kotadb.io) via Wrangler CLI
+  - Workflow: `.github/workflows/deploy-production.yml`
+
+- `develop` → Staging/Preview
+  - Deploys both apps to Cloudflare Pages preview variant using Wrangler CLI with `--branch=develop`
+  - Uses separate Supabase project and Stripe test keys
+  - Workflow: `.github/workflows/deploy-develop.yml`
+
+Recommended secret names for staging (GitHub Actions → Secrets and variables → Actions):
+
+- `DEV_NEXT_PUBLIC_SUPABASE_URL`
+- `DEV_NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `DEV_SUPABASE_SERVICE_ROLE_KEY`
+- `NEXT_PUBLIC_STRIPE_TEST_PUBLISHABLE_KEY`
+- `NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID_TEST`
+- `NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID_TEST`
+- `STRIPE_TEST_SECRET_KEY`
+
+Cloudflare authentication for CI:
+
+- `CLOUDFLARE_API_TOKEN` (Pages:Edit)
+- `CLOUDFLARE_ACCOUNT_ID`
 
 ## Required Manual Setup
 

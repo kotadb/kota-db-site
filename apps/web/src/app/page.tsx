@@ -1,283 +1,198 @@
 import Link from "next/link";
-import { EmailCapture } from "@/components/EmailCapture";
+import { ThemeToggle } from "@/components/ui";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 font-[family-name:var(--font-roboto)] overflow-x-hidden w-full">
+    <div className="min-h-screen font-[family-name:var(--font-roboto)] overflow-x-hidden w-full page-container">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full backdrop-blur-lg bg-white/80 dark:bg-slate-950/80 z-50 border-b border-slate-200/50 dark:border-slate-800/50">
-        <div className="w-full mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 max-w-7xl mx-auto">
-            <div className="flex items-center min-w-0">
-              <h1 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-slate-900 to-teal-600 dark:from-teal-400 dark:to-teal-200 bg-clip-text text-transparent truncate">
-                KotaDB
-              </h1>
+      <nav className="fixed top-0 w-full backdrop-blur-xl bg-[var(--background)]/80 z-50 border-b border-[var(--border)]/50">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20 max-w-7xl mx-auto">
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-[var(--accent)] rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">K</span>
+                </div>
+                <span className="text-xl font-bold text-[var(--foreground)]">KotaDB</span>
+              </Link>
             </div>
-            <div className="flex items-center gap-2 sm:gap-3 md:gap-6 flex-shrink-0">
-              <Link
-                href="https://github.com/jayminwest/kota-db"
-                target="_blank"
-                className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200 text-xs sm:text-sm md:text-base whitespace-nowrap"
-              >
-                GitHub
-              </Link>
-              <Link
-                href="https://github.com/jayminwest/kota-db#documentation"
-                target="_blank"
-                className="hidden md:inline-block text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200 whitespace-nowrap"
-              >
-                Docs
-              </Link>
-              <Link
-                href="https://github.com/jayminwest/kota-db#quickstart"
-                target="_blank"
-                className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm md:text-base whitespace-nowrap"
-              >
-                Start
-              </Link>
+            
+            <div className="flex items-center space-x-8">
+              <div className="hidden md:flex items-center space-x-8">
+                <Link
+                  href="https://github.com/jayminwest/kota-db#documentation"
+                  target="_blank"
+                  className="text-[var(--foreground-secondary)] hover:text-[var(--foreground)] transition-colors duration-200 text-sm font-medium"
+                >
+                  Documentation
+                </Link>
+                <Link
+                  href="https://github.com/jayminwest/kota-db"
+                  target="_blank"
+                  className="text-[var(--foreground-secondary)] hover:text-[var(--foreground)] transition-colors duration-200 text-sm font-medium"
+                >
+                  GitHub
+                </Link>
+              </div>
+              
+              <div className="flex items-center space-x-4">
+                <ThemeToggle />
+                <Link
+                  href="https://github.com/jayminwest/kota-db#quickstart"
+                  target="_blank"
+                  className="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 text-sm"
+                >
+                  Get Started
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="hero-section pt-32 pb-32 min-h-screen flex items-center px-4 sm:px-6 lg:px-8 relative w-full">
-        {/* Animated background */}
-        <div className="absolute inset-0">
-          {/* Grid pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]" />
-
-          {/* Animated gradient orbs - mobile optimized */}
-          <div className="absolute top-0 -left-4 w-48 h-48 sm:w-72 sm:h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob dark:mix-blend-screen dark:opacity-10" />
-          <div className="absolute top-0 -right-4 w-48 h-48 sm:w-72 sm:h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000 dark:mix-blend-screen dark:opacity-10" />
-          <div className="absolute -bottom-8 left-20 w-48 h-48 sm:w-72 sm:h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000 dark:mix-blend-screen dark:opacity-10" />
-
-          {/* Floating code symbols - hidden on mobile */}
-          <div className="absolute inset-0 hidden sm:block">
-            <div className="absolute top-1/4 left-1/4 text-teal-500/10 text-4xl md:text-6xl font-mono animate-float-slow">{`</>`}</div>
-            <div className="absolute top-3/4 right-1/3 text-cyan-500/10 text-3xl md:text-4xl font-mono animate-float-slower">{`{}`}</div>
-            <div className="absolute bottom-1/4 left-1/3 text-emerald-500/10 text-4xl md:text-5xl font-mono animate-float">{`()`}</div>
-            <div className="absolute top-1/2 right-1/4 text-teal-500/10 text-2xl md:text-3xl font-mono animate-float-slow">{`[]`}</div>
+      <section className="hero-section pt-36 pb-32 min-h-screen flex items-center px-4 sm:px-6 lg:px-8 relative w-full">
+        <div className="w-full max-w-4xl mx-auto text-center space-y-8">
+          {/* Floating badge */}
+          <div className="inline-flex items-center gap-2 bg-[var(--card-bg)] border border-[var(--border)] rounded-full px-4 py-2 text-sm text-[var(--foreground-secondary)] shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            Powering AI development workflows
           </div>
-        </div>
 
-        <div className="w-full max-w-7xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-slate-50 mb-6 leading-tight">
-            The Single Search Entry Point
-            <span className="bg-gradient-to-r from-teal-500 via-teal-400 to-cyan-400 dark:from-teal-400 dark:via-teal-300 dark:to-cyan-300 bg-clip-text text-transparent">
-              {" "}
-              Claude Code Deserves
-            </span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            Claude Code juggles multiple search tools—KotaDB becomes the single
-            entry point that automatically routes queries to the best tool, then
-            enhances results with relationship intelligence.
+          {/* Main headline */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--foreground)] leading-[1.1] tracking-tight">
+            Give Claude Code
+            <br />
+            <span className="text-[var(--accent)]">real intelligence</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-lg sm:text-xl text-[var(--foreground-secondary)] max-w-2xl mx-auto leading-relaxed">
+            One file. Infinite context. Transform Claude Code from guessing to knowing your codebase.
           </p>
 
-          {/* Email Capture for Waitlist */}
-          <div className="max-w-md mx-auto mb-8 px-4 sm:px-0">
-            <EmailCapture source="hero_section" />
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
+          {/* Launch CTA */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
             <Link
               href="https://github.com/jayminwest/kota-db#quickstart"
               target="_blank"
-              className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200 text-sm"
+              className="group bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
-              View Documentation
+              Get Started
+              <svg className="ml-2 w-4 h-4 inline-block group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
             </Link>
-            <span className="text-slate-400 dark:text-slate-600 hidden sm:inline">
-              •
-            </span>
             <Link
               href="https://github.com/jayminwest/kota-db"
               target="_blank"
-              className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200 text-sm"
+              className="bg-[var(--card-bg)] hover:bg-[var(--button-secondary-hover)] border border-[var(--border)] text-[var(--foreground)] px-8 py-4 rounded-2xl font-semibold transition-all duration-200 shadow-sm hover:shadow-lg hover:-translate-y-0.5"
             >
-              GitHub Repository
+              View Source
+            </Link>
+          </div>
+
+          {/* Simple links */}
+          <div className="flex items-center justify-center gap-6 pt-8 text-sm">
+            <Link
+              href="https://github.com/jayminwest/kota-db"
+              target="_blank"
+              className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors duration-200 underline underline-offset-4"
+            >
+              View on GitHub
+            </Link>
+            <Link
+              href="https://github.com/jayminwest/kota-db#quickstart"
+              target="_blank"
+              className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors duration-200 underline underline-offset-4"
+            >
+              Documentation
             </Link>
           </div>
         </div>
       </section>
 
       {/* Features Grid */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 w-full">
-        <div className="w-full max-w-7xl mx-auto">
-          <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-8">
-            End Tool-Juggling Complexity
-          </h3>
-          <p className="text-lg text-center text-slate-600 dark:text-slate-400 mb-16 max-w-4xl mx-auto">
-            Claude Code currently juggles ripgrep, grep, find, and glob—creating
-            friction and cognitive overhead. KotaDB eliminates this complexity
-            with intelligent tool routing and relationship-enhanced results.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-teal-100 to-teal-200 dark:from-teal-800 dark:to-teal-900 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-teal-600 dark:text-teal-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
+      <section className="py-32 px-4 sm:px-6 lg:px-8 w-full">
+        <div className="w-full max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[var(--foreground)] mb-4 tracking-tight">
+              Three capabilities. Infinite possibilities.
+            </h2>
+            <p className="text-lg text-[var(--foreground-secondary)] max-w-2xl mx-auto">
+              Enterprise-grade intelligence layer for Claude Code.
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Context Understanding */}
+            <div className="group relative">
+              <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+                <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-[var(--foreground)] mb-3">
+                  Instant Context
+                </h3>
+                <p className="text-[var(--foreground-secondary)] leading-relaxed mb-6">
+                  Claude Code understands your entire codebase structure, dependencies, and relationships in seconds.
+                </p>
+                <div className="text-sm text-[var(--accent)] font-medium">
+                  Deep code analysis →
+                </div>
               </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Intelligent Tool Routing
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Query &quot;async fn parse&quot; → Uses ripgrep for speed. Query
-                &quot;**/*.toml&quot; → Uses fd for file finding. Query
-                &quot;FileStorage&quot; → Hits symbol index directly. All
-                automatically.
-              </p>
             </div>
 
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-800 dark:to-teal-800 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-emerald-600 dark:text-emerald-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
+            {/* Zero Setup */}
+            <div className="group relative">
+              <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+                <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-[var(--foreground)] mb-3">
+                  Zero Config
+                </h3>
+                <p className="text-[var(--foreground-secondary)] leading-relaxed mb-6">
+                  One file, 30 seconds. No complex setup, no configuration hell, no learning curve.
+                </p>
+                <div className="text-sm text-[var(--accent)] font-medium">
+                  Instant deployment →
+                </div>
               </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Relationship Intelligence
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Every search result is enhanced with &quot;who calls these
-                functions?&quot; and &quot;which files depend on these
-                configs?&quot; No manual follow-up queries needed.
-              </p>
             </div>
 
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-violet-100 to-purple-100 dark:from-violet-800 dark:to-purple-800 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-violet-600 dark:text-violet-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
+            {/* Enterprise Scale */}
+            <div className="group relative">
+              <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+                <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-[var(--foreground)] mb-3">
+                  Enterprise Ready
+                </h3>
+                <p className="text-[var(--foreground-secondary)] leading-relaxed mb-6">
+                  Built for scale. Optimized storage, intelligent caching, production-grade performance.
+                </p>
+                <div className="text-sm text-[var(--accent)] font-medium">
+                  Production scale →
+                </div>
               </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Zero Cognitive Overhead
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Claude Code only talks to KotaDB. No more manual tool selection,
-                no more juggling different commands. AI gets faster, more
-                relevant results without complexity.
-              </p>
-            </div>
-
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-800 dark:to-orange-800 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-amber-600 dark:text-amber-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-                  />
-                </svg>
-              </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Best Tool, Every Time
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                KotaDB handles tool selection and makes results smarter with
-                relationship context. The benefit: faster, more relevant results
-                without tool-juggling complexity.
-              </p>
-            </div>
-
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 dark:from-rose-800 dark:to-pink-800 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-rose-600 dark:text-rose-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                  />
-                </svg>
-              </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Single Search Interface
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Claude Code sends all search queries to KotaDB. KotaDB
-                automatically routes to ripgrep, fd, or symbol index, then
-                enriches results with relationship data.
-              </p>
-            </div>
-
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-indigo-800 dark:to-blue-800 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-indigo-600 dark:text-indigo-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
-                  />
-                </svg>
-              </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Dual Storage
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Optimized separation of documents and graph data for maximum
-                performance at scale.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Comparison Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900 w-full">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--background)] w-full">
         <div className="w-full max-w-7xl mx-auto">
-          <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
-            Multiple Tools vs Single Entry Point
+          <h3 className="text-4xl font-bold text-center text-[var(--foreground)] mb-16">
+            Stop Copy-Pasting Code Into Claude Code
           </h3>
           <div className="grid lg:grid-cols-2 gap-12">
             <div className="p-8 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 dark:from-red-950/50 dark:to-red-900/50 border border-red-200 dark:border-red-800">
@@ -295,32 +210,32 @@ export default function Home() {
                     d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"
                   />
                 </svg>
-                Current: Tool Juggling
+                Current: Context Chaos
               </h4>
               <ul className="space-y-4 text-red-700 dark:text-red-300">
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>Claude Code juggles ripgrep, grep, find, glob</span>
+                  <span>Find the relevant files manually</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>AI has to manually decide which tool to use</span>
+                  <span>Copy them into the chat window</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>Creates friction and cognitive overhead</span>
+                  <span>Hope you got the right context</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>Each tool returns different result formats</span>
+                  <span>Watch Claude Code give confused answers anyway</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>No relationship context in search results</span>
+                  <span>Repeat the process for every conversation</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 mt-1">×</span>
-                  <span>Manual follow-up queries required</span>
+                  <span>Your time is worth more than this</span>
                 </li>
               </ul>
             </div>
@@ -340,32 +255,32 @@ export default function Home() {
                     d="M13 10V3L4 14h7v7l9-11h-7z"
                   />
                 </svg>
-                KotaDB: Single Entry Point
+                KotaDB: Claude Code Gets It
               </h4>
               <ul className="space-y-4 text-teal-700 dark:text-teal-300">
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Claude Code only talks to KotaDB</span>
+                  <span>Claude Code has direct, intelligent access to your entire codebase</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>KotaDB automatically routes to best tool</span>
+                  <span>No copy-paste. No guessing. Just understanding.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Enhances results with relationship intelligence</span>
+                  <span>Claude Code knows who calls what, dependencies, impact analysis</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Unified, structured output format for AI</span>
+                  <span>Sub-millisecond queries across millions of symbols</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Zero cognitive overhead for tool selection</span>
+                  <span>Claude Code becomes genuinely intelligent about your code</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-3 mt-1">✓</span>
-                  <span>Faster, more relevant results without complexity</span>
+                  <span>This is what Claude Code-native development looks like</span>
                 </li>
               </ul>
             </div>
@@ -374,10 +289,10 @@ export default function Home() {
       </section>
 
       {/* Code Example */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 w-full overflow-hidden">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[var(--background)] w-full overflow-hidden">
         <div className="w-full max-w-7xl mx-auto">
-          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-6 sm:mb-8 md:mb-16 px-2">
-            Tool Juggling vs Single Interface: See the Difference
+          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-[var(--foreground)] mb-6 sm:mb-8 md:mb-16 px-2">
+            Context Chaos vs Intelligence: See the Difference
           </h3>
 
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
@@ -385,35 +300,34 @@ export default function Home() {
               <div className="bg-gradient-to-br from-red-900 to-red-950 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-red-800 mx-auto">
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <span className="text-red-400 text-xs sm:text-sm font-medium">
-                    Current: Claude Code Tool Juggling
+                    Current: Context Window Chaos
                   </span>
                 </div>
                 <div className="overflow-x-auto w-full">
                   <pre className="text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre w-full">
-                    <code className="text-red-300 block w-full">{`# Claude Code decides: should I use ripgrep? grep? find? glob?
-# For text search:
-claude> Uses ripgrep tool
-claude> Parses unstructured output
+                    <code className="text-red-300 block w-full">{`# You know the drill:
+human> "Here's how my auth system works..."
+human> "This function connects to..."
+human> "The database layer is..."
 
-# For file patterns:  
-claude> Uses find tool or glob tool
-claude> Different output formats
+# Every conversation starts with explaining your own code
+human> *copies 15 files into chat*
+human> *hopes Claude Code gets it*
+claude> *gives confused answers anyway*
 
-# For symbols:
-claude> Maybe grep? Or ripgrep with specific flags?
-claude> Manual tool selection, cognitive overhead`}</code>
+# Your time is worth more than this`}</code>
                   </pre>
                 </div>
               </div>
             </div>
 
             <div>
-              <div className="bg-gradient-to-br from-slate-900 to-slate-950 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-slate-800 mx-auto">
+              <div className="bg-[var(--card-bg)] rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-[var(--card-border)] mx-auto">
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <span className="text-teal-400 text-xs sm:text-sm font-medium">
-                    KotaDB: Single Entry Point
+                    KotaDB: Claude Code Gets It
                   </span>
-                  <button className="text-slate-400 hover:text-teal-400 transition-colors duration-200 flex-shrink-0">
+                  <button className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200 flex-shrink-0">
                     <svg
                       className="w-4 h-4 sm:w-5 sm:h-5"
                       fill="none"
@@ -431,20 +345,20 @@ claude> Manual tool selection, cognitive overhead`}</code>
                 </div>
                 <div className="overflow-x-auto w-full">
                   <pre className="text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre w-full">
-                    <code className="language-python text-slate-300 block w-full">{`# Claude Code sends ALL queries to KotaDB
-claude> query: "async fn parse"
-kotadb> routes to ripgrep, adds relationship context
-kotadb> returns: functions + who calls them
+                    <code className="language-python text-[var(--foreground-secondary)] block w-full">{`# Your Claude Code already knows your codebase
+claude> "I need to understand the auth flow"
+kotadb> *instant access to all auth-related functions*
+kotadb> *shows who calls what, dependencies, flow*
 
-claude> query: "**/*.toml" 
-kotadb> routes to fd, adds dependency context
-kotadb> returns: files + which configs depend on them
+claude> "What happens if I change this function?"
+kotadb> *impact analysis across entire codebase*
+kotadb> *shows all affected files and functions*
 
-claude> query: "FileStorage"
-kotadb> routes to symbol index, adds usage context  
-kotadb> returns: symbols + all usage patterns
+claude> "Find similar patterns in the code"
+kotadb> *structural understanding, not text matching*
+kotadb> *shows architectural patterns and usage*
 
-# Single interface, intelligent routing, enhanced results`}</code>
+# Your Claude Code deserves to understand your code as well as you do`}</code>
                   </pre>
                 </div>
               </div>
@@ -453,27 +367,27 @@ kotadb> returns: symbols + all usage patterns
 
           <div className="grid md:grid-cols-3 gap-8 mt-8">
             <div className="text-center">
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Automatic Tool Routing
+              <h4 className="text-xl font-semibold text-[var(--foreground)] mb-3">
+                Direct Code Understanding
               </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                KotaDB chooses ripgrep, fd, or symbol index automatically
+              <p className="text-[var(--foreground-secondary)] leading-relaxed">
+                Claude Code sees code as structure, not text
               </p>
             </div>
             <div className="text-center">
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Relationship Enhancement
+              <h4 className="text-xl font-semibold text-[var(--foreground)] mb-3">
+                Photographic Memory
               </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Every result enhanced with &quot;who calls this?&quot; context
+              <p className="text-[var(--foreground-secondary)] leading-relaxed">
+                Every function, connection, dependency mapped
               </p>
             </div>
             <div className="text-center">
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Zero Cognitive Load
+              <h4 className="text-xl font-semibold text-[var(--foreground)] mb-3">
+                One File Setup
               </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Claude Code only talks to KotaDB—no more tool decisions
+              <p className="text-[var(--foreground-secondary)] leading-relaxed">
+                Drop .mcp.json in your project. Claude Code gets it.
               </p>
             </div>
           </div>
@@ -481,14 +395,14 @@ kotadb> returns: symbols + all usage patterns
       </section>
 
       {/* Installation */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900 w-full overflow-hidden">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[var(--background)] w-full overflow-hidden">
         <div className="w-full max-w-7xl mx-auto">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-8 sm:mb-12 md:mb-16 px-2">
-            Get Started in Seconds
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[var(--foreground)] mb-8 sm:mb-12 md:mb-16 px-2">
+            Ready to unlock Claude Code's potential?
           </h3>
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
-            <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h4 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-50 mb-4 sm:mb-6 flex items-center">
+            <div className="bg-[var(--card-bg)] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-[var(--card-border)] shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <h4 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] mb-4 sm:mb-6 flex items-center">
                 <svg
                   className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-teal-500 flex-shrink-0"
                   fill="currentColor"
@@ -498,15 +412,15 @@ kotadb> returns: symbols + all usage patterns
                 </svg>
                 Docker Compose
               </h4>
-              <div className="bg-slate-950 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 overflow-x-auto">
+              <div className="bg-[var(--background-secondary)] rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 overflow-x-auto">
                 <code className="text-teal-400 text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-nowrap block">
                   docker-compose -f docker-compose.quickstart.yml up -d
                 </code>
               </div>
             </div>
 
-            <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h4 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-50 mb-4 sm:mb-6 flex items-center">
+            <div className="bg-[var(--card-bg)] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-[var(--card-border)] shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <h4 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] mb-4 sm:mb-6 flex items-center">
                 <svg
                   className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-emerald-500 flex-shrink-0"
                   fill="none"
@@ -522,7 +436,7 @@ kotadb> returns: symbols + all usage patterns
                 </svg>
                 Quick Install Script
               </h4>
-              <div className="bg-slate-950 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 overflow-x-auto">
+              <div className="bg-[var(--background-secondary)] rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 overflow-x-auto">
                 <code className="text-teal-400 text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre-wrap break-all sm:break-normal block">
                   curl -sSL
                   https://raw.githubusercontent.com/jayminwest/kota-db/main/quickstart/install.sh
@@ -548,9 +462,9 @@ kotadb> returns: symbols + all usage patterns
       </section>
 
       {/* Performance Stats */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-950 w-full">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--background-secondary)] w-full">
         <div className="w-full max-w-7xl mx-auto">
-          <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
+          <h3 className="text-4xl font-bold text-center text-[var(--foreground)] mb-16">
             Built for Scale
           </h3>
           <div className="grid md:grid-cols-3 gap-8 text-center">
@@ -558,10 +472,10 @@ kotadb> returns: symbols + all usage patterns
               <div className="text-6xl font-bold bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent mb-3">
                 3,600+
               </div>
-              <div className="text-slate-700 dark:text-slate-300 font-medium">
+              <div className="text-[var(--foreground)] font-medium">
                 Ops/Second
               </div>
-              <div className="text-sm text-slate-500 dark:text-slate-500 mt-2">
+              <div className="text-sm text-[var(--foreground-secondary)] opacity-75 mt-2">
                 Document insertions
               </div>
             </div>
@@ -569,10 +483,10 @@ kotadb> returns: symbols + all usage patterns
               <div className="text-6xl font-bold bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent mb-3">
                 &lt;10ms
               </div>
-              <div className="text-slate-700 dark:text-slate-300 font-medium">
+              <div className="text-[var(--foreground)] font-medium">
                 Query Latency
               </div>
-              <div className="text-sm text-slate-500 dark:text-slate-500 mt-2">
+              <div className="text-sm text-[var(--foreground-secondary)] opacity-75 mt-2">
                 P95 response time
               </div>
             </div>
@@ -580,10 +494,10 @@ kotadb> returns: symbols + all usage patterns
               <div className="text-6xl font-bold bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent mb-3">
                 Zero
               </div>
-              <div className="text-slate-700 dark:text-slate-300 font-medium">
+              <div className="text-[var(--foreground)] font-medium">
                 External Dependencies
               </div>
-              <div className="text-sm text-slate-500 dark:text-slate-500 mt-2">
+              <div className="text-sm text-[var(--foreground-secondary)] opacity-75 mt-2">
                 Single binary deployment
               </div>
             </div>
@@ -592,38 +506,44 @@ kotadb> returns: symbols + all usage patterns
       </section>
 
       {/* CTA Section with Email Capture */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-teal-900 to-slate-950 relative overflow-hidden w-full">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 via-transparent to-slate-800/10 opacity-30" />
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full" style={{ background: 'var(--gradient-primary)' }}>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-black/20 opacity-30" />
         <div className="w-full max-w-4xl mx-auto text-center relative z-10">
           <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 leading-tight">
-            End Claude Code&apos;s Tool Juggling
+            Ready to deploy intelligence?
           </h3>
-          <p className="text-base sm:text-lg md:text-xl text-teal-100 mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0">
-            Join the waitlist for the single search entry point Claude Code
-            deserves. Be first to experience zero-friction search with automatic
-            tool routing and relationship intelligence.
+          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0">
+            Transform Claude Code from guessing to knowing your codebase. 
+            Deploy the intelligence layer your team deserves in under 30 seconds.
           </p>
 
-          {/* Email Capture for CTA */}
-          <div className="max-w-md mx-auto mb-8 px-4 sm:px-0">
-            <div className="email-capture-cta">
-              <EmailCapture source="cta_section" />
-            </div>
+          {/* Launch CTA */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 px-4 sm:px-0">
+            <Link
+              href="https://github.com/jayminwest/kota-db#quickstart"
+              target="_blank"
+              className="group bg-white text-[var(--accent)] hover:bg-white/90 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-200 shadow-xl hover:shadow-2xl hover:-translate-y-1"
+            >
+              Deploy Now
+              <svg className="ml-2 w-5 h-5 inline-block group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
             <Link
               href="https://github.com/jayminwest/kota-db"
               target="_blank"
-              className="text-teal-200 hover:text-teal-100 transition-all duration-200 text-sm"
+              className="text-white/80 hover:text-white transition-all duration-200 text-sm"
             >
               Explore on GitHub
             </Link>
-            <span className="text-teal-300/50 hidden sm:inline">•</span>
+            <span className="text-white/50 hidden sm:inline">•</span>
             <Link
               href="https://github.com/jayminwest/kota-db#documentation"
               target="_blank"
-              className="text-teal-200 hover:text-teal-100 transition-all duration-200 text-sm"
+              className="text-white/80 hover:text-white transition-all duration-200 text-sm"
             >
               Read Documentation
             </Link>
@@ -632,19 +552,19 @@ kotadb> returns: symbols + all usage patterns
       </section>
 
       {/* Footer */}
-      <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-950 border-t border-slate-800 w-full">
+      <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--background-secondary)] border-t border-[var(--border)] w-full">
         <div className="w-full max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h4 className="text-2xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent mb-4">
                 KotaDB
               </h4>
-              <p className="text-slate-400">
-                Codebase intelligence platform for LLM tooling.
+              <p className="text-[var(--foreground-secondary)]">
+                The Claude Code-native codebase intelligence layer.
               </p>
             </div>
             <div>
-              <h5 className="text-teal-400 font-semibold mb-4 uppercase tracking-wider text-sm">
+              <h5 className="text-[var(--accent)] font-semibold mb-4 uppercase tracking-wider text-sm">
                 Resources
               </h5>
               <ul className="space-y-2">
@@ -652,7 +572,7 @@ kotadb> returns: symbols + all usage patterns
                   <Link
                     href="https://github.com/jayminwest/kota-db#documentation"
                     target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
+                    className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                   >
                     Documentation
                   </Link>
@@ -661,7 +581,7 @@ kotadb> returns: symbols + all usage patterns
                   <Link
                     href="https://github.com/jayminwest/kota-db#quickstart"
                     target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
+                    className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                   >
                     Quick Start
                   </Link>
@@ -670,7 +590,7 @@ kotadb> returns: symbols + all usage patterns
                   <Link
                     href="https://github.com/jayminwest/kota-db/blob/main/examples"
                     target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
+                    className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                   >
                     Examples
                   </Link>
@@ -678,13 +598,13 @@ kotadb> returns: symbols + all usage patterns
               </ul>
             </div>
             <div>
-              <h5 className="text-white font-semibold mb-4">Community</h5>
+              <h5 className="text-[var(--foreground)] font-semibold mb-4">Community</h5>
               <ul className="space-y-2">
                 <li>
                   <Link
                     href="https://github.com/jayminwest/kota-db"
                     target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
+                    className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                   >
                     GitHub
                   </Link>
@@ -693,7 +613,7 @@ kotadb> returns: symbols + all usage patterns
                   <Link
                     href="https://github.com/jayminwest/kota-db/issues"
                     target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
+                    className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                   >
                     Issues
                   </Link>
@@ -702,7 +622,7 @@ kotadb> returns: symbols + all usage patterns
                   <Link
                     href="https://github.com/jayminwest/kota-db/discussions"
                     target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
+                    className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                   >
                     Discussions
                   </Link>
@@ -710,13 +630,13 @@ kotadb> returns: symbols + all usage patterns
               </ul>
             </div>
             <div>
-              <h5 className="text-white font-semibold mb-4">Connect</h5>
+              <h5 className="text-[var(--foreground)] font-semibold mb-4">Connect</h5>
               <ul className="space-y-2">
                 <li>
                   <Link
                     href="https://github.com/jayminwest"
                     target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
+                    className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                   >
                     Author GitHub
                   </Link>
@@ -725,7 +645,7 @@ kotadb> returns: symbols + all usage patterns
                   <Link
                     href="https://github.com/jayminwest/kota-db/blob/main/LICENSE"
                     target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
+                    className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                   >
                     License
                   </Link>
@@ -733,7 +653,7 @@ kotadb> returns: symbols + all usage patterns
               </ul>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-slate-800 text-center text-slate-500">
+          <div className="mt-12 pt-8 border-t border-[var(--border)] text-center text-[var(--foreground-secondary)] opacity-75">
             <p>
               &copy; 2024 KotaDB. Built with passion for the future of knowledge
               work.

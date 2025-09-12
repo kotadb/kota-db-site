@@ -26,7 +26,24 @@
   --color-teal-800: #115e59;
   --color-teal-900: #134e4a;
 
-  /* Semantic Colors */
+  /* Bright Mode Color Additions */
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+
+  --color-cyan-50: #ecfeff;
+  --color-cyan-100: #cffafe;
+  --color-cyan-200: #a5f3fc;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+
+  /* Semantic Colors - Light Mode (default) */
   --background: var(--color-slate-50);
   --background-secondary: #ffffff;
   --foreground: var(--color-slate-900);
@@ -36,6 +53,22 @@
   --accent: var(--color-teal-500);
   --accent-hover: var(--color-teal-600);
   --accent-light: var(--color-teal-100);
+
+  /* Component Colors */
+  --button-primary-bg: var(--color-teal-600);
+  --button-primary-hover: var(--color-teal-700);
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: var(--color-slate-200);
+  --button-secondary-hover: var(--color-slate-300);
+  --button-secondary-text: var(--color-slate-900);
+  --card-bg: #ffffff;
+  --card-border: var(--color-slate-200);
+  --input-bg: #ffffff;
+  --input-border: var(--color-slate-300);
+  --input-focus: var(--color-teal-500);
+  --success-bg: #f0fdf4;
+  --success-text: #166534;
+  --error-text: #dc2626;
 
   /* Gradients */
   --gradient-primary: linear-gradient(
@@ -53,6 +86,49 @@
     var(--color-slate-950) 0%,
     var(--color-slate-900) 50%,
     var(--color-teal-900) 100%
+  );
+}
+
+/* Bright Mode - Vibrant and colorful */
+.light {
+  --background: var(--color-teal-50);
+  --background-secondary: #ffffff;
+  --foreground: var(--color-slate-900);
+  --foreground-secondary: var(--color-slate-700);
+  --border: var(--color-teal-200);
+  --border-hover: var(--color-teal-300);
+  --accent: var(--color-teal-500);
+  --accent-hover: var(--color-teal-600);
+  --accent-light: var(--color-teal-100);
+
+  /* Light mode component colors */
+  --button-primary-bg: var(--color-teal-500);
+  --button-primary-hover: var(--color-teal-600);
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: var(--color-teal-100);
+  --button-secondary-hover: var(--color-teal-200);
+  --button-secondary-text: var(--color-teal-900);
+  --card-bg: #ffffff;
+  --card-border: var(--color-teal-200);
+  --input-bg: #ffffff;
+  --input-border: var(--color-teal-300);
+  --input-focus: var(--color-teal-500);
+  --success-bg: var(--color-emerald-50);
+  --success-text: var(--color-emerald-700);
+  --error-text: #dc2626;
+
+  /* Bright mode specific gradients */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-teal-400) 0%,
+    var(--color-cyan-500) 50%,
+    var(--color-emerald-500) 100%
+  );
+  --gradient-hero: linear-gradient(
+    135deg,
+    var(--color-teal-50) 0%,
+    var(--color-cyan-50) 50%,
+    var(--color-emerald-50) 100%
   );
 }
 
@@ -87,18 +163,46 @@
   --color-teal-900: var(--color-teal-900);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-slate-950);
-    --background-secondary: var(--color-slate-900);
-    --foreground: var(--color-slate-50);
-    --foreground-secondary: var(--color-slate-300);
-    --border: var(--color-slate-800);
-    --border-hover: var(--color-slate-700);
-    --accent: var(--color-teal-400);
-    --accent-hover: var(--color-teal-300);
-    --accent-light: var(--color-teal-900);
-  }
+/* Dark Mode - class-based theming */
+.dark {
+  --background: var(--color-slate-800);
+  --background-secondary: var(--color-slate-700);
+  --foreground: var(--color-slate-50);
+  --foreground-secondary: var(--color-slate-300);
+  --border: var(--color-slate-600);
+  --border-hover: var(--color-slate-500);
+  --accent: var(--color-teal-400);
+  --accent-hover: var(--color-teal-300);
+  --accent-light: var(--color-teal-800);
+
+  /* Dark mode component colors */
+  --button-primary-bg: var(--color-teal-500);
+  --button-primary-hover: var(--color-teal-400);
+  --button-primary-text: var(--color-slate-900);
+  --button-secondary-bg: var(--color-slate-600);
+  --button-secondary-hover: var(--color-slate-500);
+  --button-secondary-text: var(--color-slate-100);
+  --card-bg: var(--color-slate-700);
+  --card-border: var(--color-slate-600);
+  --input-bg: var(--color-slate-700);
+  --input-border: var(--color-slate-500);
+  --input-focus: var(--color-teal-400);
+  --success-bg: var(--color-emerald-900);
+  --success-text: var(--color-emerald-400);
+  --error-text: #ef4444;
+
+  /* Dark mode specific gradients */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-teal-500) 0%,
+    var(--color-teal-600) 100%
+  );
+  --gradient-hero: linear-gradient(
+    135deg,
+    var(--color-slate-800) 0%,
+    var(--color-slate-700) 50%,
+    var(--color-teal-800) 100%
+  );
 }
 
 body {
@@ -116,6 +220,41 @@ body {
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
+}
+
+/* Bright mode page styling */
+.light .page-container {
+  background: linear-gradient(135deg, #f0fdfa 0%, #ecfeff 50%, #ecfdf5 100%);
+}
+
+/* Dark mode page styling */
+.dark .page-container {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #0f766e 100%);
+}
+
+/* Navigation styling */
+.nav-background {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.nav-border {
+  border-color: rgba(226, 232, 240, 0.5);
+}
+
+.light .nav-background {
+  background: rgba(240, 253, 250, 0.9);
+}
+
+.light .nav-border {
+  border-color: rgba(153, 246, 228, 0.6);
+}
+
+.dark .nav-background {
+  background: rgba(30, 41, 59, 0.8);
+}
+
+.dark .nav-border {
+  border-color: rgba(71, 85, 105, 0.5);
 }
 
 /* Smooth transitions for theme changes */

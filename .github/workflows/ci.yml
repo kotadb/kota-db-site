@@ -41,7 +41,7 @@ jobs:
 
       - name: Check for console.log
         run: |
-          if grep -r "console\.log" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/; then
+          if grep -R "console\.log" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" apps/**/src/; then
             echo "Error: console.log statements found"
             exit 1
           fi

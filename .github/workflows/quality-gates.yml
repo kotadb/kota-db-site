@@ -35,6 +35,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+
       - name: Run security audit
         run: pnpm audit --production
 
@@ -61,7 +66,12 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build production
-        run: pnpm build
+        run: pnpm --filter @kotadb/web build && pnpm --filter @kotadb/web run build:cf
+
+      - name: Start static server
+        run: |
+          npx serve -s apps/web/.vercel/output/static -l 3000 &
+          sleep 5
 
       - name: Check bundle size
         run: |

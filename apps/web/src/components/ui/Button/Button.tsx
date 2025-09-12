@@ -8,12 +8,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-teal-600 text-white hover:bg-teal-700 focus-visible:ring-teal-600",
+          "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] hover:bg-[var(--button-primary-hover)] focus-visible:ring-[var(--button-primary-bg)]",
         secondary:
-          "bg-gray-200 text-gray-900 hover:bg-gray-300 focus-visible:ring-gray-400",
+          "bg-[var(--button-secondary-bg)] text-[var(--button-secondary-text)] hover:bg-[var(--button-secondary-hover)] focus-visible:ring-[var(--button-secondary-bg)]",
         outline:
-          "border border-gray-300 bg-transparent hover:bg-gray-100 focus-visible:ring-gray-400",
-        ghost: "hover:bg-gray-100 focus-visible:ring-gray-400",
+          "border border-[var(--input-border)] bg-transparent hover:bg-[var(--button-secondary-bg)] focus-visible:ring-[var(--accent)]",
+        ghost:
+          "hover:bg-[var(--button-secondary-bg)] focus-visible:ring-[var(--accent)]",
         danger:
           "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-600",
       },

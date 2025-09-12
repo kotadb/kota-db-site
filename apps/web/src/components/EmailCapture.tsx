@@ -84,9 +84,11 @@ export function EmailCapture({
 
   if (status === "success") {
     return (
-      <div className={`rounded-lg bg-green-50 p-6 text-center ${className}`}>
+      <div
+        className={`rounded-lg bg-[var(--success-bg)] p-6 text-center ${className}`}
+      >
         <svg
-          className="mx-auto h-12 w-12 text-green-500"
+          className="mx-auto h-12 w-12 text-[var(--success-text)]"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -98,10 +100,10 @@ export function EmailCapture({
             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <h3 className="mt-4 text-lg font-semibold text-gray-900">
+        <h3 className="mt-4 text-lg font-semibold text-[var(--foreground)]">
           You&apos;re on the list!
         </h3>
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="mt-2 text-sm text-[var(--foreground-secondary)]">
           Check your email for confirmation. We&apos;ll notify you when we
           launch.
         </p>
@@ -124,14 +126,14 @@ export function EmailCapture({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="flex-1 rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 rounded-lg border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-[var(--foreground)] placeholder-[var(--foreground-secondary)] focus:border-[var(--input-focus)] focus:outline-none focus:ring-2 focus:ring-[var(--input-focus)]"
               disabled={status === "loading"}
               required
             />
             <button
               type="submit"
               disabled={status === "loading"}
-              className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-lg bg-[var(--button-primary-bg)] px-6 py-3 font-semibold text-[var(--button-primary-text)] transition-colors hover:bg-[var(--button-primary-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--button-primary-bg)] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {status === "loading" ? (
                 <span className="flex items-center">
@@ -164,11 +166,11 @@ export function EmailCapture({
         </div>
 
         {status === "error" && message && (
-          <p className="text-sm text-red-600">{message}</p>
+          <p className="text-sm text-[var(--error-text)]">{message}</p>
         )}
 
-        <p className="text-xs text-gray-500">
-          Join 500+ developers waiting for launch. No spam, unsubscribe anytime.
+        <p className="text-xs text-[var(--foreground-secondary)]">
+          Join 500+ developers giving Claude Code the intelligence it deserves. No spam, unsubscribe anytime.
         </p>
       </form>
     </div>

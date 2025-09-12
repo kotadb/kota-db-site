@@ -12,9 +12,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     ref,
   ) => {
     const variantClasses = {
-      default: "bg-white",
-      bordered: "bg-white border border-gray-200",
-      elevated: "bg-white shadow-lg",
+      default: "bg-[var(--card-bg)]",
+      bordered: "bg-[var(--card-bg)] border border-[var(--card-border)]",
+      elevated: "bg-[var(--card-bg)] shadow-lg",
     };
 
     const paddingClasses = {
@@ -64,7 +64,10 @@ export const CardTitle: FC<HTMLAttributes<HTMLHeadingElement>> = ({
 }) => {
   return (
     <h3
-      className={cn("text-2xl font-semibold text-gray-900", className)}
+      className={cn(
+        "text-2xl font-semibold text-[var(--foreground)]",
+        className,
+      )}
       {...props}
     >
       {children}
@@ -80,7 +83,10 @@ export const CardDescription: FC<HTMLAttributes<HTMLParagraphElement>> = ({
   ...props
 }) => {
   return (
-    <p className={cn("text-gray-600 mt-2", className)} {...props}>
+    <p
+      className={cn("text-[var(--foreground-secondary)] mt-2", className)}
+      {...props}
+    >
       {children}
     </p>
   );
