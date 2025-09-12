@@ -3,7 +3,7 @@
 import type { Repository } from "@kotadb/shared";
 import { useState, useEffect } from "react";
 
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import {
   validateRepositories,
   validateRepository,
@@ -29,7 +29,7 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
 
   const fetchRepositories = async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await getSupabase()
         .from("repositories")
         .select("*")
         .eq("user_id", userId)
@@ -57,7 +57,7 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
       const urlParts = githubUrl.split("/").filter(Boolean);
       const repoName = urlParts.slice(-2).join("/");
 
-      const result = await supabase
+      const result = await getSupabase()
         .from("repositories")
         .insert({
           user_id: userId,
@@ -100,7 +100,7 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
     }
 
     try {
-      const { error } = await supabase
+      const { error } = await getSupabase()
         .from("repositories")
         .delete()
         .eq("id", id);

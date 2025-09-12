@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 
 // Prevent prerender; this page depends on client-only auth state
 export const dynamic = "force-dynamic";
@@ -40,7 +40,7 @@ export default function Home() {
 
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } = await getSupabase().auth.getSession();
 
       if (!mounted) return;
 
@@ -60,7 +60,7 @@ export default function Home() {
     };
 
     // Listen for auth state changes (handles OAuth callback)
-    const { data: authListener } = supabase.auth.onAuthStateChange(
+    const { data: authListener } = getSupabase().auth.onAuthStateChange(
       (event, session) => {
         if (!mounted) return;
 

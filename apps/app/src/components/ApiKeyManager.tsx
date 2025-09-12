@@ -3,7 +3,7 @@
 import { generateApiKey, type ApiKey } from "@kotadb/shared";
 import { useState, useEffect } from "react";
 
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import {
   validateApiKeys,
   validateApiKey,
@@ -30,7 +30,7 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
 
   const fetchApiKeys = async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await getSupabase()
         .from("api_keys")
         .select("*")
         .eq("user_id", userId)
@@ -59,7 +59,7 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
       const apiKeyData = generateApiKey();
       const { key, hash, prefix } = apiKeyData;
 
-      const result = await supabase
+      const result = await getSupabase()
         .from("api_keys")
         .insert({
           user_id: userId,
@@ -98,7 +98,7 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
     }
 
     try {
-      const { error } = await supabase
+      const { error } = await getSupabase()
         .from("api_keys")
         .update({ revoked_at: new Date().toISOString() })
         .eq("id", id);

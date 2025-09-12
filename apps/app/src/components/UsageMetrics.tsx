@@ -3,7 +3,7 @@
 import type { UsageMetric } from "@kotadb/shared";
 import { useState, useEffect } from "react";
 
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import { validateUsageMetrics, formatError } from "@/lib/type-guards";
 
 interface UsageMetricsProps {
@@ -33,7 +33,7 @@ export default function UsageMetrics({ userId }: UsageMetricsProps) {
       const thirtyDaysAgo = new Date();
       thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-      const { data, error } = await supabase
+      const { data, error } = await getSupabase()
         .from("usage_metrics")
         .select("*")
         .eq("user_id", userId)

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import ApiKeyManager from "@/components/ApiKeyManager";
 import RepositoryList from "@/components/RepositoryList";
 import UsageMetrics from "@/components/UsageMetrics";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 
 // Prevent prerender; this page depends on client-only auth state
 export const dynamic = "force-dynamic";
@@ -23,7 +23,7 @@ export default function DashboardPage() {
     const getUser = async () => {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } = await getSupabase().auth.getSession();
 
       if (!session) {
         router.push("/login");
@@ -36,7 +36,7 @@ export default function DashboardPage() {
 
     void getUser();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(
+    const { data: authListener } = getSupabase().auth.onAuthStateChange(
       (_event, session) => {
         if (!session) {
           router.push("/login");
@@ -50,7 +50,7 @@ export default function DashboardPage() {
   }, [router]);
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    await getSupabase().auth.signOut();
     router.push("/login");
   };
 

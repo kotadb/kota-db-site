@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import { Resend } from "resend";
 
 // Ensure this route is always dynamic and not prerendered during build
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+export const runtime = "edge";
 
 // Validation schema for waitlist submission
 const WaitlistSchema = z.object({
@@ -37,6 +38,7 @@ export async function POST(request: NextRequest) {
     const userAgent = request.headers.get("user-agent") || null;
 
     // Insert into Supabase waitlist table
+    const supabase = getSupabase();
     const { error } = await supabase.from("waitlist").insert({
       email: validatedData.email,
       source: validatedData.source,
