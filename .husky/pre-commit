@@ -1,19 +1,27 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Run lint-staged for formatting and linting
+# Run lint-staged for formatting and linting with package-aware ESLint configs
 pnpm exec lint-staged
 
 # Run type checking
 pnpm run typecheck
 
-# Check for console.log statements (excluding observability and testing utilities)
-if grep -r "console\.log" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/ | grep -v "lib/observability" | grep -v "lib/testing" | grep -q .; then
-  echo "Error: console.log statements found. Please remove them before committing."
+# Check for console.log statements within app src (excluding observability/testing)
+MATCHES=$(grep -R "console\.log\(" apps \
+  --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' \
+  --exclude-dir='observability' --exclude-dir='testing' --exclude-dir='__tests__' | \
+  grep '/src/' || true)
+if [ -n "$MATCHES" ]; then
+  echo "Error: console.log statements found (outside exceptions):" >&2
+  echo "$MATCHES" >&2
   exit 1
 fi
 
-# Check for absolute imports (should use relative or @/ alias)
-if grep -r "from ['\"]/" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/; then
-  echo "Warning: Absolute path imports detected. Consider using relative imports or @/ alias."
+# Optional: Check for absolute imports in app src (advisory only)
+ABS_IMPORTS=$(grep -R "from ['\"]/" apps \
+  --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' | \
+  grep '/src/' || true)
+if [ -n "$ABS_IMPORTS" ]; then
+  echo "Warning: Absolute path imports detected. Consider using relative imports or @/ alias." >&2
 fi
