@@ -55,15 +55,13 @@ jobs:
           pnpm run build
           pnpm run build:cf
 
-      - name: Install Wrangler CLI
-        run: npm i -g wrangler@3
-
       - name: Verify Cloudflare auth
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          wrangler whoami || true
+          npx -y wrangler@4 --version
+          npx -y wrangler@4 whoami || true
 
       - name: Ensure Pages project exists (web)
         env:
@@ -71,14 +69,14 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           # Attempt to create; ignore if it already exists
-          wrangler pages project create kotadb-web --production-branch=main --no-git >/dev/null 2>&1 || echo "Project kotadb-web exists or creation skipped"
+          npx -y wrangler@4 pages project create kotadb-web --production-branch=main --no-git >/dev/null 2>&1 || echo "Project kotadb-web exists or creation skipped"
 
       - name: Deploy to Cloudflare Pages (wrangler)
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          wrangler pages deploy ./apps/web/.vercel/output/static \
+          npx -y wrangler@4 pages deploy ./apps/web/.vercel/output/static \
             --project-name=kotadb-web \
             --branch=main
 
@@ -137,13 +135,13 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           # Attempt to create; ignore if it already exists
-          wrangler pages project create kotadb-app --production-branch=main --no-git >/dev/null 2>&1 || echo "Project kotadb-app exists or creation skipped"
+          npx -y wrangler@4 pages project create kotadb-app --production-branch=main --no-git >/dev/null 2>&1 || echo "Project kotadb-app exists or creation skipped"
 
       - name: Deploy Dashboard (wrangler)
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          wrangler pages deploy ./apps/app/.vercel/output/static \
+          npx -y wrangler@4 pages deploy ./apps/app/.vercel/output/static \
             --project-name=kotadb-app \
             --branch=main
