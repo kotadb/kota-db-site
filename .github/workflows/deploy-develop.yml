@@ -71,7 +71,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           # Attempt to create; ignore if it already exists
-          wrangler pages project create kotadb-web --production-branch=main --no-git --account-id "$CLOUDFLARE_ACCOUNT_ID" >/dev/null 2>&1 || echo "Project kotadb-web exists or creation skipped"
+          wrangler pages project create kotadb-web --production-branch=main --no-git >/dev/null 2>&1 || echo "Project kotadb-web exists or creation skipped"
 
       - name: Deploy web (develop) via Wrangler
         env:
@@ -80,8 +80,7 @@ jobs:
         run: |
           wrangler pages deploy ./apps/web/.vercel/output/static \
             --project-name=kotadb-web \
-            --branch=develop \
-            --account-id "$CLOUDFLARE_ACCOUNT_ID"
+            --branch=develop
 
   deploy-app-develop:
     name: Deploy App (develop) via Wrangler
@@ -136,7 +135,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           # Attempt to create; ignore if it already exists
-          wrangler pages project create kotadb-app --production-branch=main --no-git --account-id "$CLOUDFLARE_ACCOUNT_ID" >/dev/null 2>&1 || echo "Project kotadb-app exists or creation skipped"
+          wrangler pages project create kotadb-app --production-branch=main --no-git >/dev/null 2>&1 || echo "Project kotadb-app exists or creation skipped"
 
       - name: Deploy app (develop) via Wrangler
         env:
@@ -145,5 +144,4 @@ jobs:
         run: |
           wrangler pages deploy ./apps/app/.vercel/output/static \
             --project-name=kotadb-app \
-            --branch=develop \
-            --account-id "$CLOUDFLARE_ACCOUNT_ID"
+            --branch=develop
