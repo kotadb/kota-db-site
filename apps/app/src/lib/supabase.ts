@@ -1,7 +1,12 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+
+// Memoized Supabase client to avoid multiple instances/listeners
+let supabaseClient: SupabaseClient | null = null;
 
 // Lazily create Supabase client at runtime to avoid build-time env access
-export function getSupabase() {
+export function getSupabase(): SupabaseClient {
+  if (supabaseClient) return supabaseClient;
+
   const supabaseUrl = process.env["NEXT_PUBLIC_SUPABASE_URL"];
   const supabaseAnonKey = process.env["NEXT_PUBLIC_SUPABASE_ANON_KEY"];
 
@@ -17,6 +22,6 @@ export function getSupabase() {
     );
   }
 
-  const client = createClient(supabaseUrl, supabaseAnonKey);
-  return client;
+  supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+  return supabaseClient;
 }

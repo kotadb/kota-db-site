@@ -49,11 +49,10 @@ export default function UsageMetrics({ userId }: UsageMetricsProps) {
       const totals = metricsData.reduce(
         (acc, metric) => ({
           totalQueries: acc.totalQueries + metric.queries_count,
-          totalContext:
-            acc.totalContext + parseFloat(String(metric.context_saved_mb)),
+          totalContext: acc.totalContext + parseFloat(metric.context_saved_mb),
           totalStorage: Math.max(
             acc.totalStorage,
-            parseFloat(String(metric.storage_used_mb)),
+            parseFloat(metric.storage_used_mb),
           ),
           monthlyQueries: acc.monthlyQueries + metric.queries_count,
         }),
@@ -191,10 +190,10 @@ export default function UsageMetrics({ userId }: UsageMetricsProps) {
                       {formatNumber(metric.queries_count)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-                      {formatMB(parseFloat(String(metric.context_saved_mb)))}
+                      {formatMB(parseFloat(metric.context_saved_mb))}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-                      {formatMB(parseFloat(String(metric.storage_used_mb)))}
+                      {formatMB(parseFloat(metric.storage_used_mb))}
                     </td>
                   </tr>
                 ))}

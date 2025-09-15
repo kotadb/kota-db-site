@@ -63,10 +63,18 @@ export function validateApiKey(data: unknown): ApiKey {
 }
 
 export function validateApiKeys(data: unknown): ApiKey[] {
-  if (!Array.isArray(data)) {
-    return [];
-  }
-  return data.filter(isApiKey).map((item) => validateApiKey(item));
+  const parsed = z.array(ApiKeySchema).safeParse(data);
+  if (!parsed.success) return [];
+  return parsed.data.map((p) => ({
+    id: p.id,
+    user_id: p.user_id,
+    key_hash: p.key_hash,
+    key_prefix: p.key_prefix,
+    created_at: p.created_at,
+    ...(p.name != null ? { name: p.name } : {}),
+    ...(p.last_used_at != null ? { last_used_at: p.last_used_at } : {}),
+    ...(p.revoked_at != null ? { revoked_at: p.revoked_at } : {}),
+  }));
 }
 
 export function isRepository(data: unknown): data is Repository {
@@ -98,10 +106,19 @@ export function validateRepository(data: unknown): Repository {
 }
 
 export function validateRepositories(data: unknown): Repository[] {
-  if (!Array.isArray(data)) {
-    return [];
-  }
-  return data.filter(isRepository).map((item) => validateRepository(item));
+  const parsed = z.array(RepositorySchema).safeParse(data);
+  if (!parsed.success) return [];
+  return parsed.data.map((p) => ({
+    id: p.id,
+    user_id: p.user_id,
+    github_url: p.github_url,
+    name: p.name,
+    status: p.status,
+    created_at: p.created_at,
+    updated_at: p.updated_at,
+    ...(p.error_message != null ? { error_message: p.error_message } : {}),
+    ...(p.indexed_at != null ? { indexed_at: p.indexed_at } : {}),
+  }));
 }
 
 export function isUsageMetric(data: unknown): data is UsageMetric {
@@ -118,10 +135,8 @@ export function validateUsageMetric(data: unknown): UsageMetric {
 }
 
 export function validateUsageMetrics(data: unknown): UsageMetric[] {
-  if (!Array.isArray(data)) {
-    return [];
-  }
-  return data.filter(isUsageMetric);
+  const parsed = z.array(UsageMetricSchema).safeParse(data);
+  return parsed.success ? parsed.data : [];
 }
 
 export function formatError(error: unknown): string {

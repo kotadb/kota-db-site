@@ -443,15 +443,4 @@ section.hero-section {
   animation: gradient-shift 3s ease infinite;
 }
 
-/* Custom styles for email capture on dark backgrounds */
-.email-capture-cta input {
-  @apply bg-white/10 border-teal-400/50 text-white placeholder-teal-200/50;
-}
-
-.email-capture-cta input:focus {
-  @apply bg-white/20 border-teal-300;
-}
-
-.email-capture-cta button {
-  @apply bg-teal-400 text-slate-900 hover:bg-teal-300;
-}
+/* (removed) email capture styles no longer used */

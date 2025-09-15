@@ -1,6 +1,6 @@
 -- Create waitlist table for email capture
 CREATE TABLE IF NOT EXISTS public.waitlist (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   email TEXT NOT NULL UNIQUE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   source TEXT DEFAULT 'landing_page',

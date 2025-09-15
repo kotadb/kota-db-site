@@ -130,8 +130,7 @@ jobs:
           pnpm run build
           pnpm run build:cf
 
-      - name: Install Wrangler CLI
-        run: npm i -g wrangler@3
+      # Wrangler installed via npx @4; no global install needed
 
       - name: Ensure Pages project exists (app)
         env:

@@ -285,6 +285,24 @@ gcloud run services update kotadb-api \
   --update-secrets="API_KEY=api-key:latest"
 ```
 
+## Storage Patterns (Cloud Run)
+
+Cloud Run fully managed does not support NFS/Filestore mounts directly. For read/write data, prefer Cloud Storage FUSE, or externalize state to managed services (e.g., Cloud SQL, Firestore, or Supabase storage).
+
+References:
+
+- https://cloud.google.com/run/docs/configuring/volumes#cloud-storage
+
+Example (Cloud Storage FUSE) concepts:
+
+1. Create a bucket and grant access to the service account.
+
+2. Mount the bucket in Cloud Run as a volume and access it at a path, e.g. `/mnt/data`.
+
+3. Update your application to write to the mounted path.
+
+Note: Consult the latest Cloud Run docs for the exact `gcloud run deploy` flags for mounting a Cloud Storage volume in your region/project, as flags may evolve.
+
 ## Backup & Recovery
 
 ### Automated Backups
