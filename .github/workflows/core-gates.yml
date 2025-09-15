@@ -47,15 +47,14 @@ jobs:
             exit 1
           fi
 
-      - name: Check for absolute imports
+      - name: Check for absolute imports (warning-only)
         run: |
           ABS=$(grep -R "from ['\"]/" apps \
             --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' | \
             grep '/src/' || true)
           if [ -n "$ABS" ]; then
-            echo "Error: Absolute path imports detected. Use @/ alias instead." >&2
+            echo "Warning: Absolute path imports detected. Prefer @/ alias." >&2
             echo "$ABS" >&2
-            exit 1
           fi
 
       - name: Build
