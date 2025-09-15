@@ -61,10 +61,12 @@ gcloud run deploy $SERVICE_NAME \
   --min-instances=1 \
   --max-instances=10 \
   --port=8080 \
-  --execution-environment=gen2 \
-  --update-secrets="KOTADB_DATA_DIR=/mnt/data:latest" \
-  --add-volume=name=kotadb-data,type=nfs,location=$FILESTORE_IP:/kotadb_data \
-  --add-volume-mount=volume=kotadb-data,mount-path=/mnt/data
+  --execution-environment=gen2
+
+# Note:
+# - Cloud Run (fully managed) does not support NFS/Filestore mounts via --add-volume.
+# - Use Cloud Storage FUSE for persistent data if needed, or externalize state to a managed store.
+# - Secret environment variables should be configured via Secret Manager with --set-secrets, not --update-secrets for arbitrary paths.
 
 # Get the service URL
 echo "5️⃣ Getting service URL..."

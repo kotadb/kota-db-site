@@ -1,6 +1,7 @@
 "use client";
 
 import type { Repository } from "@kotadb/shared";
+import { validateGitHubUrl, extractRepoName } from "@kotadb/shared";
 import { useState, useEffect } from "react";
 
 import { getSupabase } from "@/lib/supabase";
@@ -45,17 +46,16 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
   };
 
   const addRepository = async () => {
-    if (!githubUrl || !githubUrl.includes("github.com")) {
-      alert("Please enter a valid GitHub URL");
+    if (!validateGitHubUrl(githubUrl)) {
+      alert("Please enter a valid GitHub URL (https://github.com/owner/repo)");
       return;
     }
 
     setAdding(true);
 
     try {
-      // Extract repo name from URL
-      const urlParts = githubUrl.split("/").filter(Boolean);
-      const repoName = urlParts.slice(-2).join("/");
+      // Extract owner/repo name from URL via shared util
+      const repoName = extractRepoName(githubUrl);
 
       const result = await getSupabase()
         .from("repositories")

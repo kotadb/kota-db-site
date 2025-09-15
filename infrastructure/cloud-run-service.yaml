@@ -60,9 +60,7 @@ spec:
             periodSeconds: 5
             timeoutSeconds: 3
             failureThreshold: 2
-      volumes:
-        - name: kotadb-data
-          nfs:
-            server: "10.0.0.2" # Replace with actual Filestore IP
-            path: "/kotadb_data"
-            readOnly: false
+      # volumes:
+      #   - name: kotadb-data
+      #     # Cloud Run fully managed does not support NFS volumes.
+      #     # Prefer Cloud Storage FUSE for read/write data when required.
