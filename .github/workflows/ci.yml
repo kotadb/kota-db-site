@@ -92,10 +92,22 @@ jobs:
           pnpm build
           # Add bundle size checking logic here when implemented
 
-      - name: Dependency check
+      - name: Dependency check (report only)
         run: |
-          npx depcheck
+          npx depcheck --json > depcheck.json || true
+          cat depcheck.json || true
+          if command -v jq >/dev/null 2>&1; then
+            if jq -e '.dependencies | length > 0 or .devDependencies | length > 0 or .missing | length > 0' depcheck.json >/dev/null 2>&1; then
+              echo "Warning: Depcheck found unused or missing dependencies (see depcheck.json artifact)" >&2
+            fi
+          fi
         continue-on-error: true
+      - name: Upload depcheck report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: depcheck-report
+          path: depcheck.json
 
   # Tier 3: Production Gates (only for main branch)
   production-gates:

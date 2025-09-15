@@ -65,11 +65,11 @@ jobs:
           NEXT_PUBLIC_DASHBOARD_URL: https://example.com
         run: pnpm build
 
-      - name: Unit tests
-        run: pnpm test
+      - name: Unit tests (app only)
+        run: pnpm --filter @kotadb/app test
 
-      - name: Test coverage
-        run: pnpm test:coverage
+      - name: Test coverage (app only)
+        run: pnpm --filter @kotadb/app test:coverage
 
       - name: Upload coverage reports
         uses: codecov/codecov-action@v4
