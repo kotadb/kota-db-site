@@ -25,8 +25,22 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run integration tests
-        run: pnpm test:integration || echo "Integration tests not yet implemented"
+      - name: Build marketing site (Next + CF)
+        run: |
+          pnpm --filter @kotadb/web build
+          pnpm --filter @kotadb/web run build:cf
+
+      - name: Install Playwright browsers
+        run: npx -y playwright install --with-deps
+
+      - name: Run marketing smoke tests
+        run: pnpm test:integration
+
+      - name: Build dashboard (Next)
+        run: pnpm --filter @kotadb/app build
+
+      - name: Run dashboard smoke tests
+        run: pnpm test:integration:app
 
   security-scan:
     name: Security Scanning

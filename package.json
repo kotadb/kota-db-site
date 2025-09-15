@@ -20,9 +20,14 @@
     "test": "pnpm run -r test",
     "test:watch": "pnpm run -r test:watch",
     "test:coverage": "pnpm run -r test:coverage",
-    "test:ui": "pnpm run -r test:ui"
+    "test:ui": "pnpm run -r test:ui",
+    "pretest:integration": "pnpm exec playwright install --with-deps && pnpm --filter @kotadb/web build && pnpm --filter @kotadb/web run build:cf",
+    "test:integration": "playwright test -c tests/playwright.config.ts",
+    "pretest:integration:app": "pnpm exec playwright install --with-deps && pnpm --filter @kotadb/app build && pnpm --filter @kotadb/app run build:cf",
+    "test:integration:app": "playwright test -c tests/playwright.app.config.ts"
   },
   "devDependencies": {
+    "@playwright/test": "^1.47.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.5",
     "prettier": "^3.6.2",
