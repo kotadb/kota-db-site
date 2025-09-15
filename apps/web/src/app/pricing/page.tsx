@@ -85,7 +85,7 @@ export default function PricingPage() {
             </Link>
             <div className="flex items-center gap-4">
               <Link
-                href="/login"
+                href={`${process.env["NEXT_PUBLIC_DASHBOARD_URL"] || "https://app.kotadb.io"}/login`}
                 className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200"
               >
                 Sign In

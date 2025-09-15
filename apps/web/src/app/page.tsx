@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ui";
 
+const DASHBOARD_URL =
+  process.env["NEXT_PUBLIC_DASHBOARD_URL"] || "https://app.kotadb.io";
+
 export default function Home() {
   return (
     <div className="min-h-screen font-[family-name:var(--font-roboto)] overflow-x-hidden w-full page-container">
@@ -40,8 +43,7 @@ export default function Home() {
               <div className="flex items-center space-x-4">
                 <ThemeToggle />
                 <Link
-                  href="https://github.com/jayminwest/kota-db#quickstart"
-                  target="_blank"
+                  href={`${DASHBOARD_URL}/login`}
                   className="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 text-sm"
                 >
                   Get Started
@@ -77,8 +79,7 @@ export default function Home() {
           {/* Launch CTA */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
             <Link
-              href="https://github.com/jayminwest/kota-db#quickstart"
-              target="_blank"
+              href={`${DASHBOARD_URL}/login`}
               className="group bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
               Get Started
