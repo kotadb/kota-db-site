@@ -3,9 +3,21 @@
 import { useState } from "react";
 import Link from "next/link";
 
+import { getDashboardUrl } from "@kotadb/shared";
+
 export const dynamic = "force-dynamic";
 
-const plans = [
+type PricingPlan = {
+  id: "solo" | "team";
+  name: string;
+  price: number;
+  priceId: string | undefined;
+  features: readonly string[];
+  cta: string;
+  popular?: boolean;
+};
+
+const plans: PricingPlan[] = [
   {
     id: "solo",
     name: "Solo",
@@ -41,6 +53,8 @@ const plans = [
 ];
 
 export default function PricingPage() {
+  const dashboardUrl = getDashboardUrl();
+
   const [loading, setLoading] = useState<string | null>(null);
 
   const handleCheckout = async (plan: (typeof plans)[0]) => {
@@ -85,7 +99,7 @@ export default function PricingPage() {
             </Link>
             <div className="flex items-center gap-4">
               <Link
-                href={`${process.env["NEXT_PUBLIC_DASHBOARD_URL"] || "https://app.kotadb.io"}/login`}
+                href={`${dashboardUrl}/login`}
                 className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200"
               >
                 Sign In

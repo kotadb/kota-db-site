@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+
+import { getAppUrl, getDashboardUrl } from "@kotadb/shared";
+
 import { stripe } from "@/lib/stripe";
 
 export const runtime = "edge";
@@ -21,6 +24,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const dashboardUrl = getDashboardUrl();
+    const marketingUrl = getAppUrl();
+
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -31,8 +37,8 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: "subscription",
-      success_url: `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/onboarding?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env["NEXT_PUBLIC_APP_URL"]}/pricing`,
+      success_url: `${dashboardUrl}/onboarding?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${marketingUrl}/pricing`,
       customer_email: email,
       metadata: {
         plan,

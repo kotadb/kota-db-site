@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
-const DASHBOARD_URL =
-  process.env["NEXT_PUBLIC_DASHBOARD_URL"] || "https://app.kotadb.io";
+import { getDashboardUrl } from "@kotadb/shared";
 
 const nextConfig: NextConfig = {
   // Disable image optimization for Cloudflare
@@ -9,20 +8,21 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   async redirects() {
+    const dashboardUrl = getDashboardUrl();
     return [
       {
         source: "/login",
-        destination: `${DASHBOARD_URL}/login`,
+        destination: `${dashboardUrl}/login`,
         permanent: false,
       },
       {
         source: "/auth/:path*",
-        destination: `${DASHBOARD_URL}/auth/:path*`,
+        destination: `${dashboardUrl}/auth/:path*`,
         permanent: false,
       },
       {
         source: "/oauth/:path*",
-        destination: `${DASHBOARD_URL}/oauth/:path*`,
+        destination: `${dashboardUrl}/oauth/:path*`,
         permanent: false,
       },
     ];

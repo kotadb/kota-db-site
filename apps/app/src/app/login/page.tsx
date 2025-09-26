@@ -1,5 +1,6 @@
 "use client";
 
+import { getAppUrl, getDashboardUrl } from "@kotadb/shared";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,6 +10,8 @@ import { getSupabase } from "@/lib/supabase";
 export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
+  const marketingUrl = getAppUrl();
+  const dashboardUrl = getDashboardUrl();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,10 +45,8 @@ export default function LoginPage() {
 
     try {
       const origin =
-        typeof window !== "undefined"
-          ? window.location.origin
-          : process.env["NEXT_PUBLIC_DASHBOARD_URL"] || "https://app.kotadb.io";
-      const redirectTo = `${origin}/dashboard`;
+        typeof window !== "undefined" ? window.location.origin : dashboardUrl;
+      const redirectTo = `${origin.replace(/\/+$/, "")}/dashboard`;
 
       const { error: oauthError } = await getSupabase().auth.signInWithOAuth({
         provider: "github",
@@ -156,7 +157,7 @@ export default function LoginPage() {
             <p className="text-sm text-slate-600 dark:text-slate-400">
               Don&apos;t have an account?{" "}
               <Link
-                href={`${process.env["NEXT_PUBLIC_APP_URL"]}/pricing`}
+                href={`${marketingUrl}/pricing`}
                 className="text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 font-medium"
               >
                 View pricing
@@ -168,14 +169,14 @@ export default function LoginPage() {
         <p className="text-center text-sm text-slate-500 mt-6">
           By signing in, you agree to our{" "}
           <Link
-            href={`${process.env["NEXT_PUBLIC_APP_URL"]}/terms`}
+            href={`${marketingUrl}/terms`}
             className="underline hover:text-slate-700"
           >
             Terms of Service
           </Link>{" "}
           and{" "}
           <Link
-            href={`${process.env["NEXT_PUBLIC_APP_URL"]}/privacy`}
+            href={`${marketingUrl}/privacy`}
             className="underline hover:text-slate-700"
           >
             Privacy Policy

@@ -52,3 +52,4 @@ DEPLOYMENT_NOTES.md
 *.a
 *.so
 *.dylib
+test-results/.last-run.json

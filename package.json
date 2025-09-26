@@ -15,7 +15,7 @@
     "format": "pnpm run -r format",
     "format:check": "pnpm run -r format:check",
     "typecheck": "pnpm run -r typecheck",
-    "quality": "pnpm run typecheck && pnpm run lint && pnpm run format:check",
+    "quality": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm run lint:urls",
     "prepare": "husky",
     "test": "pnpm run -r test",
     "test:watch": "pnpm run -r test:watch",
@@ -24,7 +24,8 @@
     "pretest:integration": "pnpm exec playwright install --with-deps && pnpm --filter @kotadb/web build && pnpm --filter @kotadb/web run build:cf",
     "test:integration": "playwright test -c tests/playwright.config.ts",
     "pretest:integration:app": "pnpm exec playwright install --with-deps && pnpm --filter @kotadb/app build && pnpm --filter @kotadb/app run build:cf",
-    "test:integration:app": "playwright test -c tests/playwright.app.config.ts"
+    "test:integration:app": "playwright test -c tests/playwright.app.config.ts",
+    "lint:urls": "node scripts/check-hardcoded-urls.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.47.2",
