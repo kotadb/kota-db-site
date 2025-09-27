@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const DASHBOARD_URL =
-  process.env["NEXT_PUBLIC_DASHBOARD_URL"] || "https://app.kotadb.io";
+  process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://app.kotadb.io";
 
 const nextConfig: NextConfig = {
   // Disable image optimization for Cloudflare

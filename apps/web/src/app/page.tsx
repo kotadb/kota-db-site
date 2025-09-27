@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/ui";
 
 const DASHBOARD_URL =
-  process.env["NEXT_PUBLIC_DASHBOARD_URL"] || "https://app.kotadb.io";
+  process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://app.kotadb.io";
 
 export default function Home() {
   return (

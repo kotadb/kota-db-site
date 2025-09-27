@@ -14,8 +14,8 @@ export async function POST(request: NextRequest) {
   }
 
   const supabaseAdmin = createClient(
-    process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
-    process.env["SUPABASE_SERVICE_ROLE_KEY"]!,
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
   );
 
   const body = await request.text();
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     event = stripe.webhooks.constructEvent(
       body,
       sig,
-      process.env["STRIPE_WEBHOOK_SECRET"]!,
+      process.env.STRIPE_WEBHOOK_SECRET!,
     );
   } catch (err) {
     console.error("Webhook signature verification failed:", err);

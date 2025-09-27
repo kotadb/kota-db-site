@@ -34,7 +34,7 @@ export class StructuredLogger {
   private logLevel: LogLevel = "info";
 
   private constructor() {
-    this.logLevel = (process.env["LOG_LEVEL"] as LogLevel) || "info";
+    this.logLevel = (process.env.LOG_LEVEL as LogLevel) || "info";
   }
 
   /**

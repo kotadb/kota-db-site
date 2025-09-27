@@ -185,9 +185,7 @@ export class ApiClientBuilder {
    */
   static production(): ApiClientBuilder {
     return new ApiClientBuilder()
-      .withBaseURL(
-        process.env["NEXT_PUBLIC_API_URL"] || "https://api.kotadb.com",
-      )
+      .withBaseURL(process.env.NEXT_PUBLIC_API_URL || "https://api.kotadb.com")
       .withTimeout(30000)
       .withRetries(3)
       .withRateLimit(100, 60000)

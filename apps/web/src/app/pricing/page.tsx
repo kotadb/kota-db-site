@@ -10,7 +10,7 @@ const plans = [
     id: "solo",
     name: "Solo",
     price: 39,
-    priceId: process.env["NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID"],
+    priceId: process.env.NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID,
     features: [
       "Unlimited repositories",
       "10,000 queries/month",
@@ -25,7 +25,7 @@ const plans = [
     id: "team",
     name: "Team",
     price: 59,
-    priceId: process.env["NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID"],
+    priceId: process.env.NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID,
     features: [
       "Everything in Solo",
       "Unlimited queries",
@@ -85,7 +85,7 @@ export default function PricingPage() {
             </Link>
             <div className="flex items-center gap-4">
               <Link
-                href={`${process.env["NEXT_PUBLIC_DASHBOARD_URL"] || "https://app.kotadb.io"}/login`}
+                href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://app.kotadb.io"}/login`}
                 className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200"
               >
                 Sign In

@@ -45,6 +45,7 @@ export default [
           jsx: true,
         },
         project: "./tsconfig.json",
+        projectService: true,
       },
     },
     rules: {
