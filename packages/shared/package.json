@@ -9,10 +9,12 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "crypto-js": "^4.2.0",
     "zod": "^4.1.11"
   },
   "devDependencies": {
     "@types/node": "^24",
+    "@types/crypto-js": "^4",
     "typescript": "^5"
   }
 }
