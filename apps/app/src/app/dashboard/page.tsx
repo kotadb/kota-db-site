@@ -55,8 +55,12 @@ export default function DashboardPage() {
   };
 
   const openBilling = () => {
-    // This would typically open Stripe Customer Portal
+    // TODO: Replace placeholder once Stripe customer portal is wired up.
     window.open("https://billing.stripe.com/p/login/test", "_blank");
+  };
+
+  const openAdmin = () => {
+    router.push("/admin");
   };
 
   if (loading) {
@@ -87,12 +91,20 @@ export default function DashboardPage() {
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 {user?.email}
               </span>
-              <button
-                onClick={openBilling}
-                className="text-sm text-gray-600 hover:text-teal-600 dark:text-gray-400 dark:hover:text-teal-400"
-              >
-                Billing
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={openBilling}
+                  className="text-sm text-gray-600 hover:text-teal-600 dark:text-gray-400 dark:hover:text-teal-400"
+                >
+                  Billing
+                </button>
+                <button
+                  onClick={openAdmin}
+                  className="text-sm text-gray-600 hover:text-teal-600 dark:text-gray-400 dark:hover:text-teal-400"
+                >
+                  Admin
+                </button>
+              </div>
               <button
                 onClick={() => void handleSignOut()}
                 className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
