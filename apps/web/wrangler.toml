@@ -1,15 +1,6 @@
 name = "kotadb-web"
-compatibility_date = "2024-01-01"
+compatibility_date = "2025-02-10"
 pages_build_output_dir = ".vercel/output/static"
 
-[vars]
-NEXT_PUBLIC_SUPABASE_URL = "https://mnppfnyhvgohhblhcgbq.supabase.co"
-NEXT_PUBLIC_SUPABASE_ANON_KEY = "sb_publishable_D_bO4NrPnDbjQpL7duDTpA_eUpPV-nC"
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = "pk_test_51S1BImLBMvu1bdsBzS7i4pHAS8fodlA5W9Gyucd6GvM4aYCOQqX7yGr63qYqrcfAuhsgzXacOk1ZT3TbDlJijGNY00l1mRzGuh"
-NEXT_PUBLIC_APP_URL = "https://kotadb.io"
-NEXT_PUBLIC_DASHBOARD_URL = "https://app.kotadb.io"
-
-# These need to be set as secrets using wrangler secret
-# wrangler secret put SUPABASE_SERVICE_ROLE_KEY
-# wrangler secret put STRIPE_SECRET_KEY
-# wrangler secret put STRIPE_WEBHOOK_SECRET
+# Runtime-specific environment variables should be managed through Cloudflare Pages
+# project settings to avoid overriding dashboard configuration during deploys.

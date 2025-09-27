@@ -1,6 +1,6 @@
 name = "kotadb-app"
-compatibility_date = "2024-01-01"
+compatibility_date = "2025-02-10"
 pages_build_output_dir = ".vercel/output/static"
 
-[env.production]
-compatibility_date = "2024-01-01"
+# Compatibility settings and environment variables should be managed via
+# Cloudflare Pages configuration to keep deploys aligned with the dashboard.
