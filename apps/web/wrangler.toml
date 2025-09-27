@@ -1,4 +1,4 @@
-name = "kotadb-web"
+name = "kota-db-site-web-staging"
 compatibility_date = "2025-02-10"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
