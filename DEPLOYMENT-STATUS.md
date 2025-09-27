@@ -28,6 +28,7 @@
 
 - **Current Deployment**: https://kotadb-web.pages.dev
 - **Branch Preview**: https://develop.kotadb-web.pages.dev
+- **Staging Domain**: https://app.develop.kotadb.io
 - **Target Domain**: kotadb.io (needs DNS configuration)
 
 ## 🔧 Remaining Tasks
