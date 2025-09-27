@@ -13,7 +13,7 @@ export const PRICING_PLANS: Record<SubscriptionPlan, PricingPlan> = {
     id: "solo",
     name: "Solo",
     price: 39,
-    priceId: process.env?.["NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID"] || "",
+    priceId: process.env.NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID || "",
     features: [
       "Unlimited repositories",
       "10,000 queries/month",
@@ -26,7 +26,7 @@ export const PRICING_PLANS: Record<SubscriptionPlan, PricingPlan> = {
     id: "team",
     name: "Team",
     price: 59,
-    priceId: process.env?.["NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID"] || "",
+    priceId: process.env.NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID || "",
     features: [
       "Everything in Solo",
       "Unlimited queries",
