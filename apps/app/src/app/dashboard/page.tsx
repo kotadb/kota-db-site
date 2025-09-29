@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import RepositoryList from "@/components/RepositoryList";
+import { useEffect, useState } from "react";
+
 import ApiKeyManager from "@/components/ApiKeyManager";
+import RepositoryList from "@/components/RepositoryList";
 import UsageMetrics from "@/components/UsageMetrics";
+import { supabase } from "@/lib/supabase";
 
 export default function DashboardPage() {
   const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
@@ -30,7 +31,7 @@ export default function DashboardPage() {
       setLoading(false);
     };
 
-    getUser();
+    void getUser();
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
@@ -41,7 +42,7 @@ export default function DashboardPage() {
     );
 
     return () => {
-      authListener.subscription.unsubscribe();
+      authListener?.subscription.unsubscribe();
     };
   }, [router]);
 
@@ -90,7 +91,9 @@ export default function DashboardPage() {
                 Billing
               </button>
               <button
-                onClick={handleSignOut}
+                onClick={() => {
+                  void handleSignOut();
+                }}
                 className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
               >
                 Sign Out

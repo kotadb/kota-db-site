@@ -1,12 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
 import { generateApiKey, type ApiKey } from "@kotadb/shared";
+import type { PostgrestError } from "@supabase/supabase-js";
+import { useEffect, useState } from "react";
+
+import { supabase } from "@/lib/supabase";
 
 interface ApiKeyManagerProps {
   userId: string;
 }
+
+type SupabaseListResponse<T> = {
+  data: T[] | null;
+  error: PostgrestError | null;
+};
+
+type SupabaseSingleResponse<T> = {
+  data: T | null;
+  error: PostgrestError | null;
+};
 
 export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
   const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
@@ -17,23 +29,24 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
 
   useEffect(() => {
     if (userId) {
-      fetchApiKeys();
+      void fetchApiKeys();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   const fetchApiKeys = async () => {
     try {
-      const { data, error } = await supabase
+      const response: SupabaseListResponse<ApiKey> = await supabase
         .from("api_keys")
         .select("*")
         .eq("user_id", userId)
         .is("revoked_at", null)
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
-      setApiKeys(data || []);
-    } catch (error) {
+      if (response.error) throw response.error;
+      const apiKeyRows = response.data ?? [];
+      setApiKeys(apiKeyRows);
+    } catch (error: unknown) {
       console.error("Error fetching API keys:", error);
     } finally {
       setLoading(false);
@@ -52,7 +65,7 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
     try {
       const { key, hash, prefix } = generateApiKey();
 
-      const { data, error } = await supabase
+      const response: SupabaseSingleResponse<ApiKey> = await supabase
         .from("api_keys")
         .insert({
           user_id: userId,
@@ -63,14 +76,15 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
         .select()
         .single();
 
-      if (error) throw error;
+      if (response.error) throw response.error;
 
-      if (data) {
-        setApiKeys([data, ...apiKeys]);
+      if (response.data) {
+        const newApiKey = response.data;
+        setApiKeys((prev) => [newApiKey, ...prev]);
         setNewKey(key);
         setShowNewKey(true);
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error generating API key:", error);
       alert("Failed to generate API key. Please try again.");
     } finally {
@@ -88,23 +102,29 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
     }
 
     try {
-      const { error } = await supabase
+      const { error }: SupabaseSingleResponse<ApiKey> = await supabase
         .from("api_keys")
         .update({ revoked_at: new Date().toISOString() })
         .eq("id", id);
 
       if (error) throw error;
 
-      setApiKeys(apiKeys.filter((key) => key.id !== id));
-    } catch (error) {
+      setApiKeys((prev) => prev.filter((key) => key.id !== id));
+    } catch (error: unknown) {
       console.error("Error revoking API key:", error);
       alert("Failed to revoke API key. Please try again.");
     }
   };
 
   const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    alert("API key copied to clipboard");
+    void navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        alert("API key copied to clipboard");
+      })
+      .catch(() => {
+        alert("Failed to copy API key. Please try again.");
+      });
   };
 
   if (loading) {
@@ -119,7 +139,9 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
         </h2>
 
         <button
-          onClick={generateNewKey}
+          onClick={() => {
+            void generateNewKey();
+          }}
           disabled={generating}
           className="px-6 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
@@ -145,7 +167,9 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
             </p>
             <div className="flex gap-3">
               <button
-                onClick={() => copyToClipboard(newKey)}
+                onClick={() => {
+                  void copyToClipboard(newKey);
+                }}
                 className="flex-1 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-medium transition-colors"
               >
                 Copy to Clipboard
@@ -196,7 +220,9 @@ export default function ApiKeyManager({ userId }: ApiKeyManagerProps) {
                     </p>
                   </div>
                   <button
-                    onClick={() => revokeKey(key.id)}
+                    onClick={() => {
+                      void revokeKey(key.id);
+                    }}
                     className="ml-4 text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
                   >
                     Revoke

@@ -1,12 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
 import type { Repository } from "@kotadb/shared";
+import type { PostgrestError } from "@supabase/supabase-js";
+import { useEffect, useState } from "react";
+
+import { supabase } from "@/lib/supabase";
 
 interface RepositoryListProps {
   userId: string;
 }
+
+type SupabaseListResponse<T> = {
+  data: T[] | null;
+  error: PostgrestError | null;
+};
+
+type SupabaseSingleResponse<T> = {
+  data: T | null;
+  error: PostgrestError | null;
+};
 
 export default function RepositoryList({ userId }: RepositoryListProps) {
   const [repositories, setRepositories] = useState<Repository[]>([]);
@@ -16,22 +28,23 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
 
   useEffect(() => {
     if (userId) {
-      fetchRepositories();
+      void fetchRepositories();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   const fetchRepositories = async () => {
     try {
-      const { data, error } = await supabase
+      const response: SupabaseListResponse<Repository> = await supabase
         .from("repositories")
         .select("*")
         .eq("user_id", userId)
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
-      setRepositories(data || []);
-    } catch (error) {
+      if (response.error) throw response.error;
+      const repositoryRows = response.data ?? [];
+      setRepositories(repositoryRows);
+    } catch (error: unknown) {
       console.error("Error fetching repositories:", error);
     } finally {
       setLoading(false);
@@ -51,7 +64,7 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
       const urlParts = githubUrl.split("/").filter(Boolean);
       const repoName = urlParts.slice(-2).join("/");
 
-      const { data, error } = await supabase
+      const response: SupabaseSingleResponse<Repository> = await supabase
         .from("repositories")
         .insert({
           user_id: userId,
@@ -62,20 +75,18 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
         .select()
         .single();
 
-      if (error) {
-        if (error.code === "23505") {
+      if (response.error) {
+        if (response.error.code === "23505") {
           alert("This repository has already been added");
         } else {
-          throw error;
+          throw response.error;
         }
-      } else if (data) {
-        setRepositories([data, ...repositories]);
+      } else if (response.data) {
+        const newRepository = response.data;
+        setRepositories((prev) => [newRepository, ...prev]);
         setGithubUrl("");
-
-        // TODO: Trigger indexing job
-        console.log("Repository added, indexing will start soon");
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error adding repository:", error);
       alert("Failed to add repository. Please try again.");
     } finally {
@@ -89,15 +100,15 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
     }
 
     try {
-      const { error } = await supabase
+      const { error }: SupabaseSingleResponse<Repository> = await supabase
         .from("repositories")
         .delete()
         .eq("id", id);
 
       if (error) throw error;
 
-      setRepositories(repositories.filter((repo) => repo.id !== id));
-    } catch (error) {
+      setRepositories((prev) => prev.filter((repo) => repo.id !== id));
+    } catch (error: unknown) {
       console.error("Error deleting repository:", error);
       alert("Failed to delete repository. Please try again.");
     }
@@ -136,7 +147,9 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
             className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
           />
           <button
-            onClick={addRepository}
+            onClick={() => {
+              void addRepository();
+            }}
             disabled={adding}
             className="px-6 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
@@ -180,7 +193,9 @@ export default function RepositoryList({ userId }: RepositoryListProps) {
                     </div>
                   </div>
                   <button
-                    onClick={() => deleteRepository(repo.id)}
+                    onClick={() => {
+                      void deleteRepository(repo.id);
+                    }}
                     className="ml-4 text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
                   >
                     <svg
