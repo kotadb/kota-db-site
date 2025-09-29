@@ -68,6 +68,9 @@ export function SiteHeader({
                     className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors duration-300 text-sm font-medium"
                   >
                     {link.label}
+                    {link.external && (
+                      <span className="sr-only"> (opens in new tab)</span>
+                    )}
                   </Link>
                 ))}
               </div>

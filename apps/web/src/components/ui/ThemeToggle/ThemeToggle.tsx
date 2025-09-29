@@ -87,9 +87,11 @@ export function ThemeToggle({ className }: { className?: string }) {
         className,
       )}
       aria-label={getLabel()}
+      aria-live="polite"
       title={getLabel()}
     >
       {getIcon()}
+      <span className="sr-only">{`Current theme: ${theme}`}</span>
     </button>
   );
 }

@@ -27,6 +27,7 @@ export function SiteFooter() {
                   className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                 >
                   Documentation
+                  <span className="sr-only"> (opens in new tab)</span>
                 </Link>
               </li>
               <li>
@@ -36,6 +37,7 @@ export function SiteFooter() {
                   className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                 >
                   Quick Start
+                  <span className="sr-only"> (opens in new tab)</span>
                 </Link>
               </li>
               <li>
@@ -45,6 +47,7 @@ export function SiteFooter() {
                   className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                 >
                   Examples
+                  <span className="sr-only"> (opens in new tab)</span>
                 </Link>
               </li>
             </ul>
@@ -61,6 +64,7 @@ export function SiteFooter() {
                   className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                 >
                   GitHub
+                  <span className="sr-only"> (opens in new tab)</span>
                 </Link>
               </li>
               <li>
@@ -70,6 +74,7 @@ export function SiteFooter() {
                   className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                 >
                   Issues
+                  <span className="sr-only"> (opens in new tab)</span>
                 </Link>
               </li>
               <li>
@@ -79,6 +84,7 @@ export function SiteFooter() {
                   className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                 >
                   Discussions
+                  <span className="sr-only"> (opens in new tab)</span>
                 </Link>
               </li>
             </ul>
@@ -95,6 +101,7 @@ export function SiteFooter() {
                   className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                 >
                   Author GitHub
+                  <span className="sr-only"> (opens in new tab)</span>
                 </Link>
               </li>
               <li>
@@ -104,12 +111,13 @@ export function SiteFooter() {
                   className="text-[var(--foreground-secondary)] hover:text-teal-400 transition-colors duration-200"
                 >
                   License
+                  <span className="sr-only"> (opens in new tab)</span>
                 </Link>
               </li>
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-[var(--border)] text-center text-[var(--foreground-secondary)] opacity-75">
+        <div className="mt-12 pt-8 border-t border-[var(--border)] text-center text-[var(--foreground-secondary)]">
           <p>
             &copy; 2025 KotaDB. Built with passion for the future of knowledge
             work.

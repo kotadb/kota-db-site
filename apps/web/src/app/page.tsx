@@ -108,7 +108,7 @@ export default function Home() {
           <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Context Understanding */}
             <div className="group relative">
-              <div className="backdrop-blur-lg bg-[var(--card-bg)]/70 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2">
+              <div className="backdrop-blur-lg bg-[var(--card-bg)]/90 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2 focus-within:ring-2 focus-within:ring-[var(--accent)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--background)]">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 flex items-center justify-center mb-8">
                   <svg
                     className="w-7 h-7 text-[var(--accent)]"
@@ -152,7 +152,7 @@ export default function Home() {
 
             {/* Zero Setup */}
             <div className="group relative">
-              <div className="backdrop-blur-lg bg-[var(--card-bg)]/70 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2">
+              <div className="backdrop-blur-lg bg-[var(--card-bg)]/90 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2 focus-within:ring-2 focus-within:ring-[var(--accent)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--background)]">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 flex items-center justify-center mb-8">
                   <svg
                     className="w-7 h-7 text-[var(--accent)]"
@@ -196,7 +196,7 @@ export default function Home() {
 
             {/* Enterprise Scale */}
             <div className="group relative">
-              <div className="backdrop-blur-lg bg-[var(--card-bg)]/70 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2">
+              <div className="backdrop-blur-lg bg-[var(--card-bg)]/90 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2 focus-within:ring-2 focus-within:ring-[var(--accent)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--background)]">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 flex items-center justify-center mb-8">
                   <svg
                     className="w-7 h-7 text-[var(--accent)]"
@@ -250,13 +250,16 @@ export default function Home() {
           />
 
           <div className="mt-16 grid md:grid-cols-2 gap-8 md:gap-10">
-            <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-3xl border border-red-200/70 dark:border-red-900/60 p-8 sm:p-10 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300">
-              <span className="inline-flex items-center gap-2 rounded-full bg-red-500/10 text-red-600 dark:text-red-300 px-4 py-2 text-sm font-semibold">
+            <div className="backdrop-blur-md bg-[var(--card-bg)]/90 rounded-3xl border border-red-200/70 dark:border-red-900/60 p-8 sm:p-10 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--error-bg)] text-[var(--error-text-dark)] px-4 py-2 text-sm font-semibold">
                 Before KotaDB
               </span>
               <ul className="mt-6 sm:mt-8 space-y-4 sm:space-y-5 text-[var(--foreground-secondary)] text-sm sm:text-base">
                 <li className="flex gap-3 sm:gap-4">
-                  <span className="mt-1 text-red-500 text-lg flex-shrink-0">
+                  <span
+                    className="mt-1 text-[var(--color-red-700)] dark:text-[var(--color-red-400)] text-lg flex-shrink-0"
+                    aria-hidden="true"
+                  >
                     ×
                   </span>
                   <span>
@@ -264,37 +267,60 @@ export default function Home() {
                   </span>
                 </li>
                 <li className="flex gap-4">
-                  <span className="mt-1 text-red-500 text-lg">×</span>
+                  <span
+                    className="mt-1 text-[var(--color-red-700)] dark:text-[var(--color-red-400)] text-lg"
+                    aria-hidden="true"
+                  >
+                    ×
+                  </span>
                   <span>
                     Dump grep/find/awk results into prompts and hope they stick.
                   </span>
                 </li>
                 <li className="flex gap-4">
-                  <span className="mt-1 text-red-500 text-lg">×</span>
+                  <span
+                    className="mt-1 text-[var(--color-red-700)] dark:text-[var(--color-red-400)] text-lg"
+                    aria-hidden="true"
+                  >
+                    ×
+                  </span>
                   <span>
                     Explain dependency chains to every new agent session.
                   </span>
                 </li>
                 <li className="flex gap-4">
-                  <span className="mt-1 text-red-500 text-lg">×</span>
+                  <span
+                    className="mt-1 text-[var(--color-red-700)] dark:text-[var(--color-red-400)] text-lg"
+                    aria-hidden="true"
+                  >
+                    ×
+                  </span>
                   <span>
                     Ship refactors while wondering which services you missed.
                   </span>
                 </li>
                 <li className="flex gap-4">
-                  <span className="mt-1 text-red-500 text-lg">×</span>
+                  <span
+                    className="mt-1 text-[var(--color-red-700)] dark:text-[var(--color-red-400)] text-lg"
+                    aria-hidden="true"
+                  >
+                    ×
+                  </span>
                   <span>Trade release velocity for manual safety checks.</span>
                 </li>
               </ul>
             </div>
 
-            <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-3xl border border-[var(--accent)]/50 p-8 sm:p-10 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300">
+            <div className="backdrop-blur-md bg-[var(--card-bg)]/90 rounded-3xl border border-[var(--accent)]/50 p-8 sm:p-10 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300">
               <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] px-4 py-2 text-sm font-semibold">
                 With KotaDB
               </span>
               <ul className="mt-6 sm:mt-8 space-y-4 sm:space-y-5 text-[var(--foreground-secondary)] text-sm sm:text-base">
                 <li className="flex gap-3 sm:gap-4">
-                  <span className="mt-1 text-[var(--accent)] text-lg font-bold flex-shrink-0">
+                  <span
+                    className="mt-1 text-[var(--accent)] text-lg font-bold flex-shrink-0"
+                    aria-hidden="true"
+                  >
                     ✓
                   </span>
                   <span>
@@ -303,7 +329,10 @@ export default function Home() {
                   </span>
                 </li>
                 <li className="flex gap-4">
-                  <span className="mt-1 text-[var(--accent)] text-lg font-bold">
+                  <span
+                    className="mt-1 text-[var(--accent)] text-lg font-bold"
+                    aria-hidden="true"
+                  >
                     ✓
                   </span>
                   <span>
@@ -312,7 +341,10 @@ export default function Home() {
                   </span>
                 </li>
                 <li className="flex gap-4">
-                  <span className="mt-1 text-[var(--accent)] text-lg font-bold">
+                  <span
+                    className="mt-1 text-[var(--accent)] text-lg font-bold"
+                    aria-hidden="true"
+                  >
                     ✓
                   </span>
                   <span>
@@ -321,7 +353,10 @@ export default function Home() {
                   </span>
                 </li>
                 <li className="flex gap-4">
-                  <span className="mt-1 text-[var(--accent)] text-lg font-bold">
+                  <span
+                    className="mt-1 text-[var(--accent)] text-lg font-bold"
+                    aria-hidden="true"
+                  >
                     ✓
                   </span>
                   <span>
@@ -329,7 +364,10 @@ export default function Home() {
                   </span>
                 </li>
                 <li className="flex gap-4">
-                  <span className="mt-1 text-[var(--accent)] text-lg font-bold">
+                  <span
+                    className="mt-1 text-[var(--accent)] text-lg font-bold"
+                    aria-hidden="true"
+                  >
                     ✓
                   </span>
                   <span>
@@ -351,19 +389,19 @@ export default function Home() {
         />
 
         <div className="mt-12 grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-3xl border border-red-200/70 dark:border-red-900/60 p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-            <span className="inline-flex items-center gap-2 rounded-full bg-red-500/10 text-red-600 dark:text-red-300 px-4 py-2 text-sm font-semibold mb-6">
+          <div className="backdrop-blur-md bg-[var(--card-bg)]/90 rounded-3xl border border-red-200/70 dark:border-red-900/60 p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[var(--error-bg)] text-[var(--error-text-dark)] px-4 py-2 text-sm font-semibold mb-6">
               Without KotaDB
             </span>
 
             <div className="space-y-6">
               <div className="bg-red-500/5 border border-red-200/60 dark:border-red-900/40 rounded-xl p-4 sm:p-5">
-                <p className="text-xs sm:text-sm text-red-600/90 dark:text-red-400/90 font-semibold mb-2">
+                <p className="text-sm sm:text-base text-[var(--color-red-900)] dark:text-[var(--color-red-300)] font-semibold mb-2">
                   Every request needs context first
                 </p>
-                <div className="space-y-2 text-xs sm:text-sm text-red-600/70 dark:text-red-400/70 font-mono">
+                <div className="space-y-2 text-sm sm:text-base text-[var(--color-red-900)] dark:text-[var(--color-red-300)] font-mono">
                   <p>human&gt; &quot;Where does invoice_total get set?&quot;</p>
-                  <p className="text-red-500/60 italic">
+                  <p className="text-[var(--color-red-800)] dark:text-[var(--color-red-400)]/70 italic">
                     *opens five tabs, runs grep, repeats the prompt*
                   </p>
                   <p>agent&gt; &quot;Maybe here? need more detail.&quot;</p>
@@ -371,28 +409,28 @@ export default function Home() {
               </div>
 
               <div className="bg-red-500/5 border border-red-200/60 dark:border-red-900/40 rounded-xl p-4 sm:p-5">
-                <p className="text-xs sm:text-sm text-red-600/90 dark:text-red-400/90 font-semibold mb-2">
+                <p className="text-sm sm:text-base text-[var(--color-red-900)] dark:text-[var(--color-red-300)] font-semibold mb-2">
                   Impact checks become guesswork
                 </p>
-                <div className="space-y-2 text-xs sm:text-sm text-red-600/70 dark:text-red-400/70 font-mono">
+                <div className="space-y-2 text-sm sm:text-base text-[var(--color-red-900)] dark:text-[var(--color-red-300)] font-mono">
                   <p>
                     human&gt; &quot;What breaks if I touch
                     billing_handler?&quot;
                   </p>
-                  <p className="text-red-500/60 italic">
+                  <p className="text-[var(--color-red-800)] dark:text-[var(--color-red-400)]/70 italic">
                     *maps the call tree manually*
                   </p>
                   <p>agent&gt; *shrugs in autocomplete*</p>
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-red-600/80 dark:text-red-400/80 font-semibold italic text-center pt-2">
+              <p className="text-sm sm:text-base text-[var(--color-red-900)] dark:text-[var(--color-red-300)] font-semibold italic text-center pt-2">
                 Half the sprint disappears into context handoffs
               </p>
             </div>
           </div>
 
-          <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-3xl border border-[var(--accent)]/50 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300">
+          <div className="backdrop-blur-md bg-[var(--card-bg)]/90 rounded-3xl border border-[var(--accent)]/50 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300">
             <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] px-4 py-2 text-sm font-semibold mb-6">
               With KotaDB
             </span>
@@ -431,7 +469,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-[var(--accent)] font-semibold italic text-center pt-2">
+              <p className="text-sm sm:text-base text-[var(--accent)] font-semibold italic text-center pt-2">
                 Agents answer with context, not apologies
               </p>
             </div>

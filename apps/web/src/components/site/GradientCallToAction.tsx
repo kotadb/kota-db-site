@@ -60,7 +60,7 @@ export function GradientCallToAction({
         </div>
 
         {secondaryCtas && secondaryCtas.length > 0 && (
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0 text-sm text-white/80">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0 text-sm text-white">
             {secondaryCtas.map((cta, index) => (
               <Fragment key={cta.href}>
                 {index > 0 && (
