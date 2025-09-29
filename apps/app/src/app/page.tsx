@@ -3,10 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import { getSupabase } from "@/lib/supabase";
-
-// Prevent prerender; this page depends on client-only auth state
-export const dynamic = "force-dynamic";
+import { supabase } from "@/lib/supabase";
 
 export default function Home() {
   const router = useRouter();
@@ -29,7 +26,7 @@ export default function Home() {
       // Handle OAuth errors
       if (hasError) {
         console.error("OAuth error:", searchParams.get("error"));
-        router.push("/login");
+        window.location.href = "https://kotadb.io/login";
         return;
       }
 
@@ -40,15 +37,20 @@ export default function Home() {
 
       const {
         data: { session },
-      } = await getSupabase().auth.getSession();
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        console.error("Session retrieval error:", error);
+      }
 
       if (!mounted) return;
 
       if (session) {
         router.push("/dashboard");
       } else if (!hasAuthParams) {
-        // Redirect to local login page
-        router.push("/login");
+        // Only redirect to login if this wasn't an OAuth callback attempt
+        window.location.href = "https://kotadb.io/login";
       } else {
         // If it was an OAuth callback but no session, wait a bit more then try again
         setTimeout(() => {
@@ -60,14 +62,14 @@ export default function Home() {
     };
 
     // Listen for auth state changes (handles OAuth callback)
-    const { data: authListener } = getSupabase().auth.onAuthStateChange(
+    const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (!mounted) return;
 
         if (event === "SIGNED_IN" && session) {
           router.push("/dashboard");
         } else if (event === "SIGNED_OUT") {
-          router.push("/login");
+          window.location.href = "https://kotadb.io/login";
         }
       },
     );
@@ -76,7 +78,7 @@ export default function Home() {
 
     return () => {
       mounted = false;
-      authListener.subscription.unsubscribe();
+      authListener?.subscription.unsubscribe();
     };
   }, [router]);
 

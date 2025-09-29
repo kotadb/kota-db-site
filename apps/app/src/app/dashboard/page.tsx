@@ -1,15 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import ApiKeyManager from "@/components/ApiKeyManager";
 import RepositoryList from "@/components/RepositoryList";
 import UsageMetrics from "@/components/UsageMetrics";
-import { getSupabase } from "@/lib/supabase";
-
-// Prevent prerender; this page depends on client-only auth state
-export const dynamic = "force-dynamic";
+import { supabase } from "@/lib/supabase";
 
 export default function DashboardPage() {
   const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
@@ -23,10 +20,10 @@ export default function DashboardPage() {
     const getUser = async () => {
       const {
         data: { session },
-      } = await getSupabase().auth.getSession();
+      } = await supabase.auth.getSession();
 
       if (!session) {
-        router.push("/login");
+        window.location.href = "https://kotadb.io/login";
         return;
       }
 
@@ -36,31 +33,27 @@ export default function DashboardPage() {
 
     void getUser();
 
-    const { data: authListener } = getSupabase().auth.onAuthStateChange(
+    const { data: authListener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         if (!session) {
-          router.push("/login");
+          window.location.href = "https://kotadb.io/login";
         }
       },
     );
 
     return () => {
-      authListener.subscription.unsubscribe();
+      authListener?.subscription.unsubscribe();
     };
   }, [router]);
 
   const handleSignOut = async () => {
-    await getSupabase().auth.signOut();
-    router.push("/login");
+    await supabase.auth.signOut();
+    window.location.href = "https://kotadb.io";
   };
 
   const openBilling = () => {
-    // TODO: Replace placeholder once Stripe customer portal is wired up.
+    // This would typically open Stripe Customer Portal
     window.open("https://billing.stripe.com/p/login/test", "_blank");
-  };
-
-  const openAdmin = () => {
-    router.push("/admin");
   };
 
   if (loading) {
@@ -91,22 +84,16 @@ export default function DashboardPage() {
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 {user?.email}
               </span>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={openBilling}
-                  className="text-sm text-gray-600 hover:text-teal-600 dark:text-gray-400 dark:hover:text-teal-400"
-                >
-                  Billing
-                </button>
-                <button
-                  onClick={openAdmin}
-                  className="text-sm text-gray-600 hover:text-teal-600 dark:text-gray-400 dark:hover:text-teal-400"
-                >
-                  Admin
-                </button>
-              </div>
               <button
-                onClick={() => void handleSignOut()}
+                onClick={openBilling}
+                className="text-sm text-gray-600 hover:text-teal-600 dark:text-gray-400 dark:hover:text-teal-400"
+              >
+                Billing
+              </button>
+              <button
+                onClick={() => {
+                  void handleSignOut();
+                }}
                 className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
               >
                 Sign Out

@@ -1,14 +1,19 @@
 "use client";
 
 import type { UsageMetric } from "@kotadb/shared";
-import { useState, useEffect } from "react";
+import type { PostgrestError } from "@supabase/supabase-js";
+import { useEffect, useState } from "react";
 
-import { getSupabase } from "@/lib/supabase";
-import { validateUsageMetrics, formatError } from "@/lib/type-guards";
+import { supabase } from "@/lib/supabase";
 
 interface UsageMetricsProps {
   userId: string;
 }
+
+type SupabaseListResponse<T> = {
+  data: T[] | null;
+  error: PostgrestError | null;
+};
 
 export default function UsageMetrics({ userId }: UsageMetricsProps) {
   const [metrics, setMetrics] = useState<UsageMetric[]>([]);
@@ -33,16 +38,16 @@ export default function UsageMetrics({ userId }: UsageMetricsProps) {
       const thirtyDaysAgo = new Date();
       thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-      const { data, error } = await getSupabase()
+      const response: SupabaseListResponse<UsageMetric> = await supabase
         .from("usage_metrics")
         .select("*")
         .eq("user_id", userId)
         .gte("date", thirtyDaysAgo.toISOString().split("T")[0])
         .order("date", { ascending: false });
 
-      if (error) throw new Error(formatError(error));
+      if (response.error) throw response.error;
 
-      const metricsData = validateUsageMetrics(data);
+      const metricsData = response.data ?? [];
       setMetrics(metricsData);
 
       // Calculate summary
@@ -65,7 +70,7 @@ export default function UsageMetrics({ userId }: UsageMetricsProps) {
       );
 
       setSummary(totals);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error fetching usage metrics:", error);
     } finally {
       setLoading(false);

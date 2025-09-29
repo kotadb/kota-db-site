@@ -12,7 +12,6 @@
 
 # testing
 /coverage
-**/coverage/
 
 # next.js
 /.next/
@@ -44,11 +43,4 @@ next-env.d.ts
 docs-site/
 .next/
 node_modules/
-.env.local
-DEPLOYMENT_NOTES.md
 .mcp.json
-*.out
-*.o
-*.a
-*.so
-*.dylib
