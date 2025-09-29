@@ -100,7 +100,7 @@ importers:
         specifier: ^8.40.0
         version: 8.40.0(@typescript-eslint/parser@8.45.0(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2)
       '@typescript-eslint/parser':
-        specifier: ^8.40.0
+        specifier: ^8.44.1
         version: 8.45.0(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2)
       '@vitejs/plugin-react':
         specifier: ^5.0.4
@@ -227,7 +227,7 @@ importers:
         specifier: ^8.40.0
         version: 8.40.0(@typescript-eslint/parser@8.45.0(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2)
       '@typescript-eslint/parser':
-        specifier: ^8.40.0
+        specifier: ^8.44.1
         version: 8.45.0(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2)
       '@vitejs/plugin-react':
         specifier: ^5.0.4
