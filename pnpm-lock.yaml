@@ -162,6 +162,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@kotadb/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@stripe/stripe-js':
         specifier: ^7.9.0
         version: 7.9.0

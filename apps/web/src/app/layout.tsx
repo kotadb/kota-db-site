@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { createPageMetadata } from "@/lib/metadata";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700", "900"],
@@ -17,11 +17,7 @@ const robotoMono = Roboto_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "KotaDB - The Claude Code-Native Codebase Intelligence Layer",
-  description:
-    "Claude Code is flying blind through your code. Fix that in 30 seconds. KotaDB gives Claude Code actual understanding of your codebase. One file. Infinite intelligence.",
-};
+export const metadata = createPageMetadata();
 
 export default function RootLayout({
   children,

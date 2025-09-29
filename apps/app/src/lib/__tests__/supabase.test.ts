@@ -1,5 +1,4 @@
 // Use relative import to avoid Next.js path alias in test env
-import type { SupabaseClient } from "@supabase/supabase-js";
 import { describe, expect, it, beforeEach, vi } from "vitest";
 
 describe("getSupabase memoization", () => {
@@ -11,8 +10,8 @@ describe("getSupabase memoization", () => {
 
   it("returns the same client instance on subsequent calls", async () => {
     const { getSupabase } = await import("../../lib/supabase");
-    const a: SupabaseClient = getSupabase();
-    const b: SupabaseClient = getSupabase();
+    const a = getSupabase();
+    const b = getSupabase();
     expect(a).toBe(b);
   });
 

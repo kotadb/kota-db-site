@@ -1,0 +1,178 @@
+:root {
+  /* Modern Black/Gray/Teal Color System */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+
+  /* Teal Accent Colors */
+  --color-teal-50: #f0fdfa;
+  --color-teal-100: #ccfbf1;
+  --color-teal-200: #99f6e4;
+  --color-teal-300: #5eead4;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-teal-600: #0d9488;
+  --color-teal-700: #0f766e;
+  --color-teal-800: #115e59;
+  --color-teal-900: #134e4a;
+
+  /* Bright Mode Color Additions */
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+
+  --color-cyan-50: #ecfeff;
+  --color-cyan-100: #cffafe;
+  --color-cyan-200: #a5f3fc;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+
+  /* Semantic Colors - Light Mode (default) */
+  --background: var(--color-slate-50);
+  --background-secondary: #ffffff;
+  --foreground: var(--color-slate-900);
+  --foreground-secondary: var(--color-slate-700);
+  --border: var(--color-slate-200);
+  --border-hover: var(--color-slate-300);
+  --accent: var(--color-teal-500);
+  --accent-hover: var(--color-teal-600);
+  --accent-light: var(--color-teal-100);
+
+  /* Component Colors */
+  --button-primary-bg: var(--color-teal-600);
+  --button-primary-hover: var(--color-teal-700);
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: var(--color-slate-200);
+  --button-secondary-hover: var(--color-slate-300);
+  --button-secondary-text: var(--color-slate-900);
+  --card-bg: #ffffff;
+  --card-border: var(--color-slate-200);
+  --input-bg: #ffffff;
+  --input-border: var(--color-slate-300);
+  --input-focus: var(--color-teal-500);
+  --success-bg: #f0fdf4;
+  --success-text: #166534;
+  --error-text: #dc2626;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-teal-500) 0%,
+    var(--color-teal-600) 100%
+  );
+  --gradient-dark: linear-gradient(
+    180deg,
+    var(--color-slate-900) 0%,
+    var(--color-slate-950) 100%
+  );
+  --gradient-hero: linear-gradient(
+    135deg,
+    var(--color-slate-950) 0%,
+    var(--color-slate-900) 50%,
+    var(--color-teal-900) 100%
+  );
+}
+
+.light {
+  --background: var(--color-teal-50);
+  --background-secondary: #ffffff;
+  --foreground: var(--color-slate-900);
+  --foreground-secondary: var(--color-slate-700);
+  --border: var(--color-teal-200);
+  --border-hover: var(--color-teal-300);
+  --accent: var(--color-teal-500);
+  --accent-hover: var(--color-teal-600);
+  --accent-light: var(--color-teal-100);
+
+  --button-primary-bg: var(--color-teal-500);
+  --button-primary-hover: var(--color-teal-600);
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: var(--color-teal-100);
+  --button-secondary-hover: var(--color-teal-200);
+  --button-secondary-text: var(--color-teal-900);
+  --card-bg: #ffffff;
+  --card-border: var(--color-teal-200);
+  --input-bg: #ffffff;
+  --input-border: var(--color-teal-300);
+  --input-focus: var(--color-teal-500);
+  --success-bg: var(--color-emerald-50);
+  --success-text: var(--color-emerald-700);
+  --error-text: #dc2626;
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-teal-400) 0%,
+    var(--color-cyan-500) 50%,
+    var(--color-emerald-500) 100%
+  );
+  --gradient-hero: linear-gradient(
+    135deg,
+    var(--color-teal-50) 0%,
+    var(--color-cyan-50) 50%,
+    var(--color-emerald-50) 100%
+  );
+}
+
+.dark {
+  --background: var(--color-slate-800);
+  --background-secondary: var(--color-slate-700);
+  --foreground: var(--color-slate-50);
+  --foreground-secondary: var(--color-slate-300);
+  --border: var(--color-slate-600);
+  --border-hover: var(--color-slate-500);
+  --accent: var(--color-teal-400);
+  --accent-hover: var(--color-teal-300);
+  --accent-light: var(--color-teal-800);
+
+  --button-primary-bg: var(--color-teal-500);
+  --button-primary-hover: var(--color-teal-400);
+  --button-primary-text: var(--color-slate-900);
+  --button-secondary-bg: var(--color-slate-600);
+  --button-secondary-hover: var(--color-slate-500);
+  --button-secondary-text: var(--color-slate-100);
+  --card-bg: var(--color-slate-700);
+  --card-border: var(--color-slate-600);
+  --input-bg: var(--color-slate-700);
+  --input-border: var(--color-slate-500);
+  --input-focus: var(--color-teal-400);
+  --success-bg: var(--color-emerald-900);
+  --success-text: var(--color-emerald-400);
+  --error-text: #ef4444;
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-teal-500) 0%,
+    var(--color-teal-600) 100%
+  );
+  --gradient-hero: linear-gradient(
+    135deg,
+    var(--color-slate-900) 0%,
+    var(--color-slate-950) 50%,
+    var(--color-teal-900) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
