@@ -53,6 +53,7 @@ const plans: PricingPlan[] = [
       "Placeholder: Managed analytics (coming soon)",
     ],
     cta: "Start Individual Plan",
+    popular: true,
     ...(soloPriceId ? { priceId: soloPriceId } : {}),
   },
   {
@@ -69,17 +70,20 @@ const plans: PricingPlan[] = [
       "Placeholder: Policy management (coming soon)",
     ],
     cta: "Start Team Plan",
-    popular: true,
     ...(teamPriceId ? { priceId: teamPriceId } : {}),
   },
 ];
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <div className="min-h-screen bg-[var(--background)] overflow-x-hidden w-full">
       <SiteHeader />
 
-      <Section variant="spacious">
+      <Section
+        variant="spacious"
+        className="pt-36"
+        containerClassName="max-w-6xl"
+      >
         <SectionHeading
           title="Choose your KotaDB SaaS plan"
           subtitle="Hosted intelligence for Claude and Codex workflows, ready when your agents are."
@@ -87,7 +91,7 @@ export default function PricingPage() {
 
         <PricingPlans plans={plans} dashboardUrl={DASHBOARD_URL} />
 
-        <div className="mt-12 text-center space-y-4">
+        <div className="mt-12 text-center space-y-4 max-w-3xl mx-auto">
           <p className="text-[var(--foreground-secondary)]">
             Every plan begins with a generous onboarding period—cancel anytime.
           </p>
@@ -98,16 +102,6 @@ export default function PricingPage() {
               className="text-teal-600 hover:text-teal-700"
             >
               Contact us
-            </a>
-          </p>
-          <p className="text-sm text-[var(--foreground-secondary)]/80">
-            Want to review the code?{" "}
-            <a
-              href="https://github.com/kotadb/kota-db"
-              target="_blank"
-              className="text-teal-600 hover:text-teal-700"
-            >
-              Check out the MIT repo on GitHub
             </a>
           </p>
         </div>

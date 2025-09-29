@@ -84,11 +84,27 @@ body {
   border-color: rgba(71, 85, 105, 0.5);
 }
 
-/* Smooth transitions for theme changes */
+/* Smooth transitions for theme changes - 2025 subtle animations */
 * {
-  @apply transition-colors duration-200;
+  @apply transition-colors duration-300;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Subtle fade-in animation for page load */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-container {
+  animation: fade-in 0.6s ease-out;
 }
 
 /* Prevent horizontal overflow on all containers */
@@ -254,14 +270,26 @@ section.hero-section {
   animation: gradient-shift 8s ease infinite;
 }
 
-/* Glass morphism effect */
+/* Glass morphism effect - 2025 modern style */
 .glass {
   @apply backdrop-blur-xl bg-white/10 dark:bg-slate-900/10;
 }
 
-/* Hover lift effect */
+/* Hover lift effect - enhanced for 2025 */
 .hover-lift {
-  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl;
+  @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl;
+}
+
+/* Stagger animation for lists */
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Text gradient animations */

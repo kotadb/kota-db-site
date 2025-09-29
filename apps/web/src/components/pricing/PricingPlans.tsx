@@ -55,39 +55,39 @@ export function PricingPlans({ plans, dashboardUrl }: PricingPlansProps) {
   };
 
   return (
-    <div className="mt-16 grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
       {plans.map((plan) => (
         <div
           key={plan.id}
-          className={`relative bg-[var(--card-bg)] rounded-2xl p-8 border ${
+          className={`relative backdrop-blur-lg bg-[var(--card-bg)]/70 rounded-3xl p-8 sm:p-10 border transition-all duration-500 hover:-translate-y-2 ${
             plan.popular
-              ? "border-[var(--accent)] shadow-2xl scale-105"
-              : "border-[var(--border)] shadow-lg"
+              ? "border-[var(--accent)]/60 shadow-2xl scale-105 hover:shadow-3xl"
+              : "border-[var(--border)]/40 shadow-xl hover:shadow-2xl hover:border-[var(--border)]"
           }`}
         >
           {plan.popular && (
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <span className="bg-[var(--accent)] text-white px-4 py-1 rounded-full text-sm font-medium">
+              <span className="backdrop-blur-md bg-[var(--accent)] text-white px-5 py-2 rounded-full text-sm font-semibold shadow-lg">
                 Most Popular
               </span>
             </div>
           )}
 
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-[var(--foreground)] mb-2">
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="text-xl sm:text-2xl font-bold text-[var(--foreground)] mb-3 sm:mb-4 tracking-tight">
               {plan.name}
             </h2>
             <div className="flex items-baseline justify-center">
               {plan.isFree ? (
-                <span className="text-4xl font-bold text-[var(--accent)]">
+                <span className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[var(--accent)] to-[var(--accent-hover)] bg-clip-text text-transparent">
                   Free
                 </span>
               ) : (
                 <>
-                  <span className="text-5xl font-bold text-[var(--foreground)]">
+                  <span className="text-5xl sm:text-6xl font-bold text-[var(--foreground)]">
                     ${plan.price}
                   </span>
-                  <span className="text-[var(--foreground-secondary)] ml-2">
+                  <span className="text-[var(--foreground-secondary)] ml-2 text-sm sm:text-base">
                     {plan.id === "team" ? "/seat/month" : "/month"}
                   </span>
                 </>
@@ -95,19 +95,24 @@ export function PricingPlans({ plans, dashboardUrl }: PricingPlansProps) {
             </div>
           </div>
 
-          <ul className="space-y-4 mb-8 text-left text-[var(--foreground-secondary)]">
+          <ul className="space-y-3 sm:space-y-4 mb-8 sm:mb-10 text-left text-[var(--foreground-secondary)] text-sm sm:text-base">
             {plan.features.map((feature, index) => (
-              <li key={index}>{feature}</li>
+              <li key={index} className="flex gap-3">
+                <span className="text-[var(--accent)] mt-1 font-bold flex-shrink-0">
+                  ✓
+                </span>
+                <span>{feature}</span>
+              </li>
             ))}
           </ul>
 
           <button
             onClick={() => handleCheckout(plan)}
             disabled={loading === plan.id}
-            className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
+            className={`w-full py-3 sm:py-4 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
               plan.popular || plan.isFree
-                ? "bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-lg hover:shadow-xl"
-                : "bg-[var(--button-secondary-bg)] hover:bg-[var(--button-secondary-hover)] text-[var(--button-secondary-text)]"
+                ? "bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-lg hover:shadow-xl hover:-translate-y-1"
+                : "backdrop-blur-md bg-[var(--card-bg)]/60 hover:bg-[var(--card-bg)] border border-[var(--border)] hover:border-[var(--border-hover)] text-[var(--foreground)] shadow-sm hover:shadow-lg hover:-translate-y-1"
             } disabled:opacity-50 disabled:cursor-not-allowed`}
           >
             {loading === plan.id ? "Processing..." : plan.cta}

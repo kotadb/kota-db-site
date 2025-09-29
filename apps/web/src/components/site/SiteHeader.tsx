@@ -42,15 +42,15 @@ export function SiteHeader({
   ctaHref = `${DASHBOARD_URL}/login`,
 }: SiteHeaderProps) {
   return (
-    <nav className="fixed top-0 w-full backdrop-blur-xl bg-[var(--background)]/80 z-50 border-b border-[var(--border)]/50">
+    <nav className="fixed top-0 w-full backdrop-blur-xl bg-[var(--background)]/70 z-50 border-b border-[var(--border)]/30">
       <div className={layout.container}>
         <div className="flex justify-between items-center h-20 max-w-7xl mx-auto">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-[var(--accent)] rounded-lg flex items-center justify-center">
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="w-9 h-9 bg-gradient-to-br from-[var(--accent)] to-[var(--accent-hover)] rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300">
                 <span className="text-white font-bold text-lg">K</span>
               </div>
-              <span className="text-xl font-bold text-[var(--foreground)]">
+              <span className="text-xl font-bold text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors duration-300">
                 KotaDB
               </span>
             </Link>
@@ -58,14 +58,14 @@ export function SiteHeader({
 
           <div className="flex items-center space-x-8">
             {links.length > 0 && (
-              <div className="hidden md:flex items-center space-x-8">
+              <div className="hidden md:flex items-center space-x-10">
                 {links.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noreferrer" : undefined}
-                    className="text-[var(--foreground-secondary)] hover:text-[var(--foreground)] transition-colors duration-200 text-sm font-medium"
+                    className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors duration-300 text-sm font-medium"
                   >
                     {link.label}
                   </Link>
@@ -73,11 +73,11 @@ export function SiteHeader({
               </div>
             )}
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-5">
               <ThemeToggle />
               <Link
                 href={ctaHref}
-                className="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 text-sm"
+                className="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-7 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-sm"
               >
                 {ctaLabel}
               </Link>

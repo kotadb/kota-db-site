@@ -27,16 +27,16 @@ export function SectionHeading({
   subtitleClassName,
 }: SectionHeadingProps) {
   return (
-    <div className={cn("space-y-4", alignmentMap[align], className)}>
+    <div className={cn("space-y-6", alignmentMap[align], className)}>
       {eyebrow && (
-        <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] px-3 py-1 text-sm font-semibold">
+        <span className="inline-flex items-center gap-2 rounded-full backdrop-blur-md bg-[var(--accent)]/10 text-[var(--accent)] px-4 py-2 text-sm font-semibold border border-[var(--accent)]/20">
           {eyebrow}
         </span>
       )}
       <h3
         className={cn(
           typography.heading.section,
-          "text-[var(--foreground)]",
+          "text-[var(--foreground)] font-bold tracking-tight",
           titleClassName,
         )}
       >
@@ -45,7 +45,7 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={cn(
-            "text-lg text-[var(--foreground-secondary)] max-w-3xl",
+            "text-xl text-[var(--foreground-secondary)] max-w-3xl leading-relaxed",
             align === "center" && "mx-auto",
             subtitleClassName,
           )}

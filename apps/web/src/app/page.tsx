@@ -23,40 +23,40 @@ export default function Home() {
     <div className="min-h-screen font-[family-name:var(--font-roboto)] overflow-x-hidden w-full page-container">
       <SiteHeader />
 
-      {/* Hero Section */}
-      <section className="hero-section pt-36 pb-32 min-h-screen flex items-center px-4 sm:px-6 lg:px-8 relative w-full">
-        <div className="w-full max-w-4xl mx-auto text-center space-y-8">
-          {/* Floating badge */}
-          <div className="inline-flex items-center gap-2 bg-[var(--card-bg)] border border-[var(--border)] rounded-full px-4 py-2 text-sm text-[var(--foreground-secondary)] shadow-sm hover:shadow-md transition-shadow duration-200">
+      {/* Hero Section - 2025 Minimalist Design */}
+      <section className="hero-section pt-40 pb-40 min-h-screen flex items-center px-6 sm:px-8 lg:px-12 relative w-full">
+        <div className="w-full max-w-5xl mx-auto text-center space-y-10">
+          {/* Floating badge - subtle glassmorphism */}
+          <div className="inline-flex items-center gap-2 backdrop-blur-md bg-[var(--card-bg)]/60 border border-[var(--border)]/30 rounded-full px-5 py-2.5 text-sm text-[var(--foreground-secondary)] shadow-sm hover:shadow-md hover:border-[var(--border)] transition-all duration-300">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             Managed for Claude + Codex
           </div>
 
-          {/* Main headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--foreground)] leading-[1.1] tracking-tight">
+          {/* Main headline - larger, bolder, more space */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--foreground)] leading-[1.08] tracking-tight px-2 sm:px-4">
             Hosted intelligence for
             <br />
-            <span className="text-[var(--accent)]">
+            <span className="text-[var(--accent)] bg-gradient-to-r from-[var(--accent)] to-[var(--accent-hover)] bg-clip-text text-transparent">
               coding agents that ship
             </span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="text-lg sm:text-xl text-[var(--foreground-secondary)] max-w-2xl mx-auto leading-relaxed">
+          {/* Subtitle - larger, more prominent */}
+          <p className="text-xl sm:text-2xl text-[var(--foreground-secondary)] max-w-3xl mx-auto leading-relaxed font-light">
             KotaDB gives Claude Code and Codex a managed knowledge graph, so
             your team stops filling context windows with grep, find, or awk
             guesses.
           </p>
 
-          {/* Launch CTA */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
+          {/* Launch CTA - simplified, bolder */}
+          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mt-14">
             <Link
               href={`${DASHBOARD_URL}/login`}
-              className="group bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              className="group bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-10 py-5 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 text-base"
             >
               Get Started
               <svg
-                className="ml-2 w-4 h-4 inline-block group-hover:translate-x-1 transition-transform duration-200"
+                className="ml-2 w-4 h-4 inline-block group-hover:translate-x-1 transition-transform duration-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -71,25 +71,25 @@ export default function Home() {
             </Link>
             <Link
               href="/pricing"
-              className="bg-[var(--card-bg)] hover:bg-[var(--button-secondary-hover)] border border-[var(--border)] text-[var(--foreground)] px-8 py-4 rounded-2xl font-semibold transition-all duration-200 shadow-sm hover:shadow-lg hover:-translate-y-0.5"
+              className="backdrop-blur-md bg-[var(--card-bg)]/60 hover:bg-[var(--card-bg)] border border-[var(--border)] hover:border-[var(--border-hover)] text-[var(--foreground)] px-10 py-5 rounded-2xl font-semibold transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1 text-base"
             >
               View Pricing
             </Link>
           </div>
 
-          {/* Simple links */}
-          <div className="flex items-center justify-center gap-6 pt-8 text-sm">
+          {/* Simple links - more subtle */}
+          <div className="flex items-center justify-center gap-8 pt-10 text-sm">
             <Link
               href="https://github.com/kotadb/kota-db"
               target="_blank"
-              className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors duration-200 underline underline-offset-4"
+              className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors duration-300 underline underline-offset-4 decoration-[var(--border)]"
             >
               Check out the code
             </Link>
             <Link
               href="https://github.com/kotadb/kota-db#quickstart"
               target="_blank"
-              className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors duration-200 underline underline-offset-4"
+              className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors duration-300 underline underline-offset-4 decoration-[var(--border)]"
             >
               Documentation
             </Link>
@@ -97,21 +97,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Grid */}
-      <Section variant="spacious">
-        <div className="w-full max-w-6xl mx-auto">
+      {/* Features Grid - Glassmorphism Cards */}
+      <Section variant="spacious" containerClassName="max-w-6xl">
+        <div className="w-full mx-auto">
           <SectionHeading
             title="Three pillars. One hosted brain."
             subtitle="KotaDB keeps your agents grounded with live knowledge, governed access, and production-ready guardrails."
           />
 
-          <div className="mt-16 grid lg:grid-cols-3 gap-8 lg:gap-12">
+          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Context Understanding */}
             <div className="group relative">
-              <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
-                <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+              <div className="backdrop-blur-lg bg-[var(--card-bg)]/70 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 flex items-center justify-center mb-8">
                   <svg
-                    className="w-6 h-6 text-[var(--accent)]"
+                    className="w-7 h-7 text-[var(--accent)]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -124,25 +124,38 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-[var(--foreground)] mb-3">
+                <h3 className="text-xl sm:text-2xl font-semibold text-[var(--foreground)] mb-3 sm:mb-4">
                   Hosted Knowledge Graph
                 </h3>
-                <p className="text-[var(--foreground-secondary)] leading-relaxed mb-6">
+                <p className="text-[var(--foreground-secondary)] leading-relaxed text-sm sm:text-base mb-6 sm:mb-8">
                   KotaDB ingests your repositories and feeds Claude and Codex
                   curated answers instead of manual spelunking.
                 </p>
-                <div className="text-sm text-[var(--accent)] font-medium">
-                  Graph-aware responses →
+                <div className="text-sm text-[var(--accent)] font-semibold flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
+                  Graph-aware responses
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
                 </div>
               </div>
             </div>
 
             {/* Zero Setup */}
             <div className="group relative">
-              <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
-                <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+              <div className="backdrop-blur-lg bg-[var(--card-bg)]/70 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 flex items-center justify-center mb-8">
                   <svg
-                    className="w-6 h-6 text-[var(--accent)]"
+                    className="w-7 h-7 text-[var(--accent)]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -155,25 +168,38 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-[var(--foreground)] mb-3">
+                <h3 className="text-xl sm:text-2xl font-semibold text-[var(--foreground)] mb-3 sm:mb-4">
                   Enterprise Controls
                 </h3>
-                <p className="text-[var(--foreground-secondary)] leading-relaxed mb-6">
+                <p className="text-[var(--foreground-secondary)] leading-relaxed text-sm sm:text-base mb-6 sm:mb-8">
                   API keys, rate limits, and team workspaces stay in sync across
                   every interface with the managed dashboard.
                 </p>
-                <div className="text-sm text-[var(--accent)] font-medium">
-                  Govern usage in minutes →
+                <div className="text-sm text-[var(--accent)] font-semibold flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
+                  Govern usage in minutes
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
                 </div>
               </div>
             </div>
 
             {/* Enterprise Scale */}
             <div className="group relative">
-              <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
-                <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+              <div className="backdrop-blur-lg bg-[var(--card-bg)]/70 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 flex items-center justify-center mb-8">
                   <svg
-                    className="w-6 h-6 text-[var(--accent)]"
+                    className="w-7 h-7 text-[var(--accent)]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -186,15 +212,28 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-[var(--foreground)] mb-3">
+                <h3 className="text-xl sm:text-2xl font-semibold text-[var(--foreground)] mb-3 sm:mb-4">
                   High-Trust Operations
                 </h3>
-                <p className="text-[var(--foreground-secondary)] leading-relaxed mb-6">
+                <p className="text-[var(--foreground-secondary)] leading-relaxed text-sm sm:text-base mb-6 sm:mb-8">
                   Layered safety wrappers, WAL durability, and zero external
                   databases keep every answer steady.
                 </p>
-                <div className="text-sm text-[var(--accent)] font-medium">
-                  Resilience baked in →
+                <div className="text-sm text-[var(--accent)] font-semibold flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
+                  Resilience baked in
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
                 </div>
               </div>
             </div>
@@ -202,164 +241,225 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Comparison Section */}
-      <Section>
-        <SectionHeading
-          title="Before KotaDB vs. after KotaDB"
-          subtitle="Swap the guesswork and context wrangling for hosted intelligence your agents can trust."
-        />
+      {/* Comparison Section - Improved Spacing */}
+      <Section containerClassName="max-w-6xl">
+        <div className="w-full mx-auto">
+          <SectionHeading
+            title="Before KotaDB vs. after KotaDB"
+            subtitle="Swap the guesswork and context wrangling for hosted intelligence your agents can trust."
+          />
 
-        <div className="mt-12 grid md:grid-cols-2 gap-8">
-          <div className="rounded-3xl border border-red-200/70 dark:border-red-900/60 bg-[var(--card-bg)] p-10 shadow-lg">
-            <span className="inline-flex items-center gap-2 rounded-full bg-red-500/10 text-red-600 dark:text-red-300 px-3 py-1 text-sm font-semibold">
-              Before KotaDB
-            </span>
-            <ul className="mt-6 space-y-4 text-[var(--foreground-secondary)]">
-              <li className="flex gap-3">
-                <span className="mt-1 text-red-500">×</span>
-                <span>
-                  Hop between tabs hunting for the right files to paste.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 text-red-500">×</span>
-                <span>
-                  Dump grep/find/awk results into prompts and hope they stick.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 text-red-500">×</span>
-                <span>
-                  Explain dependency chains to every new agent session.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 text-red-500">×</span>
-                <span>
-                  Ship refactors while wondering which services you missed.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 text-red-500">×</span>
-                <span>Trade release velocity for manual safety checks.</span>
-              </li>
-            </ul>
-          </div>
+          <div className="mt-16 grid md:grid-cols-2 gap-8 md:gap-10">
+            <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-3xl border border-red-200/70 dark:border-red-900/60 p-8 sm:p-10 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300">
+              <span className="inline-flex items-center gap-2 rounded-full bg-red-500/10 text-red-600 dark:text-red-300 px-4 py-2 text-sm font-semibold">
+                Before KotaDB
+              </span>
+              <ul className="mt-6 sm:mt-8 space-y-4 sm:space-y-5 text-[var(--foreground-secondary)] text-sm sm:text-base">
+                <li className="flex gap-3 sm:gap-4">
+                  <span className="mt-1 text-red-500 text-lg flex-shrink-0">
+                    ×
+                  </span>
+                  <span>
+                    Hop between tabs hunting for the right files to paste.
+                  </span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="mt-1 text-red-500 text-lg">×</span>
+                  <span>
+                    Dump grep/find/awk results into prompts and hope they stick.
+                  </span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="mt-1 text-red-500 text-lg">×</span>
+                  <span>
+                    Explain dependency chains to every new agent session.
+                  </span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="mt-1 text-red-500 text-lg">×</span>
+                  <span>
+                    Ship refactors while wondering which services you missed.
+                  </span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="mt-1 text-red-500 text-lg">×</span>
+                  <span>Trade release velocity for manual safety checks.</span>
+                </li>
+              </ul>
+            </div>
 
-          <div className="rounded-3xl border border-[var(--accent)]/40 bg-[var(--card-bg)] p-10 shadow-xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] px-3 py-1 text-sm font-semibold">
-              With KotaDB
-            </span>
-            <ul className="mt-6 space-y-4 text-[var(--foreground-secondary)]">
-              <li className="flex gap-3">
-                <span className="mt-1 text-[var(--accent)]">✓</span>
-                <span>
-                  Your repos stay indexed in a hosted, queryable knowledge
-                  graph.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 text-[var(--accent)]">✓</span>
-                <span>
-                  Claude and Codex pull structured context with a single prompt.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 text-[var(--accent)]">✓</span>
-                <span>
-                  CLI, REST, and MCP share one service layer—answers never
-                  drift.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 text-[var(--accent)]">✓</span>
-                <span>Impact analysis shows what breaks before you merge.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 text-[var(--accent)]">✓</span>
-                <span>
-                  Quota, key, and tenant controls are baked into the managed
-                  plane.
-                </span>
-              </li>
-            </ul>
+            <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-3xl border border-[var(--accent)]/50 p-8 sm:p-10 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] px-4 py-2 text-sm font-semibold">
+                With KotaDB
+              </span>
+              <ul className="mt-6 sm:mt-8 space-y-4 sm:space-y-5 text-[var(--foreground-secondary)] text-sm sm:text-base">
+                <li className="flex gap-3 sm:gap-4">
+                  <span className="mt-1 text-[var(--accent)] text-lg font-bold flex-shrink-0">
+                    ✓
+                  </span>
+                  <span>
+                    Your repos stay indexed in a hosted, queryable knowledge
+                    graph.
+                  </span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="mt-1 text-[var(--accent)] text-lg font-bold">
+                    ✓
+                  </span>
+                  <span>
+                    Claude and Codex pull structured context with a single
+                    prompt.
+                  </span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="mt-1 text-[var(--accent)] text-lg font-bold">
+                    ✓
+                  </span>
+                  <span>
+                    CLI, REST, and MCP share one service layer—answers never
+                    drift.
+                  </span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="mt-1 text-[var(--accent)] text-lg font-bold">
+                    ✓
+                  </span>
+                  <span>
+                    Impact analysis shows what breaks before you merge.
+                  </span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="mt-1 text-[var(--accent)] text-lg font-bold">
+                    ✓
+                  </span>
+                  <span>
+                    Quota, key, and tenant controls are baked into the managed
+                    plane.
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </Section>
 
       {/* Manual vs Hosted */}
-      <Section>
+      <Section containerClassName="max-w-6xl">
         <SectionHeading
           title="Manual context vs hosted intelligence"
           subtitle="See how conversations shift when your agents stop guessing and start pulling from a shared knowledge graph."
         />
 
-        <div className="mt-12 grid lg:grid-cols-2 gap-8">
-          <div className="rounded-3xl border border-red-200/70 dark:border-red-900/60 bg-[var(--card-bg)] p-8 shadow-lg">
-            <span className="inline-flex items-center gap-2 rounded-full bg-red-500/10 text-red-600 dark:text-red-300 px-3 py-1 text-sm font-semibold">
+        <div className="mt-12 grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-3xl border border-red-200/70 dark:border-red-900/60 p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <span className="inline-flex items-center gap-2 rounded-full bg-red-500/10 text-red-600 dark:text-red-300 px-4 py-2 text-sm font-semibold mb-6">
               Without KotaDB
             </span>
-            <div className="mt-6 bg-red-500/5 border border-red-200/60 dark:border-red-900/40 rounded-2xl p-6 overflow-x-auto">
-              <pre className="text-sm font-[family-name:var(--font-roboto-mono)] text-red-500/80 whitespace-pre">
-                {`# Every request needs context first
-human> "Where does invoice_total get set?"
-human> *opens five tabs, runs grep, repeats the prompt*
-agent> "Maybe here? need more detail."
 
-# Impact checks become guesswork
-human> "What breaks if I touch billing_handler?"
-human> *maps the call tree manually*
-agent> *shrugs in autocomplete*
+            <div className="space-y-6">
+              <div className="bg-red-500/5 border border-red-200/60 dark:border-red-900/40 rounded-xl p-4 sm:p-5">
+                <p className="text-xs sm:text-sm text-red-600/90 dark:text-red-400/90 font-semibold mb-2">
+                  Every request needs context first
+                </p>
+                <div className="space-y-2 text-xs sm:text-sm text-red-600/70 dark:text-red-400/70 font-mono">
+                  <p>human&gt; &quot;Where does invoice_total get set?&quot;</p>
+                  <p className="text-red-500/60 italic">
+                    *opens five tabs, runs grep, repeats the prompt*
+                  </p>
+                  <p>agent&gt; &quot;Maybe here? need more detail.&quot;</p>
+                </div>
+              </div>
 
-# Half the sprint disappears into context handoffs`}
-              </pre>
+              <div className="bg-red-500/5 border border-red-200/60 dark:border-red-900/40 rounded-xl p-4 sm:p-5">
+                <p className="text-xs sm:text-sm text-red-600/90 dark:text-red-400/90 font-semibold mb-2">
+                  Impact checks become guesswork
+                </p>
+                <div className="space-y-2 text-xs sm:text-sm text-red-600/70 dark:text-red-400/70 font-mono">
+                  <p>
+                    human&gt; &quot;What breaks if I touch
+                    billing_handler?&quot;
+                  </p>
+                  <p className="text-red-500/60 italic">
+                    *maps the call tree manually*
+                  </p>
+                  <p>agent&gt; *shrugs in autocomplete*</p>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-red-600/80 dark:text-red-400/80 font-semibold italic text-center pt-2">
+                Half the sprint disappears into context handoffs
+              </p>
             </div>
           </div>
 
-          <div className="rounded-3xl border border-[var(--accent)]/40 bg-[var(--card-bg)] p-8 shadow-xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] px-3 py-1 text-sm font-semibold">
+          <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-3xl border border-[var(--accent)]/50 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] px-4 py-2 text-sm font-semibold mb-6">
               With KotaDB
             </span>
-            <div className="mt-6 bg-[var(--background-secondary)] border border-[var(--border)] rounded-2xl p-6 overflow-x-auto">
-              <pre className="text-sm font-[family-name:var(--font-roboto-mono)] text-[var(--foreground-secondary)] whitespace-pre">
-                {`# Claude and Codex stay grounded
-claude> "Show callers for invoice_total."
-kotadb> *returns the knowledge graph of services and files*
 
-claude> "What breaks if I tweak billing_handler?"
-kotadb> *responds with impact analysis across repos*
+            <div className="space-y-6">
+              <div className="bg-[var(--background-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
+                <p className="text-xs sm:text-sm text-[var(--accent)] font-semibold mb-2">
+                  Claude and Codex stay grounded
+                </p>
+                <div className="space-y-2 text-xs sm:text-sm text-[var(--foreground-secondary)] font-mono">
+                  <p>claude&gt; &quot;Show callers for invoice_total.&quot;</p>
+                  <p className="text-[var(--accent)]/70 italic">
+                    *returns the knowledge graph of services and files*
+                  </p>
+                </div>
+              </div>
 
-codex> "Surface similar auth routines."
-kotadb> *delivers structural matches without regex fishing*
+              <div className="bg-[var(--background-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
+                <div className="space-y-2 text-xs sm:text-sm text-[var(--foreground-secondary)] font-mono">
+                  <p>
+                    claude&gt; &quot;What breaks if I tweak
+                    billing_handler?&quot;
+                  </p>
+                  <p className="text-[var(--accent)]/70 italic">
+                    *responds with impact analysis across repos*
+                  </p>
+                </div>
+              </div>
 
-# Agents answer with context, not apologies`}
-              </pre>
+              <div className="bg-[var(--background-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
+                <div className="space-y-2 text-xs sm:text-sm text-[var(--foreground-secondary)] font-mono">
+                  <p>codex&gt; &quot;Surface similar auth routines.&quot;</p>
+                  <p className="text-[var(--accent)]/70 italic">
+                    *delivers structural matches without regex fishing*
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-[var(--accent)] font-semibold italic text-center pt-2">
+                Agents answer with context, not apologies
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-8">
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-6 text-center shadow-sm">
-            <h4 className="text-xl font-semibold text-[var(--foreground)] mb-2">
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+          <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-2xl border border-[var(--border)]/40 p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300">
+            <h4 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] mb-2">
               Agent-grade answers
             </h4>
-            <p className="text-[var(--foreground-secondary)]">
+            <p className="text-sm sm:text-base text-[var(--foreground-secondary)]">
               Hosted KotaDB streams knowledge so prompts land with precision.
             </p>
           </div>
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-6 text-center shadow-sm">
-            <h4 className="text-xl font-semibold text-[var(--foreground)] mb-2">
+          <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-2xl border border-[var(--border)]/40 p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300">
+            <h4 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] mb-2">
               Confident change windows
             </h4>
-            <p className="text-[var(--foreground-secondary)]">
+            <p className="text-sm sm:text-base text-[var(--foreground-secondary)]">
               Impact analysis keeps refactors honest before you touch prod.
             </p>
           </div>
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-6 text-center shadow-sm">
-            <h4 className="text-xl font-semibold text-[var(--foreground)] mb-2">
+          <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-2xl border border-[var(--border)]/40 p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300 sm:col-span-2 lg:col-span-1">
+            <h4 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] mb-2">
               SaaS first, OSS always
             </h4>
-            <p className="text-[var(--foreground-secondary)]">
+            <p className="text-sm sm:text-base text-[var(--foreground-secondary)]">
               Launch the managed service and audit the open-source code anytime.
             </p>
           </div>
@@ -367,8 +467,8 @@ kotadb> *delivers structural matches without regex fishing*
       </Section>
 
       {/* Installation */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[var(--background)] w-full overflow-hidden">
-        <div className="w-full max-w-7xl mx-auto">
+      <section className="py-16 sm:py-24 px-6 sm:px-8 lg:px-12 bg-[var(--background)] w-full overflow-hidden">
+        <div className="w-full max-w-5xl mx-auto">
           <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[var(--foreground)] mb-8 sm:mb-12 md:mb-16 px-2">
             Launch KotaDB the way your team needs
           </h3>
@@ -434,8 +534,8 @@ kotadb> *delivers structural matches without regex fishing*
       </section>
 
       {/* Performance Stats */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--background-secondary)] w-full">
-        <div className="w-full max-w-7xl mx-auto">
+      <section className="py-24 px-6 sm:px-8 lg:px-12 bg-[var(--background-secondary)] w-full">
+        <div className="w-full max-w-5xl mx-auto">
           <h3 className="text-4xl font-bold text-center text-[var(--foreground)] mb-16">
             Why platform teams trust KotaDB
           </h3>
