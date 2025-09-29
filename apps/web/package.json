@@ -22,7 +22,7 @@
   "dependencies": {
     "@stripe/stripe-js": "^7.9.0",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
-    "@supabase/supabase-js": "^2.56.0",
+    "@supabase/supabase-js": "^2.58.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "crypto-js": "^4.2.0",
@@ -46,8 +46,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8.44.1",
-    "@typescript-eslint/parser": "^8.40.0",
-    "@vitejs/plugin-react": "^5.0.1",
+    "@typescript-eslint/parser": "^8.44.1",
+    "@vitejs/plugin-react": "^5.0.4",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "eslint-config-prettier": "^10.1.8",
@@ -57,11 +57,11 @@
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react-hooks": "^5.2.0",
     "happy-dom": "^19.0.1",
-    "lint-staged": "^16.1.5",
+    "lint-staged": "^16.2.3",
     "prettier": "^3.6.2",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vercel": "^46.1.0",
+    "vercel": "^48.1.6",
     "vitest": "^3.2.4"
   }
 }
