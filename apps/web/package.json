@@ -61,7 +61,7 @@
     "prettier": "^3.6.2",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vercel": "^48.1.6",
+    "vercel": "^48.2.0",
     "vitest": "^3.2.4",
     "vite": "7.1.7"
   }
