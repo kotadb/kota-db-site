@@ -95,10 +95,10 @@ wrangler pages deploy .vercel/output/static --project-name kotadb-web
 
 ## 📊 Stripe Products Created
 
-| Plan | Product ID          | Price ID                       | Amount    |
-| ---- | ------------------- | ------------------------------ | --------- |
-| Solo | prod_Sx5pghsXsumeGG | price_1S1BhdLzNAwxIAfWLao6Bnyp | $39/month |
-| Team | prod_Sx5p2CgUCAUSSl | price_1S1BhdLzNAwxIAfWctHz5EfB | $59/month |
+| Plan | Product ID          | Price ID                   | Amount         |
+| ---- | ------------------- | -------------------------- | -------------- |
+| Solo | prod_Sx5pghsXsumeGG | <update_with_new_price_id> | $29/month      |
+| Team | prod_Sx5p2CgUCAUSSl | <update_with_new_price_id> | $49/seat/month |
 
 ## 🔍 Testing
 

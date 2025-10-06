@@ -122,8 +122,8 @@ stripe listen --forward-to localhost:3000/api/stripe/webhook
 
 1. Create a Stripe account at https://stripe.com
 2. Create two products in Test mode:
-   - Solo Plan ($39/month)
-   - Team Plan ($59/month)
+   - Solo Plan ($29/month)
+   - Team Plan ($49/seat/month)
 3. Get your API keys from Developers → API keys
 4. Set up webhook endpoint for `/api/stripe/webhook`
 5. Configure webhook to send these events:

@@ -33,7 +33,7 @@
 
 ## Pricing & Packaging Notes
 
-- Feature the SaaS tiers prominently: Individual $39/month, Team $59 per seat/month.
+- Feature the SaaS tiers prominently: Solo $29/month, Team $49 per seat/month.
 - Encourage SaaS signup while giving curious teams a path to inspect the GitHub repo.
 - Leave room to reference upcoming managed-only capabilities (placeholders for analytics, team workspaces, etc.).
 

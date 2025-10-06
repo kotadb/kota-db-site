@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic";
 export const metadata = createPageMetadata({
   title: "Pricing",
   description:
-    "Start free, then upgrade to Individual or Team tiers when you’re ready to power every coding agent with hosted intelligence.",
+    "Experience KotaDB’s codebase intelligence free, then upgrade to Solo or Team when you’re ready for semantic search and shared context.",
   path: "/pricing",
 });
 
@@ -32,44 +32,44 @@ const plans: PricingPlan[] = [
     name: "Free",
     price: 0,
     features: [
-      "Placeholder: Index one repository",
-      "Placeholder: Starter agent queries",
-      "Placeholder: Hosted knowledge graph basics",
-      "Placeholder: Community support",
+      "Experience codebase intelligence with 1 active codebase",
+      "50MB of indexed code with PiTER-powered structure understanding",
+      "100 keyword and AST-based queries each month",
+      "MCP server integration and basic context retrieval",
+      "Community support to get you started",
     ],
     cta: "Start Free",
     isFree: true,
   },
   {
     id: "solo",
-    name: "Individual",
-    price: 39,
+    name: "Solo",
+    price: 29,
     features: [
-      "Hosted knowledge graph for solo builders",
-      "10,000 agent queries per month",
-      "CLI, REST, and MCP access",
-      "Managed API key with quota controls",
-      "Email support",
-      "Placeholder: Managed analytics (coming soon)",
+      "5 active codebases with up to 500MB indexed",
+      "Unlimited queries backed by semantic search",
+      "Embedding-powered understanding with smart context ranking",
+      "Priority indexing for faster repository refreshes",
+      "Advanced query patterns to speed up deep dives",
+      "Email support when you need a hand",
     ],
-    cta: "Start Individual Plan",
+    cta: "Start Solo",
     popular: true,
     ...(soloPriceId ? { priceId: soloPriceId } : {}),
   },
   {
     id: "team",
     name: "Team",
-    price: 59,
+    price: 49,
     features: [
-      "Everything in Individual",
-      "Adaptive query quotas for teams",
-      "Seat-based workspaces with shared context",
-      "Priority support and onboarding",
-      "Unlimited API keys per workspace",
-      "Placeholder: Shared analytics dashboard (coming soon)",
-      "Placeholder: Policy management (coming soon)",
+      "Everything in Solo for each teammate",
+      "Unlimited codebases with shared team indexes",
+      "Team context libraries to capture reusable patterns",
+      "Usage analytics dashboard and admin controls",
+      "Slack or Discord priority support",
+      "SSO available in phase two rollout",
     ],
-    cta: "Start Team Plan",
+    cta: "Start Team",
     ...(teamPriceId ? { priceId: teamPriceId } : {}),
   },
 ];
@@ -85,8 +85,8 @@ export default function PricingPage() {
         containerClassName="max-w-6xl"
       >
         <SectionHeading
-          title="Choose your KotaDB SaaS plan"
-          subtitle="Hosted intelligence for Claude and Codex workflows, ready when your agents are."
+          title="Choose your KotaDB plan"
+          subtitle="Start with free codebase intelligence, then unlock semantic search and shared context when you’re ready."
         />
 
         <PricingPlans plans={plans} dashboardUrl={DASHBOARD_URL} />

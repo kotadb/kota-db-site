@@ -64,8 +64,8 @@ async function getPrices() {
     }
 
     console.log("\n📝 Update your .env file with these price IDs:");
-    console.log("NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID=<price_id_for_$39_plan>");
-    console.log("NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID=<price_id_for_$59_plan>");
+    console.log("NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID=<price_id_for_$29_plan>");
+    console.log("NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID=<price_id_for_$49_plan>");
   } catch (error) {
     console.error("❌ Error fetching prices:", error.message);
   }

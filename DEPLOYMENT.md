@@ -71,8 +71,8 @@ Cloudflare authentication for CI:
 ### 3. Create Stripe Products
 
 1. Go to https://dashboard.stripe.com/products
-2. Create "Solo" product ($39/month)
-3. Create "Team" product ($59/month)
+2. Create "Solo" product ($29/month)
+3. Create "Team" product ($49/seat/month)
 4. Update GitHub secrets with price IDs:
    ```bash
    gh secret set NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID --repo jayminwest/kota-db-site
