@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseClient } from "@/lib/supabase";
 
 const WaitlistSchema = z.object({
   email: z.string().email("Invalid email format"),
@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
     const utmContent = url.searchParams.get("utm_content") || undefined;
 
     // Insert into Supabase
+    const supabase = getSupabaseClient();
     const { data, error } = await supabase.from("waitlist").insert({
       email,
       source: "coming_soon_page",
