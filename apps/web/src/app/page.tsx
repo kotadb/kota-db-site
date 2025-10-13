@@ -307,7 +307,7 @@ export default function Home() {
         <h2>the new paradigm</h2>
 
         <p>
-          For decades, software was built for humans—IDEs, CI pipelines,
+          For decades, software was built for humans: IDEs, CI pipelines,
           linters, syntax highlighting, code reviews, Jira boards. All designed
           to optimize human cognition.
         </p>
@@ -332,15 +332,15 @@ export default function Home() {
           An LLM doesn&apos;t need syntax highlighting. It needs unambiguous
           context, reproducible execution, and deterministic feedback. If
           you&apos;re still typing code manually, you&apos;re optimizing for
-          nostalgia. The bottleneck isn&apos;t model capability
-          anymore—it&apos;s human communication.
+          nostalgia. The bottleneck isn&apos;t model capability anymore.
+          It&apos;s human communication.
         </p>
 
         <p>
           When Claude Code or Codex fails, it&apos;s not because the
           model&apos;s dumb. It&apos;s because you&apos;re giving it incomplete
           or confusing instructions. Prompting is fine-tuning. Bad context
-          equals bad output. The path forward is not to prompt harder—it&apos;s
+          equals bad output. The path forward is not to prompt harder. It&apos;s
           to build systems that make being correct easier than being wrong.
         </p>
 
@@ -386,19 +386,19 @@ export default function Home() {
         <p>
           Custom orchestration is worse. Hacky scripts chaining APIs together,
           state lost in JSON, collisions in Git branches. Everyone&apos;s
-          rebuilding Kubernetes from scratch—only for agents.
+          rebuilding Kubernetes from scratch, only for agents.
         </p>
 
         <h2>the missing layer</h2>
 
         <p>
           What&apos;s missing is a shared operating system for autonomous
-          software development—a platform layer for agent coordination.
+          software development: a platform layer for agent coordination.
         </p>
 
         <p>
           <strong>
-            KotaDB provides it—and it&apos;s already running in production.
+            KotaDB provides it. It&apos;s already running in production.
           </strong>{" "}
           Full SDLC pipelines automated end-to-end. Planning, implementation,
           testing, review, and documentation. This isn&apos;t theory. It works.
@@ -449,7 +449,7 @@ export default function Home() {
 
         <p>
           Don&apos;t like this workflow? Build your own. KotaDB isn&apos;t a
-          rigid framework—it&apos;s infrastructure. Customize agents to your
+          rigid framework. It&apos;s infrastructure. Customize agents to your
           codebase, your patterns, your team. Devon and Codex are
           general-purpose. KotaDB adapts to you.
         </p>
@@ -460,16 +460,16 @@ export default function Home() {
           Determinism + Creativity: Agents reason while infrastructure
           guarantees reliability. Composability through small, specialized
           agents connected via clear protocols. Silo avoidance using MCP, Git,
-          Postgres—no new proprietary nonsense. Production-Grade by Default with
-          real logging, auth, and testing. Multi-Vendor by Design where Claude,
-          OpenAI, Gemini—all interoperable under KotaDB.
+          Postgres. No new proprietary nonsense. Production-Grade by Default
+          with real logging, auth, and testing. Multi-Vendor by Design where
+          Claude, OpenAI, Gemini all interoperate under KotaDB.
         </p>
 
         <h2>the future</h2>
 
         <p>
           Sooner than you think, the winners won&apos;t be the ones with the
-          best LLMs—they&apos;ll be the ones with the best infrastructure for
+          best LLMs. They&apos;ll be the ones with the best infrastructure for
           agent collaboration.
         </p>
 
