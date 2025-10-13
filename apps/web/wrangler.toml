@@ -1,6 +1,7 @@
 # Project name for Cloudflare Pages automatic deployment
 name = "kota-db-site-web-production"
-# Compatibility settings managed via Cloudflare Pages dashboard
+compatibility_date = "2025-02-10"
+compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
 
 # Runtime-specific environment variables should be managed through Cloudflare Pages
