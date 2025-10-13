@@ -164,6 +164,41 @@ export default function Home() {
             background: #fed7d7;
             color: #742a2a;
           }
+          .date {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #718096;
+            margin-bottom: 3rem;
+          }
+          .top-waitlist {
+            margin: 2rem 0 3rem;
+            padding: 1.5rem;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+          }
+          .top-waitlist form {
+            display: flex;
+            gap: 0.5rem;
+            margin: 0;
+            max-width: 100%;
+          }
+          .top-waitlist input {
+            flex: 1;
+            padding: 0.625rem 0.875rem;
+            font-size: 0.875rem;
+            margin: 0;
+          }
+          .top-waitlist button {
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+          }
+          .top-waitlist .message {
+            margin-top: 0.75rem;
+            padding: 0.625rem;
+            font-size: 0.8125rem;
+          }
           .footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -216,13 +251,33 @@ export default function Home() {
             form {
               max-width: 100%;
             }
+            .top-waitlist form {
+              flex-direction: column;
+            }
+            .top-waitlist button {
+              width: 100%;
+            }
           }
         `,
           }}
         />
       </head>
       <body>
+        <div className="date">Oct 13, 2025</div>
         <h1>KotaDB: The Manifesto for Agentic Engineering</h1>
+
+        <div className="top-waitlist">
+          <form id="top-waitlist-form">
+            <input
+              type="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+            />
+            <button type="submit">Join Waitlist</button>
+          </form>
+          <div id="top-message"></div>
+        </div>
 
         <p>
           Agents are here. Not as prototypes or research novelties, but as
@@ -536,52 +591,55 @@ export default function Home() {
         </div>
 
         <div className="footer">
-          <p>
-            Written October 13 2025 by the KotaDB team.
-            <br />© 2025 KotaDB. All rights reserved.
-          </p>
+          <p>© 2025 KotaDB. All rights reserved.</p>
         </div>
 
         <script
           dangerouslySetInnerHTML={{
             __html: `
-          document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const button = e.target.querySelector('button');
-            const input = e.target.querySelector('input');
-            const messageDiv = document.getElementById('message');
-            const email = input.value;
+          async function handleWaitlistSubmit(formId, messageId) {
+            const form = document.getElementById(formId);
+            form.addEventListener('submit', async (e) => {
+              e.preventDefault();
+              const button = e.target.querySelector('button');
+              const input = e.target.querySelector('input');
+              const messageDiv = document.getElementById(messageId);
+              const email = input.value;
 
-            button.disabled = true;
-            button.textContent = 'Joining...';
-            messageDiv.textContent = '';
-            messageDiv.className = 'message';
+              button.disabled = true;
+              button.textContent = 'Joining...';
+              messageDiv.textContent = '';
+              messageDiv.className = 'message';
 
-            try {
-              const response = await fetch('/api/waitlist', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-              });
+              try {
+                const response = await fetch('/api/waitlist', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ email })
+                });
 
-              const data = await response.json();
+                const data = await response.json();
 
-              if (response.ok) {
-                messageDiv.textContent = data.message || 'Successfully joined the waitlist!';
-                messageDiv.className = 'message success';
-                input.value = '';
-              } else {
-                messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
+                if (response.ok) {
+                  messageDiv.textContent = data.message || 'Successfully joined the waitlist!';
+                  messageDiv.className = 'message success';
+                  input.value = '';
+                } else {
+                  messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
+                  messageDiv.className = 'message error';
+                }
+              } catch (error) {
+                messageDiv.textContent = 'Network error. Please try again.';
                 messageDiv.className = 'message error';
+              } finally {
+                button.disabled = false;
+                button.textContent = 'Join Waitlist';
               }
-            } catch (error) {
-              messageDiv.textContent = 'Network error. Please try again.';
-              messageDiv.className = 'message error';
-            } finally {
-              button.disabled = false;
-              button.textContent = 'Join Waitlist';
-            }
-          });
+            });
+          }
+
+          handleWaitlistSubmit('top-waitlist-form', 'top-message');
+          handleWaitlistSubmit('waitlist-form', 'message');
         `,
           }}
         />
