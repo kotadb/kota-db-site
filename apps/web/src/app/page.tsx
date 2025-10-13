@@ -30,7 +30,7 @@ export default function Home() {
             color: #2d3748;
             background: #fafafa;
             padding: 4rem 2rem;
-            max-width: 700px;
+            max-width: 50%;
             margin: 0 auto;
           }
           h1 {
@@ -210,6 +210,7 @@ export default function Home() {
           @media (max-width: 768px) {
             body {
               padding: 3rem 1.5rem;
+              max-width: 90%;
             }
             h1 {
               font-size: 2rem;
@@ -233,6 +234,7 @@ export default function Home() {
           @media (max-width: 480px) {
             body {
               padding: 2rem 1rem;
+              max-width: 100%;
             }
             h1 {
               font-size: 1.75rem;
@@ -264,7 +266,7 @@ export default function Home() {
       </head>
       <body>
         <div className="date">Oct 13, 2025</div>
-        <h1>KotaDB: The Manifesto for Agentic Engineering</h1>
+        <h1>kotadb: the manifesto for agentic engineering</h1>
 
         <div className="top-waitlist">
           <form id="top-waitlist-form">
@@ -293,7 +295,7 @@ export default function Home() {
           about building software is about to invert.
         </p>
 
-        <h2>The New Paradigm</h2>
+        <h2>the new paradigm</h2>
 
         <p>
           For decades, software was built for humans—IDEs, CI pipelines,
@@ -315,7 +317,7 @@ export default function Home() {
 
         <p>That&apos;s what KotaDB answers.</p>
 
-        <h2>Why Agents Changed Everything</h2>
+        <h2>why agents changed everything</h2>
 
         <p>
           An LLM doesn&apos;t need syntax highlighting. It needs unambiguous
@@ -340,7 +342,7 @@ export default function Home() {
           one-shot tasks the same way they do in benchmarks.
         </p>
 
-        <h2>The Inflection Point</h2>
+        <h2>the inflection point</h2>
 
         <p>
           We are at the biggest shift since version control. The tools of the
@@ -349,7 +351,7 @@ export default function Home() {
           KotaDB is for agent collaboration.
         </p>
 
-        <h2>The Problem</h2>
+        <h2>the problem</h2>
 
         <p>
           Every Claude Code or Cursor session today starts from scratch. Agents
@@ -364,7 +366,7 @@ export default function Home() {
           rebuilding Kubernetes from scratch—only for agents.
         </p>
 
-        <h2>The Missing Layer</h2>
+        <h2>the missing layer</h2>
 
         <p>
           What&apos;s missing is a shared operating system for autonomous
@@ -372,33 +374,18 @@ export default function Home() {
         </p>
 
         <p>
-          <strong>KotaDB provides it.</strong>
+          <strong>KotaDB provides it.</strong> Standardized Communication
+          through MCP as a universal protocol for agents to talk across models
+          and tools. Resource Isolation via Git worktrees as lightweight,
+          isolated workspaces for concurrent development. Persistent Memory with
+          stateful awareness of what&apos;s been planned, implemented, or
+          reviewed. Security &amp; Multi-Tenancy with authentication, rate
+          limits, and row-level security for production codebases. Workflow
+          Orchestration supporting multi-agent pipelines with retry logic,
+          validation loops, and persistent state.
         </p>
 
-        <ul>
-          <li>
-            <strong>Standardized Communication</strong> — MCP as a universal
-            protocol for agents to talk across models and tools.
-          </li>
-          <li>
-            <strong>Resource Isolation</strong> — Git worktrees as lightweight,
-            isolated workspaces for concurrent development.
-          </li>
-          <li>
-            <strong>Persistent Memory</strong> — Stateful awareness of
-            what&apos;s been planned, implemented, or reviewed.
-          </li>
-          <li>
-            <strong>Security &amp; Multi-Tenancy</strong> — Authentication, rate
-            limits, and row-level security for production codebases.
-          </li>
-          <li>
-            <strong>Workflow Orchestration</strong> — Multi-agent pipelines with
-            retry logic, validation loops, and persistent state.
-          </li>
-        </ul>
-
-        <h2>The KotaDB Vision</h2>
+        <h2>the kotadb vision</h2>
 
         <p>
           KotaDB isn&apos;t a code search tool. Search is memory. The real value
@@ -406,58 +393,16 @@ export default function Home() {
           agents building software together.
         </p>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Human Stack</th>
-              <th>Agent Stack</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>GitHub → human collaboration</td>
-              <td>KotaDB → agent collaboration</td>
-            </tr>
-            <tr>
-              <td>Docker → app packaging</td>
-              <td>Agent Tools → capability packaging</td>
-            </tr>
-            <tr>
-              <td>Kubernetes → container orchestration</td>
-              <td>KotaDB ADW → agent orchestration</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2>a new development cycle</h2>
 
-        <h2>A New Development Cycle</h2>
-
-        <ul>
-          <li>
-            <strong>Issue Created</strong> → &quot;Add rate limiting to
-            /api/search.&quot;
-          </li>
-          <li>
-            <strong>Classifier Agent</strong> categorizes and indexes.
-          </li>
-          <li>
-            <strong>Planner Agent</strong> drafts spec and allocates workspace.
-          </li>
-          <li>
-            <strong>Implementor Agent</strong> writes code.
-          </li>
-          <li>
-            <strong>Validator Agent</strong> runs tests, flags errors.
-          </li>
-          <li>
-            <strong>Reviewer Agent</strong> approves implementation.
-          </li>
-          <li>
-            <strong>Documenter Agent</strong> updates docs.
-          </li>
-          <li>
-            <strong>PR Agent</strong> merges and pushes.
-          </li>
-        </ul>
+        <p>
+          Issue Created: &quot;Add rate limiting to /api/search.&quot;
+          Classifier Agent categorizes and indexes. Planner Agent drafts spec
+          and allocates workspace. Implementor Agent writes code. Validator
+          Agent runs tests and flags errors. Reviewer Agent approves
+          implementation. Documenter Agent updates docs. PR Agent merges and
+          pushes.
+        </p>
 
         <p>
           <strong>Four minutes. Zero human input.</strong> This is not science
@@ -471,84 +416,47 @@ export default function Home() {
           operates.
         </p>
 
-        <h2>The Principles</h2>
+        <h2>the principles</h2>
 
-        <ul>
-          <li>
-            <strong>Determinism + Creativity</strong> — Agents reason;
-            infrastructure guarantees reliability.
-          </li>
-          <li>
-            <strong>Composability</strong> — Small, specialized agents connected
-            through clear protocols.
-          </li>
-          <li>
-            <strong>Standards Over Silos</strong> — MCP, Git, Postgres. No new
-            proprietary nonsense.
-          </li>
-          <li>
-            <strong>Production-Grade by Default</strong> — Real logging, auth,
-            and testing.
-          </li>
-          <li>
-            <strong>Multi-Vendor by Design</strong> — Claude, OpenAI, Gemini—all
-            interoperable under KotaDB.
-          </li>
-        </ul>
+        <p>
+          Determinism + Creativity: Agents reason while infrastructure
+          guarantees reliability. Composability through small, specialized
+          agents connected via clear protocols. Standards Over Silos using MCP,
+          Git, Postgres—no new proprietary nonsense. Production-Grade by Default
+          with real logging, auth, and testing. Multi-Vendor by Design where
+          Claude, OpenAI, Gemini—all interoperable under KotaDB.
+        </p>
 
-        <h2>Why It&apos;s Hard (and Why It&apos;s a Moat)</h2>
+        <h2>why it&apos;s hard (and why it&apos;s a moat)</h2>
 
-        <ul>
-          <li>
-            <strong>Security</strong> — 2,000+ exposed MCP servers prove no one
-            else is doing this safely.
-          </li>
-          <li>
-            <strong>Multi-Tenancy</strong> — Real isolation and state
-            persistence are non-trivial.
-          </li>
-          <li>
-            <strong>Production Scale</strong> — Few have run 60+ agent workflows
-            on live codebases.
-          </li>
-          <li>
-            <strong>Complex Workflows</strong> — Multi-phase SDLC automation
-            requires deep engineering DNA.
-          </li>
-        </ul>
+        <p>
+          Security: 2,000+ exposed MCP servers prove no one else is doing this
+          safely. Multi-Tenancy where real isolation and state persistence are
+          non-trivial. Production Scale—few have run 60+ agent workflows on live
+          codebases. Complex Workflows where multi-phase SDLC automation
+          requires deep engineering DNA.
+        </p>
 
         <p>
           <strong>KotaDB solves all four. That&apos;s the moat.</strong>
         </p>
 
-        <h2>The Market Reality</h2>
+        <h2>the market reality</h2>
 
         <p>
           There are 31 million developers worldwide—a $3 trillion productivity
           market. Even 0.1% adoption at $75/month yields multi-million ARR. The
-          path is clear:
+          path is clear: Today, agentic early adopters. Next 6 months, platform
+          teams integrating AI into developer workflows. Next 12 months,
+          AI-native startups whose entire engineering stack is autonomous.
         </p>
-
-        <ul>
-          <li>
-            <strong>Today:</strong> Agentic early adopters.
-          </li>
-          <li>
-            <strong>Next 6 months:</strong> Platform teams integrating AI into
-            developer workflows.
-          </li>
-          <li>
-            <strong>Next 12 months:</strong> AI-native startups whose entire
-            engineering stack is autonomous.
-          </li>
-        </ul>
 
         <p>
           No one else is building multi-agent infrastructure for software
           development. The category begins here.
         </p>
 
-        <h2>The Future</h2>
+        <h2>the future</h2>
 
         <p>
           In five years, the winners won&apos;t be the ones with the best
@@ -572,7 +480,7 @@ export default function Home() {
         </p>
 
         <div className="waitlist">
-          <h2>Join the Waitlist</h2>
+          <h2>join the waitlist</h2>
           <p>
             Be among the first to experience the future of autonomous software
             development.
