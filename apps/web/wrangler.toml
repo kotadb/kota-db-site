@@ -1,5 +1,5 @@
-# Project name is specified via CLI --project-name flag in CI/CD workflows
-# DO NOT set 'name' field here as it will override the CLI argument
+# Project name for Cloudflare Pages automatic deployment
+name = "kota-db-site-web-production"
 # Compatibility settings managed via Cloudflare Pages dashboard
 pages_build_output_dir = ".vercel/output/static"
 
