@@ -12,6 +12,10 @@ export default function Home() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23ffffff'/></svg>"
+        />
         <style
           dangerouslySetInnerHTML={{
             __html: `
@@ -22,134 +26,195 @@ export default function Home() {
           }
           body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #1a1a1a;
-            background: #ffffff;
-            padding: 2rem 1rem;
-            max-width: 800px;
+            line-height: 1.8;
+            color: #2d3748;
+            background: #fafafa;
+            padding: 4rem 2rem;
+            max-width: 700px;
             margin: 0 auto;
           }
           h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin: 2rem 0 1rem;
+            margin: 0 0 2rem;
             line-height: 1.2;
+            color: #1a202c;
+            text-align: center;
           }
           h2 {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 600;
-            margin: 2rem 0 1rem;
+            margin: 3rem 0 1.5rem;
+            color: #1a202c;
           }
           h3 {
             font-size: 1.25rem;
             font-weight: 600;
-            margin: 1.5rem 0 0.75rem;
+            margin: 2rem 0 1rem;
+            color: #2d3748;
           }
           p {
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+            font-size: 1.0625rem;
           }
           strong {
             font-weight: 600;
+            color: #1a202c;
           }
           em {
             font-style: italic;
           }
           ul {
-            margin: 1rem 0;
-            padding-left: 2rem;
+            margin: 1.5rem 0;
+            padding-left: 1.75rem;
           }
           li {
-            margin: 0.5rem 0;
+            margin: 1rem 0;
+            font-size: 1.0625rem;
           }
           table {
             width: 100%;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
             border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
           }
           th, td {
             text-align: left;
-            padding: 0.75rem;
-            border: 1px solid #e5e5e5;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
           }
           th {
             font-weight: 600;
-            background: #f9f9f9;
+            background: #f7fafc;
+            color: #2d3748;
+          }
+          td {
+            background: #ffffff;
           }
           .waitlist {
-            margin: 3rem 0;
-            padding: 2rem;
-            border: 2px solid #1a1a1a;
-            background: #f9f9f9;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            text-align: center;
           }
           .waitlist h2 {
             margin-top: 0;
+            margin-bottom: 1rem;
+          }
+          .waitlist p {
+            color: #4a5568;
+            margin-bottom: 2rem;
           }
           form {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
           }
           input {
-            padding: 0.75rem;
+            padding: 1rem;
             font-size: 1rem;
-            border: 1px solid #ccc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
             font-family: inherit;
+            transition: border-color 0.2s;
+            background: #ffffff;
+          }
+          input:focus {
+            outline: none;
+            border-color: #4299e1;
           }
           button {
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             font-size: 1rem;
             font-weight: 600;
-            background: #1a1a1a;
+            background: #2d3748;
             color: #ffffff;
             border: none;
+            border-radius: 8px;
             cursor: pointer;
             font-family: inherit;
+            transition: background 0.2s;
           }
           button:hover {
-            background: #333;
+            background: #1a202c;
           }
           button:disabled {
-            background: #999;
+            background: #a0aec0;
             cursor: not-allowed;
           }
           .message {
-            padding: 0.75rem;
+            padding: 1rem;
             margin-top: 1rem;
-            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 0.9375rem;
           }
           .message.success {
-            background: #d4edda;
-            border-color: #c3e6cb;
-            color: #155724;
+            background: #c6f6d5;
+            color: #22543d;
           }
           .message.error {
-            background: #f8d7da;
-            border-color: #f5c6cb;
-            color: #721c24;
+            background: #fed7d7;
+            color: #742a2a;
           }
           .footer {
-            margin-top: 3rem;
+            margin-top: 4rem;
             padding-top: 2rem;
-            border-top: 1px solid #e5e5e5;
+            border-top: 1px solid #e2e8f0;
             font-size: 0.875rem;
-            color: #666;
+            color: #718096;
+            text-align: center;
           }
-          @media (max-width: 640px) {
+          @media (max-width: 768px) {
             body {
-              padding: 1rem;
+              padding: 3rem 1.5rem;
             }
             h1 {
-              font-size: 1.5rem;
+              font-size: 2rem;
             }
             h2 {
-              font-size: 1.25rem;
+              font-size: 1.5rem;
             }
             h3 {
-              font-size: 1.1rem;
+              font-size: 1.125rem;
+            }
+            .waitlist {
+              padding: 2rem 1.5rem;
             }
             table {
               font-size: 0.875rem;
+            }
+            th, td {
+              padding: 0.75rem 0.5rem;
+            }
+          }
+          @media (max-width: 480px) {
+            body {
+              padding: 2rem 1rem;
+            }
+            h1 {
+              font-size: 1.75rem;
+            }
+            h2 {
+              font-size: 1.375rem;
+              margin: 2.5rem 0 1.25rem;
+            }
+            p, li {
+              font-size: 1rem;
+            }
+            .waitlist {
+              padding: 1.5rem 1rem;
+              margin: 3rem 0;
+            }
+            form {
+              max-width: 100%;
             }
           }
         `,
