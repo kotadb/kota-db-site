@@ -147,15 +147,34 @@ export default function Home() {
             opacity: 0.6;
           }
           .message {
-            padding: 0.5rem;
-            margin-top: 0.5rem;
+            padding: 0.75rem 1rem;
+            margin-top: 1rem;
             font-size: 0.875rem;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+          }
+          .message.visible {
+            opacity: 1;
           }
           .message.success {
             color: #22543d;
+            background-color: #f0fdf4;
+            border-color: #86efac;
+          }
+          .message.success::before {
+            content: '✓ ';
+            font-weight: bold;
           }
           .message.error {
             color: #742a2a;
+            background-color: #fef2f2;
+            border-color: #fca5a5;
+          }
+          .message.error::before {
+            content: '✕ ';
+            font-weight: bold;
           }
           .date {
             text-align: center;
@@ -185,8 +204,8 @@ export default function Home() {
             white-space: nowrap;
           }
           .top-waitlist .message {
-            margin-top: 0.5rem;
-            padding: 0.25rem;
+            margin-top: 0.75rem;
+            padding: 0.625rem 0.875rem;
             font-size: 0.8125rem;
           }
           .footer {
@@ -491,14 +510,17 @@ export default function Home() {
                 if (response.ok) {
                   messageDiv.textContent = data.message || 'Successfully joined the waitlist!';
                   messageDiv.className = 'message success';
+                  setTimeout(() => messageDiv.classList.add('visible'), 10);
                   input.value = '';
                 } else {
                   messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
                   messageDiv.className = 'message error';
+                  setTimeout(() => messageDiv.classList.add('visible'), 10);
                 }
               } catch (error) {
                 messageDiv.textContent = 'Network error. Please try again.';
                 messageDiv.className = 'message error';
+                setTimeout(() => messageDiv.classList.add('visible'), 10);
               } finally {
                 button.disabled = false;
                 button.textContent = 'Join Waitlist';

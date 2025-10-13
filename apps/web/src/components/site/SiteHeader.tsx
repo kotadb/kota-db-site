@@ -21,10 +21,6 @@ interface SiteHeaderProps {
 
 const defaultLinks: SiteHeaderLink[] = [
   {
-    href: "/pricing",
-    label: "Pricing",
-  },
-  {
     href: "https://github.com/kotadb/kota-db#documentation",
     label: "Documentation",
     external: true,
