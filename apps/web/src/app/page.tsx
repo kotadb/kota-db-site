@@ -1,594 +1,526 @@
-import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "KotaDB - The Operating System for Autonomous Software Development",
+  description:
+    "The infrastructure layer for agent collaboration. The future of software is autonomous.",
+};
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 font-[family-name:var(--font-roboto)] overflow-x-hidden w-full">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full backdrop-blur-lg bg-white/80 dark:bg-slate-950/80 z-50 border-b border-slate-200/50 dark:border-slate-800/50">
-        <div className="w-full mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 max-w-7xl mx-auto">
-            <div className="flex items-center min-w-0">
-              <h1 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-slate-900 to-teal-600 dark:from-teal-400 dark:to-teal-200 bg-clip-text text-transparent truncate">
-                KotaDB
-              </h1>
-            </div>
-            <div className="flex items-center gap-2 sm:gap-3 md:gap-6 flex-shrink-0">
-              <Link
-                href="https://github.com/jayminwest/kota-db"
-                target="_blank"
-                className="text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200 text-xs sm:text-sm md:text-base whitespace-nowrap"
-              >
-                GitHub
-              </Link>
-              <Link
-                href="https://github.com/jayminwest/kota-db#documentation"
-                target="_blank"
-                className="hidden md:inline-block text-slate-600 hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400 transition-all duration-200 whitespace-nowrap"
-              >
-                Docs
-              </Link>
-              <Link
-                href="https://github.com/jayminwest/kota-db#quickstart"
-                target="_blank"
-                className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm md:text-base whitespace-nowrap"
-              >
-                Start
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+          }
+          h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+            line-height: 1.2;
+          }
+          h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+          }
+          h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+          }
+          p {
+            margin: 1rem 0;
+          }
+          strong {
+            font-weight: 600;
+          }
+          em {
+            font-style: italic;
+          }
+          ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+          }
+          li {
+            margin: 0.5rem 0;
+          }
+          table {
+            width: 100%;
+            margin: 1.5rem 0;
+            border-collapse: collapse;
+          }
+          th, td {
+            text-align: left;
+            padding: 0.75rem;
+            border: 1px solid #e5e5e5;
+          }
+          th {
+            font-weight: 600;
+            background: #f9f9f9;
+          }
+          .waitlist {
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 2px solid #1a1a1a;
+            background: #f9f9f9;
+          }
+          .waitlist h2 {
+            margin-top: 0;
+          }
+          form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+          }
+          input {
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            font-family: inherit;
+          }
+          button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+          }
+          button:hover {
+            background: #333;
+          }
+          button:disabled {
+            background: #999;
+            cursor: not-allowed;
+          }
+          .message {
+            padding: 0.75rem;
+            margin-top: 1rem;
+            border: 1px solid #ccc;
+          }
+          .message.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+          }
+          .message.error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+          }
+          .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e5e5;
+            font-size: 0.875rem;
+            color: #666;
+          }
+          @media (max-width: 640px) {
+            body {
+              padding: 1rem;
+            }
+            h1 {
+              font-size: 1.5rem;
+            }
+            h2 {
+              font-size: 1.25rem;
+            }
+            h3 {
+              font-size: 1.1rem;
+            }
+            table {
+              font-size: 0.875rem;
+            }
+          }
+        `,
+          }}
+        />
+      </head>
+      <body>
+        <h1>KotaDB: The Manifesto for Agentic Engineering</h1>
 
-      {/* Hero Section */}
-      <section className="hero-section pt-32 pb-32 min-h-screen flex items-center px-4 sm:px-6 lg:px-8 relative w-full">
-        {/* Animated background */}
-        <div className="absolute inset-0">
-          {/* Grid pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]" />
+        <p>
+          Agents are here. Not as prototypes or research novelties, but as
+          production-grade intelligence. The premise behind KotaDB is simple:{" "}
+          <strong>AGI exists</strong>. It&apos;s just hidden behind complexity,
+          bad interfaces, and a mental model that hasn&apos;t caught up yet.
+          Software engineering must now evolve around this fact.
+        </p>
 
-          {/* Animated gradient orbs - mobile optimized */}
-          <div className="absolute top-0 -left-4 w-48 h-48 sm:w-72 sm:h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob dark:mix-blend-screen dark:opacity-10" />
-          <div className="absolute top-0 -right-4 w-48 h-48 sm:w-72 sm:h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000 dark:mix-blend-screen dark:opacity-10" />
-          <div className="absolute -bottom-8 left-20 w-48 h-48 sm:w-72 sm:h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000 dark:mix-blend-screen dark:opacity-10" />
+        <p>
+          This isn&apos;t written for legacy engineers defending twenty-year-old
+          workflows. It&apos;s for those who understand that everything we know
+          about building software is about to invert.
+        </p>
 
-          {/* Floating code symbols - hidden on mobile */}
-          <div className="absolute inset-0 hidden sm:block">
-            <div className="absolute top-1/4 left-1/4 text-teal-500/10 text-4xl md:text-6xl font-mono animate-float-slow">{`</>`}</div>
-            <div className="absolute top-3/4 right-1/3 text-cyan-500/10 text-3xl md:text-4xl font-mono animate-float-slower">{`{}`}</div>
-            <div className="absolute bottom-1/4 left-1/3 text-emerald-500/10 text-4xl md:text-5xl font-mono animate-float">{`()`}</div>
-            <div className="absolute top-1/2 right-1/4 text-teal-500/10 text-2xl md:text-3xl font-mono animate-float-slow">{`[]`}</div>
-          </div>
-        </div>
+        <h2>The New Paradigm</h2>
 
-        <div className="w-full max-w-7xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-slate-50 mb-6 leading-tight">
-            Codebase Intelligence
-            <span className="bg-gradient-to-r from-teal-500 via-teal-400 to-cyan-400 dark:from-teal-400 dark:via-teal-300 dark:to-cyan-300 bg-clip-text text-transparent">
-              {" "}
-              Platform
-            </span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            Understands your code&apos;s relationships, dependencies, and
-            structure. Powers LLM tooling like Claude Code for dramatically
-            improved codebase understanding and navigation.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
-            <Link
-              href="https://github.com/jayminwest/kota-db#quickstart"
-              target="_blank"
-              className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              Quick Start
-            </Link>
-            <Link
-              href="https://github.com/jayminwest/kota-db"
-              target="_blank"
-              className="bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white border border-slate-700 dark:border-slate-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
-            >
-              View on GitHub
-            </Link>
-          </div>
-        </div>
-      </section>
+        <p>
+          For decades, software was built for humans—IDEs, CI pipelines,
+          linters, syntax highlighting, code reviews, Jira boards. All designed
+          to optimize human cognition.
+        </p>
 
-      {/* Features Grid */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 w-full">
-        <div className="w-full max-w-7xl mx-auto">
-          <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
-            Built for Codebase Intelligence
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-teal-100 to-teal-200 dark:from-teal-800 dark:to-teal-900 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-teal-600 dark:text-teal-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-              </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Symbol Extraction
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Automatically extracts functions, classes, and relationships
-                from your entire codebase.
-              </p>
-            </div>
+        <p>
+          <strong>That era is over.</strong>
+        </p>
 
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-800 dark:to-teal-800 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-emerald-600 dark:text-emerald-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Dependency Tracking
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Full relationship graph showing what calls what, enabling
-                instant impact analysis.
-              </p>
-            </div>
+        <p>
+          AI agents don&apos;t need dashboards or stand-ups. They need
+          infrastructure: coordination, memory, and communication. The new
+          challenge isn&apos;t &quot;Can AI write code?&quot; It&apos;s
+          &quot;How do we get dozens of autonomous agents to collaborate like a
+          high-functioning engineering team?&quot;
+        </p>
 
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-violet-100 to-purple-100 dark:from-violet-800 dark:to-purple-800 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-violet-600 dark:text-violet-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Lightning Fast
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                &lt;3ms search latency with trigram indexing. 210x faster than
-                traditional approaches.
-              </p>
-            </div>
+        <p>That&apos;s what KotaDB answers.</p>
 
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-800 dark:to-orange-800 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-amber-600 dark:text-amber-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-                  />
-                </svg>
-              </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Impact Analysis
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Understand what breaks when you change code. See all affected
-                functions and dependencies.
-              </p>
-            </div>
+        <h2>Why Agents Changed Everything</h2>
 
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 dark:from-rose-800 dark:to-pink-800 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-rose-600 dark:text-rose-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                  />
-                </svg>
-              </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                LLM Integration
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                MCP server support for seamless integration with Claude Code and
-                other AI coding assistants.
-              </p>
-            </div>
+        <p>
+          An LLM doesn&apos;t need syntax highlighting. It needs unambiguous
+          context, reproducible execution, and deterministic feedback. If
+          you&apos;re still typing code manually, you&apos;re optimizing for
+          nostalgia. The bottleneck isn&apos;t model capability
+          anymore—it&apos;s human communication.
+        </p>
 
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-indigo-800 dark:to-blue-800 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  className="w-7 h-7 text-indigo-600 dark:text-indigo-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
-                  />
-                </svg>
-              </div>
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Dual Storage
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Optimized separation of documents and graph data for maximum
-                performance at scale.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+        <p>
+          When Claude Code or Codex fails, it&apos;s not because the
+          model&apos;s dumb. It&apos;s because you&apos;re giving it incomplete
+          or confusing instructions. Prompting is fine-tuning. Bad context
+          equals bad output. The path forward is not to prompt harder—it&apos;s
+          to build systems that make being correct easier than being wrong.
+        </p>
 
-      {/* Code Example */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 w-full overflow-hidden">
-        <div className="w-full max-w-7xl mx-auto">
-          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-6 sm:mb-8 md:mb-16 px-2">
-            Simple and Intuitive API
-          </h3>
-          <div className="w-full">
-            <div className="w-full max-w-none">
-              <div className="bg-gradient-to-br from-slate-900 to-slate-950 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-slate-800 mx-auto">
-                <div className="flex items-center justify-between mb-3 sm:mb-4">
-                  <span className="text-teal-400 text-xs sm:text-sm font-medium">
-                    Python Example
-                  </span>
-                  <button className="text-slate-400 hover:text-teal-400 transition-colors duration-200 flex-shrink-0">
-                    <svg
-                      className="w-4 h-4 sm:w-5 sm:h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </button>
-                </div>
-                <div className="overflow-x-auto w-full">
-                  <pre className="text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre w-full">
-                    <code className="language-python text-slate-300 block w-full">{`from kotadb import KotaDB
+        <p>
+          That&apos;s the &quot;pit of success.&quot; Automated validation
+          loops. Meta-agents writing specs for implementation agents. Zero
+          confusion in the pipeline. When that clarity exists, these systems
+          one-shot tasks the same way they do in benchmarks.
+        </p>
 
-# Connect to KotaDB server
-db = KotaDB("http://localhost:8080")
+        <h2>The Inflection Point</h2>
 
-# Ingest entire codebase with symbol extraction
-db.ingest_repository(".")
+        <p>
+          We are at the biggest shift since version control. The tools of the
+          past were built to help humans coordinate. The next generation is
+          about helping agents coordinate. GitHub was for human collaboration.
+          KotaDB is for agent collaboration.
+        </p>
 
-# Find all functions that use a specific class
-callers = db.find_callers("FileStorage")
-print(f"Found {len(callers)} functions calling FileStorage")
+        <h2>The Problem</h2>
 
-# Analyze impact of changing a function
-impact = db.impact_analysis("StorageError")
-for func in impact.affected_functions:
-    print(f"  {func.name} in {func.file}:{func.line}")
+        <p>
+          Every Claude Code or Cursor session today starts from scratch. Agents
+          don&apos;t remember what they&apos;ve done or what others are doing.
+          You, the human, are acting as the memory, the orchestrator, the
+          scheduler. It&apos;s inefficient and brittle.
+        </p>
 
-# Search for code patterns with under 3ms latency
-results = db.search("error handling")
-print(f"Found {len(results)} matches in {results.latency_ms}ms")`}</code>
-                  </pre>
-                </div>
-              </div>
-            </div>
-          </div>
+        <p>
+          Custom orchestration is worse. Hacky scripts chaining APIs together,
+          state lost in JSON, collisions in Git branches. Everyone&apos;s
+          rebuilding Kubernetes from scratch—only for agents.
+        </p>
 
-          <div className="grid md:grid-cols-3 gap-8 mt-8">
-            <div className="text-center">
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Symbol Tracking
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                17,128+ symbols extracted from KotaDB&apos;s own codebase
-              </p>
-            </div>
-            <div className="text-center">
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                Impact Analysis
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Instantly see what breaks when you change code
-              </p>
-            </div>
-            <div className="text-center">
-              <h4 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-3">
-                LLM Ready
-              </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                MCP server for Claude Code and AI assistants
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+        <h2>The Missing Layer</h2>
 
-      {/* Installation */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900 w-full overflow-hidden">
-        <div className="w-full max-w-7xl mx-auto">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-8 sm:mb-12 md:mb-16 px-2">
-            Get Started in Seconds
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
-            <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h4 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-50 mb-4 sm:mb-6 flex items-center">
-                <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-teal-500 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
-                </svg>
-                Docker Compose
-              </h4>
-              <div className="bg-slate-950 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 overflow-x-auto">
-                <code className="text-teal-400 text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-nowrap block">
-                  docker-compose -f docker-compose.quickstart.yml up -d
-                </code>
-              </div>
-            </div>
+        <p>
+          What&apos;s missing is a shared operating system for autonomous
+          software development—a platform layer for agent coordination.
+        </p>
 
-            <div className="bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h4 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-50 mb-4 sm:mb-6 flex items-center">
-                <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-emerald-500 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                Quick Install Script
-              </h4>
-              <div className="bg-slate-950 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 overflow-x-auto">
-                <code className="text-teal-400 text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre-wrap break-all sm:break-normal block">
-                  curl -sSL
-                  https://raw.githubusercontent.com/jayminwest/kota-db/main/quickstart/install.sh
-                  | bash
-                </code>
-              </div>
-            </div>
-          </div>
+        <p>
+          <strong>KotaDB provides it.</strong>
+        </p>
 
-          <div className="text-center mt-8">
-            <Link
-              href="https://github.com/jayminwest/kota-db#installation"
-              target="_blank"
-              className="text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 font-semibold inline-flex items-center gap-2 group"
-            >
-              View all installation options
-              <span className="group-hover:translate-x-1 transition-transform duration-200">
-                →
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
+        <ul>
+          <li>
+            <strong>Standardized Communication</strong> — MCP as a universal
+            protocol for agents to talk across models and tools.
+          </li>
+          <li>
+            <strong>Resource Isolation</strong> — Git worktrees as lightweight,
+            isolated workspaces for concurrent development.
+          </li>
+          <li>
+            <strong>Persistent Memory</strong> — Stateful awareness of
+            what&apos;s been planned, implemented, or reviewed.
+          </li>
+          <li>
+            <strong>Security &amp; Multi-Tenancy</strong> — Authentication, rate
+            limits, and row-level security for production codebases.
+          </li>
+          <li>
+            <strong>Workflow Orchestration</strong> — Multi-agent pipelines with
+            retry logic, validation loops, and persistent state.
+          </li>
+        </ul>
 
-      {/* Performance Stats */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-950 w-full">
-        <div className="w-full max-w-7xl mx-auto">
-          <h3 className="text-4xl font-bold text-center text-slate-900 dark:text-slate-50 mb-16">
-            Built for Scale
-          </h3>
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-6xl font-bold bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent mb-3">
-                3,600+
-              </div>
-              <div className="text-slate-700 dark:text-slate-300 font-medium">
-                Ops/Second
-              </div>
-              <div className="text-sm text-slate-500 dark:text-slate-500 mt-2">
-                Document insertions
-              </div>
-            </div>
-            <div>
-              <div className="text-6xl font-bold bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent mb-3">
-                &lt;10ms
-              </div>
-              <div className="text-slate-700 dark:text-slate-300 font-medium">
-                Query Latency
-              </div>
-              <div className="text-sm text-slate-500 dark:text-slate-500 mt-2">
-                P95 response time
-              </div>
-            </div>
-            <div>
-              <div className="text-6xl font-bold bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent mb-3">
-                Zero
-              </div>
-              <div className="text-slate-700 dark:text-slate-300 font-medium">
-                External Dependencies
-              </div>
-              <div className="text-sm text-slate-500 dark:text-slate-500 mt-2">
-                Single binary deployment
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        <h2>The KotaDB Vision</h2>
 
-      {/* CTA Section */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-teal-900 to-slate-950 relative overflow-hidden w-full">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 via-transparent to-slate-800/10 opacity-30" />
-        <div className="w-full max-w-4xl mx-auto text-center relative z-10">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 leading-tight">
-            Ready to Supercharge Your Development Tools?
-          </h3>
-          <p className="text-base sm:text-lg md:text-xl text-teal-100 mb-8 sm:mb-10 leading-relaxed px-4 sm:px-0">
-            Give your LLM coding assistants deep codebase understanding with
+        <p>
+          KotaDB isn&apos;t a code search tool. Search is memory. The real value
+          is orchestration: an infrastructure layer that coordinates hundreds of
+          agents building software together.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Human Stack</th>
+              <th>Agent Stack</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GitHub → human collaboration</td>
+              <td>KotaDB → agent collaboration</td>
+            </tr>
+            <tr>
+              <td>Docker → app packaging</td>
+              <td>Agent Tools → capability packaging</td>
+            </tr>
+            <tr>
+              <td>Kubernetes → container orchestration</td>
+              <td>KotaDB ADW → agent orchestration</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>A New Development Cycle</h2>
+
+        <ul>
+          <li>
+            <strong>Issue Created</strong> → &quot;Add rate limiting to
+            /api/search.&quot;
+          </li>
+          <li>
+            <strong>Classifier Agent</strong> categorizes and indexes.
+          </li>
+          <li>
+            <strong>Planner Agent</strong> drafts spec and allocates workspace.
+          </li>
+          <li>
+            <strong>Implementor Agent</strong> writes code.
+          </li>
+          <li>
+            <strong>Validator Agent</strong> runs tests, flags errors.
+          </li>
+          <li>
+            <strong>Reviewer Agent</strong> approves implementation.
+          </li>
+          <li>
+            <strong>Documenter Agent</strong> updates docs.
+          </li>
+          <li>
+            <strong>PR Agent</strong> merges and pushes.
+          </li>
+        </ul>
+
+        <p>
+          <strong>Four minutes. Zero human input.</strong> This is not science
+          fiction; it&apos;s a direct outcome of standardized agent
+          infrastructure.
+        </p>
+
+        <p>
+          Don&apos;t like this cycle? Throw it out. Build your own. Customize
+          agents to your codebase, to how your system works, to how your team
+          operates.
+        </p>
+
+        <h2>The Principles</h2>
+
+        <ul>
+          <li>
+            <strong>Determinism + Creativity</strong> — Agents reason;
+            infrastructure guarantees reliability.
+          </li>
+          <li>
+            <strong>Composability</strong> — Small, specialized agents connected
+            through clear protocols.
+          </li>
+          <li>
+            <strong>Standards Over Silos</strong> — MCP, Git, Postgres. No new
+            proprietary nonsense.
+          </li>
+          <li>
+            <strong>Production-Grade by Default</strong> — Real logging, auth,
+            and testing.
+          </li>
+          <li>
+            <strong>Multi-Vendor by Design</strong> — Claude, OpenAI, Gemini—all
+            interoperable under KotaDB.
+          </li>
+        </ul>
+
+        <h2>Why It&apos;s Hard (and Why It&apos;s a Moat)</h2>
+
+        <ul>
+          <li>
+            <strong>Security</strong> — 2,000+ exposed MCP servers prove no one
+            else is doing this safely.
+          </li>
+          <li>
+            <strong>Multi-Tenancy</strong> — Real isolation and state
+            persistence are non-trivial.
+          </li>
+          <li>
+            <strong>Production Scale</strong> — Few have run 60+ agent workflows
+            on live codebases.
+          </li>
+          <li>
+            <strong>Complex Workflows</strong> — Multi-phase SDLC automation
+            requires deep engineering DNA.
+          </li>
+        </ul>
+
+        <p>
+          <strong>KotaDB solves all four. That&apos;s the moat.</strong>
+        </p>
+
+        <h2>The Market Reality</h2>
+
+        <p>
+          There are 31 million developers worldwide—a $3 trillion productivity
+          market. Even 0.1% adoption at $75/month yields multi-million ARR. The
+          path is clear:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Today:</strong> Agentic early adopters.
+          </li>
+          <li>
+            <strong>Next 6 months:</strong> Platform teams integrating AI into
+            developer workflows.
+          </li>
+          <li>
+            <strong>Next 12 months:</strong> AI-native startups whose entire
+            engineering stack is autonomous.
+          </li>
+        </ul>
+
+        <p>
+          No one else is building multi-agent infrastructure for software
+          development. The category begins here.
+        </p>
+
+        <h2>The Future</h2>
+
+        <p>
+          In five years, the winners won&apos;t be the ones with the best
+          LLMs—they&apos;ll be the ones with the best infrastructure for agent
+          collaboration.
+        </p>
+
+        <p>
+          <strong>
+            KotaDB is that infrastructure: the operating system for autonomous
+            software development. The foundation for a world where agents write,
+            test, and ship software at scale.
+          </strong>
+        </p>
+
+        <p>
+          <strong>
+            The future of software is autonomous collaboration. The future is
             KotaDB.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
-            <Link
-              href="https://github.com/jayminwest/kota-db"
-              target="_blank"
-              className="bg-teal-400 hover:bg-teal-300 text-slate-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              Get Started Free
-            </Link>
-            <Link
-              href="https://github.com/jayminwest/kota-db#documentation"
-              target="_blank"
-              className="bg-transparent hover:bg-white/10 text-white border-2 border-teal-400 hover:border-teal-300 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300"
-            >
-              Read Documentation
-            </Link>
-          </div>
-        </div>
-      </section>
+          </strong>
+        </p>
 
-      {/* Footer */}
-      <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-950 border-t border-slate-800 w-full">
-        <div className="w-full max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h4 className="text-2xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent mb-4">
-                KotaDB
-              </h4>
-              <p className="text-slate-400">
-                Codebase intelligence platform for LLM tooling.
-              </p>
-            </div>
-            <div>
-              <h5 className="text-teal-400 font-semibold mb-4 uppercase tracking-wider text-sm">
-                Resources
-              </h5>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="https://github.com/jayminwest/kota-db#documentation"
-                    target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
-                  >
-                    Documentation
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://github.com/jayminwest/kota-db#quickstart"
-                    target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
-                  >
-                    Quick Start
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://github.com/jayminwest/kota-db/blob/main/examples"
-                    target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
-                  >
-                    Examples
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-white font-semibold mb-4">Community</h5>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="https://github.com/jayminwest/kota-db"
-                    target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
-                  >
-                    GitHub
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://github.com/jayminwest/kota-db/issues"
-                    target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
-                  >
-                    Issues
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://github.com/jayminwest/kota-db/discussions"
-                    target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
-                  >
-                    Discussions
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-white font-semibold mb-4">Connect</h5>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="https://github.com/jayminwest"
-                    target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
-                  >
-                    Author GitHub
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://github.com/jayminwest/kota-db/blob/main/LICENSE"
-                    target="_blank"
-                    className="text-slate-400 hover:text-teal-400 transition-colors duration-200"
-                  >
-                    License
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-slate-800 text-center text-slate-500">
-            <p>
-              &copy; 2024 KotaDB. Built with passion for the future of knowledge
-              work.
-            </p>
-          </div>
+        <div className="waitlist">
+          <h2>Join the Waitlist</h2>
+          <p>
+            Be among the first to experience the future of autonomous software
+            development.
+          </p>
+          <form id="waitlist-form">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+            />
+            <button type="submit">Join Waitlist</button>
+          </form>
+          <div id="message"></div>
         </div>
-      </footer>
-    </div>
+
+        <div className="footer">
+          <p>
+            Written October 13 2025 by the KotaDB team.
+            <br />© 2025 KotaDB. All rights reserved.
+          </p>
+        </div>
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const button = e.target.querySelector('button');
+            const input = e.target.querySelector('input');
+            const messageDiv = document.getElementById('message');
+            const email = input.value;
+
+            button.disabled = true;
+            button.textContent = 'Joining...';
+            messageDiv.textContent = '';
+            messageDiv.className = 'message';
+
+            try {
+              const response = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+              });
+
+              const data = await response.json();
+
+              if (response.ok) {
+                messageDiv.textContent = data.message || 'Successfully joined the waitlist!';
+                messageDiv.className = 'message success';
+                input.value = '';
+              } else {
+                messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
+                messageDiv.className = 'message error';
+              }
+            } catch (error) {
+              messageDiv.textContent = 'Network error. Please try again.';
+              messageDiv.className = 'message error';
+            } finally {
+              button.disabled = false;
+              button.textContent = 'Join Waitlist';
+            }
+          });
+        `,
+          }}
+        />
+      </body>
+    </html>
   );
 }

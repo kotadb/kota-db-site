@@ -51,11 +51,11 @@ export const createProductionConfig = (
   overrides?: Partial<DatabaseConfig>,
 ): DatabaseConfig => {
   return databaseConfigValidator.parse({
-    host: process.env["DB_HOST"] || "production-host",
-    port: parseInt(process.env["DB_PORT"] || "5432", 10),
-    database: process.env["DB_NAME"] || "kotadb_prod",
-    username: process.env["DB_USER"] || "prod_user",
-    password: process.env["DB_PASSWORD"] || "",
+    host: process.env.DB_HOST || "production-host",
+    port: parseInt(process.env.DB_PORT || "5432", 10),
+    database: process.env.DB_NAME || "kotadb_prod",
+    username: process.env.DB_USER || "prod_user",
+    password: process.env.DB_PASSWORD || "",
     ssl: true,
     poolSize: 20,
     connectionTimeout: 10000,

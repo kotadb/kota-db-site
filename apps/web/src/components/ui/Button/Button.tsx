@@ -8,12 +8,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-teal-600 text-white hover:bg-teal-700 focus-visible:ring-teal-600",
+          "bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] hover:bg-[var(--button-primary-hover)] focus-visible:ring-[var(--button-primary-bg)]",
         secondary:
-          "bg-gray-200 text-gray-900 hover:bg-gray-300 focus-visible:ring-gray-400",
+          "bg-[var(--button-secondary-bg)] text-[var(--button-secondary-text)] hover:bg-[var(--button-secondary-hover)] focus-visible:ring-[var(--button-secondary-bg)]",
         outline:
-          "border border-gray-300 bg-transparent hover:bg-gray-100 focus-visible:ring-gray-400",
-        ghost: "hover:bg-gray-100 focus-visible:ring-gray-400",
+          "border border-[var(--input-border)] bg-transparent hover:bg-[var(--button-secondary-bg)] focus-visible:ring-[var(--accent)]",
+        ghost:
+          "hover:bg-[var(--button-secondary-bg)] focus-visible:ring-[var(--accent)]",
         danger:
           "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-600",
       },
@@ -64,26 +65,30 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading && (
-          <svg
-            className="mr-2 h-4 w-4 animate-spin"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            />
-          </svg>
+          <>
+            <svg
+              className="mr-2 h-4 w-4 animate-spin"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
+            </svg>
+            <span className="sr-only">Loading</span>
+          </>
         )}
         {children}
       </button>

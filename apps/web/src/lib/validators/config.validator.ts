@@ -47,23 +47,23 @@ export function validateAppConfig(input: unknown): AppConfig {
 
 export function loadConfigFromEnv(): AppConfig {
   return validateAppConfig({
-    env: process.env["NODE_ENV"] ?? "development",
-    port: process.env["PORT"] ? parseInt(process.env["PORT"], 10) : undefined,
-    host: process.env["HOST"],
-    logLevel: process.env["LOG_LEVEL"],
-    corsOrigins: process.env["CORS_ORIGINS"]?.split(",") ?? [],
+    env: process.env.NODE_ENV ?? "development",
+    port: process.env.PORT ? parseInt(process.env.PORT, 10) : undefined,
+    host: process.env.HOST,
+    logLevel: process.env.LOG_LEVEL,
+    corsOrigins: process.env.CORS_ORIGINS?.split(",") ?? [],
     rateLimit: {
-      windowMs: process.env["RATE_LIMIT_WINDOW_MS"]
-        ? parseInt(process.env["RATE_LIMIT_WINDOW_MS"], 10)
+      windowMs: process.env.RATE_LIMIT_WINDOW_MS
+        ? parseInt(process.env.RATE_LIMIT_WINDOW_MS, 10)
         : undefined,
-      maxRequests: process.env["RATE_LIMIT_MAX_REQUESTS"]
-        ? parseInt(process.env["RATE_LIMIT_MAX_REQUESTS"], 10)
+      maxRequests: process.env.RATE_LIMIT_MAX_REQUESTS
+        ? parseInt(process.env.RATE_LIMIT_MAX_REQUESTS, 10)
         : undefined,
     },
     features: {
-      analytics: process.env["FEATURE_ANALYTICS"] === "true",
-      darkMode: process.env["FEATURE_DARK_MODE"] !== "false",
-      experimental: process.env["FEATURE_EXPERIMENTAL"] === "true",
+      analytics: process.env.FEATURE_ANALYTICS === "true",
+      darkMode: process.env.FEATURE_DARK_MODE !== "false",
+      experimental: process.env.FEATURE_EXPERIMENTAL === "true",
     },
   });
 }

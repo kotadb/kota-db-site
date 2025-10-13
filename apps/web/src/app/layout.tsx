@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import { createPageMetadata } from "@/lib/metadata";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700", "900"],
@@ -16,11 +17,7 @@ const robotoMono = Roboto_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "KotaDB - Codebase Intelligence Platform",
-  description:
-    "A codebase intelligence platform that understands your code's relationships, dependencies, and structure. Powers LLM tooling like Claude Code for dramatically improved codebase understanding.",
-};
+export const metadata = createPageMetadata();
 
 export default function RootLayout({
   children,
@@ -28,11 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${roboto.variable} ${robotoMono.variable} font-sans antialiased`}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

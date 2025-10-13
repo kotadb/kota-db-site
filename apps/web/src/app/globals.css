@@ -1,60 +1,5 @@
 @import "tailwindcss";
-
-:root {
-  /* Modern Black/Gray/Teal Color System */
-  --color-slate-50: #f8fafc;
-  --color-slate-100: #f1f5f9;
-  --color-slate-200: #e2e8f0;
-  --color-slate-300: #cbd5e1;
-  --color-slate-400: #94a3b8;
-  --color-slate-500: #64748b;
-  --color-slate-600: #475569;
-  --color-slate-700: #334155;
-  --color-slate-800: #1e293b;
-  --color-slate-900: #0f172a;
-  --color-slate-950: #020617;
-
-  /* Teal Accent Colors */
-  --color-teal-50: #f0fdfa;
-  --color-teal-100: #ccfbf1;
-  --color-teal-200: #99f6e4;
-  --color-teal-300: #5eead4;
-  --color-teal-400: #2dd4bf;
-  --color-teal-500: #14b8a6;
-  --color-teal-600: #0d9488;
-  --color-teal-700: #0f766e;
-  --color-teal-800: #115e59;
-  --color-teal-900: #134e4a;
-
-  /* Semantic Colors */
-  --background: var(--color-slate-50);
-  --background-secondary: #ffffff;
-  --foreground: var(--color-slate-900);
-  --foreground-secondary: var(--color-slate-700);
-  --border: var(--color-slate-200);
-  --border-hover: var(--color-slate-300);
-  --accent: var(--color-teal-500);
-  --accent-hover: var(--color-teal-600);
-  --accent-light: var(--color-teal-100);
-
-  /* Gradients */
-  --gradient-primary: linear-gradient(
-    135deg,
-    var(--color-teal-500) 0%,
-    var(--color-teal-600) 100%
-  );
-  --gradient-dark: linear-gradient(
-    180deg,
-    var(--color-slate-900) 0%,
-    var(--color-slate-950) 100%
-  );
-  --gradient-hero: linear-gradient(
-    135deg,
-    var(--color-slate-950) 0%,
-    var(--color-slate-900) 50%,
-    var(--color-teal-900) 100%
-  );
-}
+@import "../../../../packages/shared/design/theme.css";
 
 @theme inline {
   --color-background: var(--background);
@@ -87,20 +32,6 @@
   --color-teal-900: var(--color-teal-900);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-slate-950);
-    --background-secondary: var(--color-slate-900);
-    --foreground: var(--color-slate-50);
-    --foreground-secondary: var(--color-slate-300);
-    --border: var(--color-slate-800);
-    --border-hover: var(--color-slate-700);
-    --accent: var(--color-teal-400);
-    --accent-hover: var(--color-teal-300);
-    --accent-light: var(--color-teal-900);
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -118,11 +49,62 @@ body {
   max-width: 100vw;
 }
 
-/* Smooth transitions for theme changes */
+/* Bright mode page styling */
+.light .page-container {
+  background: linear-gradient(135deg, #f0fdfa 0%, #ecfeff 50%, #ecfdf5 100%);
+}
+
+/* Dark mode page styling */
+.dark .page-container {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #0f766e 100%);
+}
+
+/* Navigation styling */
+.nav-background {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.nav-border {
+  border-color: rgba(226, 232, 240, 0.5);
+}
+
+.light .nav-background {
+  background: rgba(240, 253, 250, 0.9);
+}
+
+.light .nav-border {
+  border-color: rgba(153, 246, 228, 0.6);
+}
+
+.dark .nav-background {
+  background: rgba(30, 41, 59, 0.8);
+}
+
+.dark .nav-border {
+  border-color: rgba(71, 85, 105, 0.5);
+}
+
+/* Smooth transitions for theme changes - 2025 subtle animations */
 * {
-  @apply transition-colors duration-200;
+  @apply transition-colors duration-300;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Subtle fade-in animation for page load */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-container {
+  animation: fade-in 0.6s ease-out;
 }
 
 /* Prevent horizontal overflow on all containers */
@@ -288,14 +270,26 @@ section.hero-section {
   animation: gradient-shift 8s ease infinite;
 }
 
-/* Glass morphism effect */
+/* Glass morphism effect - 2025 modern style */
 .glass {
   @apply backdrop-blur-xl bg-white/10 dark:bg-slate-900/10;
 }
 
-/* Hover lift effect */
+/* Hover lift effect - enhanced for 2025 */
 .hover-lift {
-  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl;
+  @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl;
+}
+
+/* Stagger animation for lists */
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Text gradient animations */
@@ -303,3 +297,5 @@ section.hero-section {
   background-size: 200% auto;
   animation: gradient-shift 3s ease infinite;
 }
+
+/* (removed) email capture styles no longer used */

@@ -1,0 +1,232 @@
+# KotaDB Monitoring and Alerting Configuration
+# Import this into Cloud Monitoring
+
+displayName: "KotaDB Production Monitoring"
+documentation:
+  content: |
+    Monitoring alerts for KotaDB API service running on Cloud Run.
+
+    Tracks:
+    - API latency and response times
+    - Error rates
+    - Resource utilization
+    - Storage health
+
+conditions:
+  - displayName: "High API Latency"
+    conditionThreshold:
+      filter: |
+        resource.type="cloud_run_revision"
+        AND resource.labels.service_name="kotadb-api"
+        AND metric.type="run.googleapis.com/request_latencies"
+      aggregations:
+        - alignmentPeriod: "60s"
+          perSeriesAligner: "ALIGN_PERCENTILE_99"
+      comparison: COMPARISON_GT
+      thresholdValue: 100 # 100ms
+      duration: "180s"
+
+  - displayName: "High Error Rate"
+    conditionThreshold:
+      filter: |
+        resource.type="cloud_run_revision"
+        AND resource.labels.service_name="kotadb-api"
+        AND metric.type="run.googleapis.com/request_count"
+        AND metric.labels.response_code_class="5xx"
+      aggregations:
+        - alignmentPeriod: "60s"
+          perSeriesAligner: "ALIGN_RATE"
+      comparison: COMPARISON_GT
+      thresholdValue: 0.05 # 5% error rate
+      duration: "120s"
+
+  - displayName: "High CPU Usage"
+    conditionThreshold:
+      filter: |
+        resource.type="cloud_run_revision"
+        AND resource.labels.service_name="kotadb-api"
+        AND metric.type="run.googleapis.com/container/cpu/utilizations"
+      aggregations:
+        - alignmentPeriod: "60s"
+          perSeriesAligner: "ALIGN_MEAN"
+      comparison: COMPARISON_GT
+      thresholdValue: 0.9 # 90% CPU
+      duration: "300s"
+
+  - displayName: "High Memory Usage"
+    conditionThreshold:
+      filter: |
+        resource.type="cloud_run_revision"
+        AND resource.labels.service_name="kotadb-api"
+        AND metric.type="run.googleapis.com/container/memory/utilizations"
+      aggregations:
+        - alignmentPeriod: "60s"
+          perSeriesAligner: "ALIGN_MEAN"
+      comparison: COMPARISON_GT
+      thresholdValue: 0.9 # 90% memory
+      duration: "300s"
+
+  - displayName: "Service Unavailable"
+    conditionThreshold:
+      filter: |
+        resource.type="cloud_run_revision"
+        AND resource.labels.service_name="kotadb-api"
+        AND metric.type="run.googleapis.com/request_count"
+      aggregations:
+        - alignmentPeriod: "60s"
+          perSeriesAligner: "ALIGN_RATE"
+      comparison: COMPARISON_LT
+      thresholdValue: 0.1 # Less than 0.1 requests per second
+      duration: "300s"
+
+notificationChannels:
+  - type: email
+    labels:
+      email_address: "alerts@kotadb.io"
+  - type: slack
+    labels:
+      channel_name: "#kotadb-alerts"
+      url: "YOUR_SLACK_WEBHOOK_URL"
+
+---
+# Custom Dashboard JSON for Cloud Monitoring
+dashboardJson: |
+  {
+    "displayName": "KotaDB API Dashboard",
+    "mosaicLayout": {
+      "columns": 12,
+      "tiles": [
+        {
+          "width": 6,
+          "height": 4,
+          "widget": {
+            "title": "Request Rate",
+            "xyChart": {
+              "dataSets": [{
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "resource.type=\"cloud_run_revision\" resource.labels.service_name=\"kotadb-api\" metric.type=\"run.googleapis.com/request_count\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    }
+                  }
+                }
+              }]
+            }
+          }
+        },
+        {
+          "xPos": 6,
+          "width": 6,
+          "height": 4,
+          "widget": {
+            "title": "Response Latency (p50, p95, p99)",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "resource.type=\"cloud_run_revision\" resource.labels.service_name=\"kotadb-api\" metric.type=\"run.googleapis.com/request_latencies\"",
+                      "aggregation": {
+                        "alignmentPeriod": "60s",
+                        "perSeriesAligner": "ALIGN_PERCENTILE_50"
+                      }
+                    }
+                  },
+                  "plotType": "LINE",
+                  "targetAxis": "Y1"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "resource.type=\"cloud_run_revision\" resource.labels.service_name=\"kotadb-api\" metric.type=\"run.googleapis.com/request_latencies\"",
+                      "aggregation": {
+                        "alignmentPeriod": "60s",
+                        "perSeriesAligner": "ALIGN_PERCENTILE_95"
+                      }
+                    }
+                  },
+                  "plotType": "LINE",
+                  "targetAxis": "Y1"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "resource.type=\"cloud_run_revision\" resource.labels.service_name=\"kotadb-api\" metric.type=\"run.googleapis.com/request_latencies\"",
+                      "aggregation": {
+                        "alignmentPeriod": "60s",
+                        "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                      }
+                    }
+                  },
+                  "plotType": "LINE",
+                  "targetAxis": "Y1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "yPos": 4,
+          "width": 6,
+          "height": 4,
+          "widget": {
+            "title": "Error Rate",
+            "xyChart": {
+              "dataSets": [{
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "resource.type=\"cloud_run_revision\" resource.labels.service_name=\"kotadb-api\" metric.type=\"run.googleapis.com/request_count\" metric.labels.response_code_class=\"5xx\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    }
+                  }
+                }
+              }]
+            }
+          }
+        },
+        {
+          "xPos": 6,
+          "yPos": 4,
+          "width": 6,
+          "height": 4,
+          "widget": {
+            "title": "CPU & Memory Usage",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "resource.type=\"cloud_run_revision\" resource.labels.service_name=\"kotadb-api\" metric.type=\"run.googleapis.com/container/cpu/utilizations\"",
+                      "aggregation": {
+                        "alignmentPeriod": "60s",
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    }
+                  },
+                  "plotType": "LINE",
+                  "targetAxis": "Y1"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "resource.type=\"cloud_run_revision\" resource.labels.service_name=\"kotadb-api\" metric.type=\"run.googleapis.com/container/memory/utilizations\"",
+                      "aggregation": {
+                        "alignmentPeriod": "60s",
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    }
+                  },
+                  "plotType": "LINE",
+                  "targetAxis": "Y2"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }

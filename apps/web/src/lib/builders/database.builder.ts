@@ -106,12 +106,12 @@ export class DatabaseBuilder {
    */
   static production(): DatabaseBuilder {
     return new DatabaseBuilder()
-      .withHost(process.env["DB_HOST"] || "production-host")
-      .withPort(parseInt(process.env["DB_PORT"] || "5432", 10))
-      .withDatabase(process.env["DB_NAME"] || "kotadb_prod")
+      .withHost(process.env.DB_HOST || "production-host")
+      .withPort(parseInt(process.env.DB_PORT || "5432", 10))
+      .withDatabase(process.env.DB_NAME || "kotadb_prod")
       .withCredentials(
-        process.env["DB_USER"] || "prod_user",
-        process.env["DB_PASSWORD"] || "",
+        process.env.DB_USER || "prod_user",
+        process.env.DB_PASSWORD || "",
       )
       .withSSL(true)
       .withDebug(false)

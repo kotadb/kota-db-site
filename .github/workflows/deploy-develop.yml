@@ -1,0 +1,154 @@
+name: Deploy Develop (Staging)
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  deploy-web-develop:
+    name: Deploy Web (develop) via Wrangler
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (web)
+        working-directory: ./apps/web
+        run: pnpm run lint
+
+      - name: Typecheck (web)
+        working-directory: ./apps/web
+        run: pnpm run typecheck
+
+      - name: Build web (develop)
+        working-directory: ./apps/web
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.DEV_NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.DEV_NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_TEST_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID: ${{ secrets.NEXT_PUBLIC_STRIPE_SOLO_PRICE_ID_TEST }}
+          NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID: ${{ secrets.NEXT_PUBLIC_STRIPE_TEAM_PRICE_ID_TEST }}
+          NEXT_PUBLIC_APP_URL: https://develop.kotadb.io
+          NEXT_PUBLIC_DASHBOARD_URL: https://app.develop.kotadb.io
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_TEST_SECRET_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.DEV_SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          pnpm run build
+          pnpm run build:cf
+
+      - name: Verify Cloudflare auth
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx -y wrangler@4 --version
+          npx -y wrangler@4 whoami || true
+
+      - name: Ensure Pages project exists (web)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          # Attempt to create; ignore if it already exists
+          npx -y wrangler@4 pages project create kotadb-web --production-branch=main --no-git >/dev/null 2>&1 || echo "Project kotadb-web exists or creation skipped"
+
+      - name: Deploy web (develop) via Wrangler
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx -y wrangler@4 pages deploy ./apps/web/.vercel/output/static \
+            --project-name=kotadb-web \
+            --branch=develop
+
+  deploy-app-develop:
+    name: Deploy App (develop) via Wrangler
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (app)
+        working-directory: ./apps/app
+        run: pnpm run lint
+
+      - name: Typecheck (app)
+        working-directory: ./apps/app
+        run: pnpm run typecheck
+
+      - name: Build app (develop)
+        working-directory: ./apps/app
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.DEV_NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.DEV_NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_TEST_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_APP_URL: https://develop.kotadb.io
+          NEXT_PUBLIC_DASHBOARD_URL: https://app.develop.kotadb.io
+        run: |
+          pnpm run build
+          pnpm run build:cf
+
+      # Wrangler installed via npx @4; no global install needed
+
+      - name: Ensure Pages project exists (app)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          # Attempt to create; ignore if it already exists
+          npx -y wrangler@4 pages project create kotadb-app --production-branch=main --no-git >/dev/null 2>&1 || echo "Project kotadb-app exists or creation skipped"
+
+      - name: Deploy app (develop) via Wrangler
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx -y wrangler@4 pages deploy ./apps/app/.vercel/output/static \
+            --project-name=kotadb-app \
+            --branch=develop

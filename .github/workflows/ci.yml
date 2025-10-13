@@ -37,12 +37,23 @@ jobs:
         run: pnpm typecheck
 
       - name: Build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://example.com
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: test_anon_key
+          NEXT_PUBLIC_APP_URL: https://example.com
+          NEXT_PUBLIC_DASHBOARD_URL: https://example.com
         run: pnpm build
 
-      - name: Check for console.log
+      - name: Check for console.log (excluding testing/observability)
         run: |
-          if grep -r "console\.log" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" src/; then
-            echo "Error: console.log statements found"
+          # Search only within src directories of apps/** and exclude known safe folders
+          MATCHES=$(grep -R "console\.log\(" apps \
+            --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' \
+            --exclude-dir='testing' --exclude-dir='__tests__' --exclude-dir='observability' | \
+            grep '/src/' || true)
+          if [ -n "$MATCHES" ]; then
+            echo "Error: console.log statements found (outside exceptions):" >&2
+            echo "$MATCHES" >&2
             exit 1
           fi
 
@@ -72,14 +83,31 @@ jobs:
         continue-on-error: true
 
       - name: Check bundle size
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://example.com
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: test_anon_key
+          NEXT_PUBLIC_APP_URL: https://example.com
+          NEXT_PUBLIC_DASHBOARD_URL: https://example.com
         run: |
           pnpm build
           # Add bundle size checking logic here when implemented
 
-      - name: Dependency check
+      - name: Dependency check (report only)
         run: |
-          npx depcheck
+          npx depcheck --json > depcheck.json || true
+          cat depcheck.json || true
+          if command -v jq >/dev/null 2>&1; then
+            if jq -e '.dependencies | length > 0 or .devDependencies | length > 0 or .missing | length > 0' depcheck.json >/dev/null 2>&1; then
+              echo "Warning: Depcheck found unused or missing dependencies (see depcheck.json artifact)" >&2
+            fi
+          fi
         continue-on-error: true
+      - name: Upload depcheck report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: depcheck-report
+          path: depcheck.json
 
   # Tier 3: Production Gates (only for main branch)
   production-gates:
