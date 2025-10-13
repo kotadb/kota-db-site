@@ -1,4 +1,5 @@
-name = "kota-db-site-web-staging"
+# Project name is specified via CLI --project-name flag in CI/CD workflows
+# DO NOT set 'name' field here as it will override the CLI argument
 compatibility_date = "2025-02-10"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
