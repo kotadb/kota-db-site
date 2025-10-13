@@ -360,6 +360,19 @@ export default function Home() {
           KotaDB is for agent collaboration.
         </p>
 
+        <h2>why now?</h2>
+
+        <p>
+          MCP just hit mainstream. But thousands of MCP servers are running with
+          zero authentication. The protocol exists. The security doesn&apos;t.
+          The orchestration doesn&apos;t. KotaDB solves both.
+        </p>
+
+        <p>
+          This is a narrow window. The winners will be those who started today
+          with standardized, production-grade tooling.
+        </p>
+
         <h2>the problem</h2>
 
         <p>
@@ -384,16 +397,23 @@ export default function Home() {
         </p>
 
         <p>
-          <strong>KotaDB provides it.</strong> Standardized Communication
-          through MCP as a universal protocol for agents to talk across models
-          and tools. Resource Isolation via Git worktrees as lightweight,
-          isolated workspaces for concurrent development. Persistent Memory with
-          stateful awareness of what&apos;s been planned, implemented, or
-          reviewed. Security &amp; Multi-Tenancy with authentication, rate
-          limits, and row-level security for production codebases. Workflow
-          Orchestration supporting multi-agent pipelines with retry logic,
-          validation loops, and persistent state. KotaDB treats LLMs as
-          first-class citizens, not just tools.
+          <strong>
+            KotaDB provides it—and it&apos;s already running in production.
+          </strong>{" "}
+          Full SDLC pipelines automated end-to-end. Planning, implementation,
+          testing, review, and documentation. This isn&apos;t theory. It works.
+        </p>
+
+        <p>
+          Standardized Communication through MCP as a universal protocol for
+          agents to talk across models and tools. Resource Isolation via Git
+          worktrees as lightweight, isolated workspaces for concurrent
+          development. Persistent Memory with stateful awareness of what&apos;s
+          been planned, implemented, or reviewed. Security &amp; Multi-Tenancy
+          with authentication, rate limits, and row-level security for
+          production codebases. Workflow Orchestration supporting multi-agent
+          pipelines with retry logic, validation loops, and persistent state.
+          KotaDB treats LLMs as first-class citizens, not just tools.
         </p>
 
         <h2>the kotadb vision</h2>
@@ -408,20 +428,30 @@ export default function Home() {
 
         <p>
           Issue Created: &quot;Add rate limiting to /api/search.&quot;
-          Classifier Agent categorizes and indexes. Planner Agent drafts spec
-          and allocates workspace. Implementor Agent writes code. Validator
-          Agent runs tests and flags errors. Reviewer Agent approves
-          implementation. Documenter Agent updates docs. PR Agent merges and
-          pushes.
+          <br />
+          → Classifier Agent categorizes and indexes
+          <br />
+          → Planner Agent drafts spec and allocates workspace
+          <br />
+          → Implementor Agent writes code
+          <br />
+          → Validator Agent runs tests and flags errors
+          <br />
+          → Reviewer Agent approves implementation
+          <br />
+          → Documenter Agent updates docs
+          <br />→ PR Agent merges and pushes
         </p>
 
         <p>
-          <strong>Four minutes. Zero human input.</strong> This is not science
-          fiction; it&apos;s a direct outcome of standardized agent
-          infrastructure. Your workflow will not be understood by Devon, or
-          Codex. They need to be customized to your codebase, to how your system
-          works, to how your team operates. KotaDB is the standardized
-          infrastructure that makes this possible.
+          <strong>Four minutes. Zero human input.</strong>
+        </p>
+
+        <p>
+          Don&apos;t like this workflow? Build your own. KotaDB isn&apos;t a
+          rigid framework—it&apos;s infrastructure. Customize agents to your
+          codebase, your patterns, your team. Devon and Codex are
+          general-purpose. KotaDB adapts to you.
         </p>
 
         <h2>the principles</h2>
@@ -461,8 +491,9 @@ export default function Home() {
         <div className="waitlist">
           <h2>join the waitlist</h2>
           <p>
-            Be among the first to experience the future of autonomous software
-            development.
+            We&apos;re opening beta access to the first 100 projects. If
+            you&apos;re building something new and want to experience the future
+            of SWE, you&apos;re in the right place.
           </p>
           <form id="waitlist-form">
             <input
