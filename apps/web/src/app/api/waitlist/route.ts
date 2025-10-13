@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getSupabaseClient } from "@/lib/supabase";
 
+export const runtime = "edge";
+
 const WaitlistSchema = z.object({
   email: z.string().email("Invalid email format"),
 });

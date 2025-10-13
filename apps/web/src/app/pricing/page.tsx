@@ -11,8 +11,6 @@ import {
   type PricingPlan,
 } from "@/components/pricing/PricingPlans";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = createPageMetadata({
   title: "Pricing",
   description:

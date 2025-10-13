@@ -1,629 +1,526 @@
-import Link from "next/link";
-import {
-  GradientCallToAction,
-  Section,
-  SectionHeading,
-  SiteFooter,
-  SiteHeader,
-} from "@/components/site";
-import { createPageMetadata } from "@/lib/metadata";
+import type { Metadata } from "next";
 
-const DASHBOARD_URL =
-  process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://app.kotadb.io";
-
-export const metadata = createPageMetadata({
-  title: "Hosted intelligence for coding agents",
+export const metadata: Metadata = {
+  title: "KotaDB - The Operating System for Autonomous Software Development",
   description:
-    "KotaDB delivers a managed knowledge graph so Claude, Codex, and every coding agent stop guessing and start building with context.",
-  path: "/",
-});
+    "The infrastructure layer for agent collaboration. The future of software is autonomous.",
+};
 
 export default function Home() {
   return (
-    <div className="min-h-screen font-[family-name:var(--font-roboto)] overflow-x-hidden w-full page-container">
-      <SiteHeader />
-
-      {/* Hero Section - 2025 Minimalist Design */}
-      <section className="hero-section pt-40 pb-40 min-h-screen flex items-center px-6 sm:px-8 lg:px-12 relative w-full">
-        <div className="w-full max-w-5xl mx-auto text-center space-y-10">
-          {/* Floating badge - subtle glassmorphism */}
-          <div className="inline-flex items-center gap-2 backdrop-blur-md bg-[var(--card-bg)]/60 border border-[var(--border)]/30 rounded-full px-5 py-2.5 text-sm text-[var(--foreground-secondary)] shadow-sm hover:shadow-md hover:border-[var(--border)] transition-all duration-300">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            Managed for Claude + Codex
-          </div>
-
-          {/* Main headline - larger, bolder, more space */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--foreground)] leading-[1.08] tracking-tight px-2 sm:px-4">
-            Hosted intelligence for
-            <br />
-            <span className="text-[var(--accent)] bg-gradient-to-r from-[var(--accent)] to-[var(--accent-hover)] bg-clip-text text-transparent">
-              coding agents that ship
-            </span>
-          </h1>
-
-          {/* Subtitle - larger, more prominent */}
-          <p className="text-xl sm:text-2xl text-[var(--foreground-secondary)] max-w-3xl mx-auto leading-relaxed font-light">
-            KotaDB gives Claude Code and Codex a managed knowledge graph, so
-            your team stops filling context windows with grep, find, or awk
-            guesses.
-          </p>
-
-          {/* Launch CTA - simplified, bolder */}
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mt-14">
-            <Link
-              href={`${DASHBOARD_URL}/login`}
-              className="group bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white px-10 py-5 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 text-base"
-            >
-              Get Started
-              <svg
-                className="ml-2 w-4 h-4 inline-block group-hover:translate-x-1 transition-transform duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
-              </svg>
-            </Link>
-            <Link
-              href="/pricing"
-              className="backdrop-blur-md bg-[var(--card-bg)]/60 hover:bg-[var(--card-bg)] border border-[var(--border)] hover:border-[var(--border-hover)] text-[var(--foreground)] px-10 py-5 rounded-2xl font-semibold transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1 text-base"
-            >
-              View Pricing
-            </Link>
-          </div>
-
-          {/* Simple links - more subtle */}
-          <div className="flex items-center justify-center gap-8 pt-10 text-sm">
-            <Link
-              href="https://github.com/kotadb/kota-db"
-              target="_blank"
-              className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors duration-300 underline underline-offset-4 decoration-[var(--border)]"
-            >
-              Check out the code
-            </Link>
-            <Link
-              href="https://github.com/kotadb/kota-db#quickstart"
-              target="_blank"
-              className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors duration-300 underline underline-offset-4 decoration-[var(--border)]"
-            >
-              Documentation
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Grid - Glassmorphism Cards */}
-      <Section variant="spacious" containerClassName="max-w-6xl">
-        <div className="w-full mx-auto">
-          <SectionHeading
-            title="Three pillars. One hosted brain."
-            subtitle="KotaDB keeps your agents grounded with live knowledge, governed access, and production-ready guardrails."
-          />
-
-          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Context Understanding */}
-            <div className="group relative">
-              <div className="backdrop-blur-lg bg-[var(--card-bg)]/90 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2 focus-within:ring-2 focus-within:ring-[var(--accent)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--background)]">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 flex items-center justify-center mb-8">
-                  <svg
-                    className="w-7 h-7 text-[var(--accent)]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-semibold text-[var(--foreground)] mb-3 sm:mb-4">
-                  Hosted Knowledge Graph
-                </h3>
-                <p className="text-[var(--foreground-secondary)] leading-relaxed text-sm sm:text-base mb-6 sm:mb-8">
-                  KotaDB ingests your repositories and feeds Claude and Codex
-                  curated answers instead of manual spelunking.
-                </p>
-                <div className="text-sm text-[var(--accent)] font-semibold flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
-                  Graph-aware responses
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            {/* Zero Setup */}
-            <div className="group relative">
-              <div className="backdrop-blur-lg bg-[var(--card-bg)]/90 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2 focus-within:ring-2 focus-within:ring-[var(--accent)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--background)]">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 flex items-center justify-center mb-8">
-                  <svg
-                    className="w-7 h-7 text-[var(--accent)]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-semibold text-[var(--foreground)] mb-3 sm:mb-4">
-                  Enterprise Controls
-                </h3>
-                <p className="text-[var(--foreground-secondary)] leading-relaxed text-sm sm:text-base mb-6 sm:mb-8">
-                  API keys, rate limits, and team workspaces stay in sync across
-                  every interface with the managed dashboard.
-                </p>
-                <div className="text-sm text-[var(--accent)] font-semibold flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
-                  Govern usage in minutes
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            {/* Enterprise Scale */}
-            <div className="group relative">
-              <div className="backdrop-blur-lg bg-[var(--card-bg)]/90 border border-[var(--border)]/40 rounded-3xl p-8 sm:p-10 shadow-xl hover:shadow-2xl hover:border-[var(--border)] transition-all duration-500 group-hover:-translate-y-2 focus-within:ring-2 focus-within:ring-[var(--accent)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--background)]">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 flex items-center justify-center mb-8">
-                  <svg
-                    className="w-7 h-7 text-[var(--accent)]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-semibold text-[var(--foreground)] mb-3 sm:mb-4">
-                  High-Trust Operations
-                </h3>
-                <p className="text-[var(--foreground-secondary)] leading-relaxed text-sm sm:text-base mb-6 sm:mb-8">
-                  Layered safety wrappers, WAL durability, and zero external
-                  databases keep every answer steady.
-                </p>
-                <div className="text-sm text-[var(--accent)] font-semibold flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
-                  Resilience baked in
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Comparison Section - Improved Spacing */}
-      <Section containerClassName="max-w-6xl">
-        <div className="w-full mx-auto">
-          <SectionHeading
-            title="Before KotaDB vs. after KotaDB"
-            subtitle="Swap the guesswork and context wrangling for hosted intelligence your agents can trust."
-          />
-
-          <div className="mt-16 grid md:grid-cols-2 gap-8 md:gap-10">
-            <div className="backdrop-blur-md bg-[var(--card-bg)]/90 rounded-3xl border border-red-200/70 dark:border-red-900/60 p-8 sm:p-10 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--error-bg)] text-[var(--error-text-dark)] px-4 py-2 text-sm font-semibold">
-                Before KotaDB
-              </span>
-              <ul className="mt-6 sm:mt-8 space-y-4 sm:space-y-5 text-[var(--foreground-secondary)] text-sm sm:text-base">
-                <li className="flex gap-3 sm:gap-4">
-                  <span
-                    className="mt-1 text-[var(--color-red-700)] dark:text-[var(--color-red-400)] text-lg flex-shrink-0"
-                    aria-hidden="true"
-                  >
-                    ×
-                  </span>
-                  <span>
-                    Hop between tabs hunting for the right files to paste.
-                  </span>
-                </li>
-                <li className="flex gap-4">
-                  <span
-                    className="mt-1 text-[var(--color-red-700)] dark:text-[var(--color-red-400)] text-lg"
-                    aria-hidden="true"
-                  >
-                    ×
-                  </span>
-                  <span>
-                    Dump grep/find/awk results into prompts and hope they stick.
-                  </span>
-                </li>
-                <li className="flex gap-4">
-                  <span
-                    className="mt-1 text-[var(--color-red-700)] dark:text-[var(--color-red-400)] text-lg"
-                    aria-hidden="true"
-                  >
-                    ×
-                  </span>
-                  <span>
-                    Explain dependency chains to every new agent session.
-                  </span>
-                </li>
-                <li className="flex gap-4">
-                  <span
-                    className="mt-1 text-[var(--color-red-700)] dark:text-[var(--color-red-400)] text-lg"
-                    aria-hidden="true"
-                  >
-                    ×
-                  </span>
-                  <span>
-                    Ship refactors while wondering which services you missed.
-                  </span>
-                </li>
-                <li className="flex gap-4">
-                  <span
-                    className="mt-1 text-[var(--color-red-700)] dark:text-[var(--color-red-400)] text-lg"
-                    aria-hidden="true"
-                  >
-                    ×
-                  </span>
-                  <span>Trade release velocity for manual safety checks.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="backdrop-blur-md bg-[var(--card-bg)]/90 rounded-3xl border border-[var(--accent)]/50 p-8 sm:p-10 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] px-4 py-2 text-sm font-semibold">
-                With KotaDB
-              </span>
-              <ul className="mt-6 sm:mt-8 space-y-4 sm:space-y-5 text-[var(--foreground-secondary)] text-sm sm:text-base">
-                <li className="flex gap-3 sm:gap-4">
-                  <span
-                    className="mt-1 text-[var(--accent)] text-lg font-bold flex-shrink-0"
-                    aria-hidden="true"
-                  >
-                    ✓
-                  </span>
-                  <span>
-                    Your repos stay indexed in a hosted, queryable knowledge
-                    graph.
-                  </span>
-                </li>
-                <li className="flex gap-4">
-                  <span
-                    className="mt-1 text-[var(--accent)] text-lg font-bold"
-                    aria-hidden="true"
-                  >
-                    ✓
-                  </span>
-                  <span>
-                    Claude and Codex pull structured context with a single
-                    prompt.
-                  </span>
-                </li>
-                <li className="flex gap-4">
-                  <span
-                    className="mt-1 text-[var(--accent)] text-lg font-bold"
-                    aria-hidden="true"
-                  >
-                    ✓
-                  </span>
-                  <span>
-                    CLI, REST, and MCP share one service layer—answers never
-                    drift.
-                  </span>
-                </li>
-                <li className="flex gap-4">
-                  <span
-                    className="mt-1 text-[var(--accent)] text-lg font-bold"
-                    aria-hidden="true"
-                  >
-                    ✓
-                  </span>
-                  <span>
-                    Impact analysis shows what breaks before you merge.
-                  </span>
-                </li>
-                <li className="flex gap-4">
-                  <span
-                    className="mt-1 text-[var(--accent)] text-lg font-bold"
-                    aria-hidden="true"
-                  >
-                    ✓
-                  </span>
-                  <span>
-                    Quota, key, and tenant controls are baked into the managed
-                    plane.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Manual vs Hosted */}
-      <Section containerClassName="max-w-6xl">
-        <SectionHeading
-          title="Manual context vs hosted intelligence"
-          subtitle="See how conversations shift when your agents stop guessing and start pulling from a shared knowledge graph."
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+          }
+          h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+            line-height: 1.2;
+          }
+          h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+          }
+          h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+          }
+          p {
+            margin: 1rem 0;
+          }
+          strong {
+            font-weight: 600;
+          }
+          em {
+            font-style: italic;
+          }
+          ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+          }
+          li {
+            margin: 0.5rem 0;
+          }
+          table {
+            width: 100%;
+            margin: 1.5rem 0;
+            border-collapse: collapse;
+          }
+          th, td {
+            text-align: left;
+            padding: 0.75rem;
+            border: 1px solid #e5e5e5;
+          }
+          th {
+            font-weight: 600;
+            background: #f9f9f9;
+          }
+          .waitlist {
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 2px solid #1a1a1a;
+            background: #f9f9f9;
+          }
+          .waitlist h2 {
+            margin-top: 0;
+          }
+          form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+          }
+          input {
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            font-family: inherit;
+          }
+          button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+          }
+          button:hover {
+            background: #333;
+          }
+          button:disabled {
+            background: #999;
+            cursor: not-allowed;
+          }
+          .message {
+            padding: 0.75rem;
+            margin-top: 1rem;
+            border: 1px solid #ccc;
+          }
+          .message.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+          }
+          .message.error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+          }
+          .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e5e5;
+            font-size: 0.875rem;
+            color: #666;
+          }
+          @media (max-width: 640px) {
+            body {
+              padding: 1rem;
+            }
+            h1 {
+              font-size: 1.5rem;
+            }
+            h2 {
+              font-size: 1.25rem;
+            }
+            h3 {
+              font-size: 1.1rem;
+            }
+            table {
+              font-size: 0.875rem;
+            }
+          }
+        `,
+          }}
         />
+      </head>
+      <body>
+        <h1>KotaDB: The Manifesto for Agentic Engineering</h1>
 
-        <div className="mt-12 grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div className="backdrop-blur-md bg-[var(--card-bg)]/90 rounded-3xl border border-red-200/70 dark:border-red-900/60 p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[var(--error-bg)] text-[var(--error-text-dark)] px-4 py-2 text-sm font-semibold mb-6">
-              Without KotaDB
-            </span>
+        <p>
+          Agents are here. Not as prototypes or research novelties, but as
+          production-grade intelligence. The premise behind KotaDB is simple:{" "}
+          <strong>AGI exists</strong>. It&apos;s just hidden behind complexity,
+          bad interfaces, and a mental model that hasn&apos;t caught up yet.
+          Software engineering must now evolve around this fact.
+        </p>
 
-            <div className="space-y-6">
-              <div className="bg-red-500/5 border border-red-200/60 dark:border-red-900/40 rounded-xl p-4 sm:p-5">
-                <p className="text-sm sm:text-base text-[var(--color-red-900)] dark:text-[var(--color-red-300)] font-semibold mb-2">
-                  Every request needs context first
-                </p>
-                <div className="space-y-2 text-sm sm:text-base text-[var(--color-red-900)] dark:text-[var(--color-red-300)] font-mono">
-                  <p>human&gt; &quot;Where does invoice_total get set?&quot;</p>
-                  <p className="text-[var(--color-red-800)] dark:text-[var(--color-red-400)]/70 italic">
-                    *opens five tabs, runs grep, repeats the prompt*
-                  </p>
-                  <p>agent&gt; &quot;Maybe here? need more detail.&quot;</p>
-                </div>
-              </div>
+        <p>
+          This isn&apos;t written for legacy engineers defending twenty-year-old
+          workflows. It&apos;s for those who understand that everything we know
+          about building software is about to invert.
+        </p>
 
-              <div className="bg-red-500/5 border border-red-200/60 dark:border-red-900/40 rounded-xl p-4 sm:p-5">
-                <p className="text-sm sm:text-base text-[var(--color-red-900)] dark:text-[var(--color-red-300)] font-semibold mb-2">
-                  Impact checks become guesswork
-                </p>
-                <div className="space-y-2 text-sm sm:text-base text-[var(--color-red-900)] dark:text-[var(--color-red-300)] font-mono">
-                  <p>
-                    human&gt; &quot;What breaks if I touch
-                    billing_handler?&quot;
-                  </p>
-                  <p className="text-[var(--color-red-800)] dark:text-[var(--color-red-400)]/70 italic">
-                    *maps the call tree manually*
-                  </p>
-                  <p>agent&gt; *shrugs in autocomplete*</p>
-                </div>
-              </div>
+        <h2>The New Paradigm</h2>
 
-              <p className="text-sm sm:text-base text-[var(--color-red-900)] dark:text-[var(--color-red-300)] font-semibold italic text-center pt-2">
-                Half the sprint disappears into context handoffs
-              </p>
-            </div>
-          </div>
+        <p>
+          For decades, software was built for humans—IDEs, CI pipelines,
+          linters, syntax highlighting, code reviews, Jira boards. All designed
+          to optimize human cognition.
+        </p>
 
-          <div className="backdrop-blur-md bg-[var(--card-bg)]/90 rounded-3xl border border-[var(--accent)]/50 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] px-4 py-2 text-sm font-semibold mb-6">
-              With KotaDB
-            </span>
+        <p>
+          <strong>That era is over.</strong>
+        </p>
 
-            <div className="space-y-6">
-              <div className="bg-[var(--background-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
-                <p className="text-xs sm:text-sm text-[var(--accent)] font-semibold mb-2">
-                  Claude and Codex stay grounded
-                </p>
-                <div className="space-y-2 text-xs sm:text-sm text-[var(--foreground-secondary)] font-mono">
-                  <p>claude&gt; &quot;Show callers for invoice_total.&quot;</p>
-                  <p className="text-[var(--accent)]/70 italic">
-                    *returns the knowledge graph of services and files*
-                  </p>
-                </div>
-              </div>
+        <p>
+          AI agents don&apos;t need dashboards or stand-ups. They need
+          infrastructure: coordination, memory, and communication. The new
+          challenge isn&apos;t &quot;Can AI write code?&quot; It&apos;s
+          &quot;How do we get dozens of autonomous agents to collaborate like a
+          high-functioning engineering team?&quot;
+        </p>
 
-              <div className="bg-[var(--background-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
-                <div className="space-y-2 text-xs sm:text-sm text-[var(--foreground-secondary)] font-mono">
-                  <p>
-                    claude&gt; &quot;What breaks if I tweak
-                    billing_handler?&quot;
-                  </p>
-                  <p className="text-[var(--accent)]/70 italic">
-                    *responds with impact analysis across repos*
-                  </p>
-                </div>
-              </div>
+        <p>That&apos;s what KotaDB answers.</p>
 
-              <div className="bg-[var(--background-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
-                <div className="space-y-2 text-xs sm:text-sm text-[var(--foreground-secondary)] font-mono">
-                  <p>codex&gt; &quot;Surface similar auth routines.&quot;</p>
-                  <p className="text-[var(--accent)]/70 italic">
-                    *delivers structural matches without regex fishing*
-                  </p>
-                </div>
-              </div>
+        <h2>Why Agents Changed Everything</h2>
 
-              <p className="text-sm sm:text-base text-[var(--accent)] font-semibold italic text-center pt-2">
-                Agents answer with context, not apologies
-              </p>
-            </div>
-          </div>
+        <p>
+          An LLM doesn&apos;t need syntax highlighting. It needs unambiguous
+          context, reproducible execution, and deterministic feedback. If
+          you&apos;re still typing code manually, you&apos;re optimizing for
+          nostalgia. The bottleneck isn&apos;t model capability
+          anymore—it&apos;s human communication.
+        </p>
+
+        <p>
+          When Claude Code or Codex fails, it&apos;s not because the
+          model&apos;s dumb. It&apos;s because you&apos;re giving it incomplete
+          or confusing instructions. Prompting is fine-tuning. Bad context
+          equals bad output. The path forward is not to prompt harder—it&apos;s
+          to build systems that make being correct easier than being wrong.
+        </p>
+
+        <p>
+          That&apos;s the &quot;pit of success.&quot; Automated validation
+          loops. Meta-agents writing specs for implementation agents. Zero
+          confusion in the pipeline. When that clarity exists, these systems
+          one-shot tasks the same way they do in benchmarks.
+        </p>
+
+        <h2>The Inflection Point</h2>
+
+        <p>
+          We are at the biggest shift since version control. The tools of the
+          past were built to help humans coordinate. The next generation is
+          about helping agents coordinate. GitHub was for human collaboration.
+          KotaDB is for agent collaboration.
+        </p>
+
+        <h2>The Problem</h2>
+
+        <p>
+          Every Claude Code or Cursor session today starts from scratch. Agents
+          don&apos;t remember what they&apos;ve done or what others are doing.
+          You, the human, are acting as the memory, the orchestrator, the
+          scheduler. It&apos;s inefficient and brittle.
+        </p>
+
+        <p>
+          Custom orchestration is worse. Hacky scripts chaining APIs together,
+          state lost in JSON, collisions in Git branches. Everyone&apos;s
+          rebuilding Kubernetes from scratch—only for agents.
+        </p>
+
+        <h2>The Missing Layer</h2>
+
+        <p>
+          What&apos;s missing is a shared operating system for autonomous
+          software development—a platform layer for agent coordination.
+        </p>
+
+        <p>
+          <strong>KotaDB provides it.</strong>
+        </p>
+
+        <ul>
+          <li>
+            <strong>Standardized Communication</strong> — MCP as a universal
+            protocol for agents to talk across models and tools.
+          </li>
+          <li>
+            <strong>Resource Isolation</strong> — Git worktrees as lightweight,
+            isolated workspaces for concurrent development.
+          </li>
+          <li>
+            <strong>Persistent Memory</strong> — Stateful awareness of
+            what&apos;s been planned, implemented, or reviewed.
+          </li>
+          <li>
+            <strong>Security &amp; Multi-Tenancy</strong> — Authentication, rate
+            limits, and row-level security for production codebases.
+          </li>
+          <li>
+            <strong>Workflow Orchestration</strong> — Multi-agent pipelines with
+            retry logic, validation loops, and persistent state.
+          </li>
+        </ul>
+
+        <h2>The KotaDB Vision</h2>
+
+        <p>
+          KotaDB isn&apos;t a code search tool. Search is memory. The real value
+          is orchestration: an infrastructure layer that coordinates hundreds of
+          agents building software together.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Human Stack</th>
+              <th>Agent Stack</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GitHub → human collaboration</td>
+              <td>KotaDB → agent collaboration</td>
+            </tr>
+            <tr>
+              <td>Docker → app packaging</td>
+              <td>Agent Tools → capability packaging</td>
+            </tr>
+            <tr>
+              <td>Kubernetes → container orchestration</td>
+              <td>KotaDB ADW → agent orchestration</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>A New Development Cycle</h2>
+
+        <ul>
+          <li>
+            <strong>Issue Created</strong> → &quot;Add rate limiting to
+            /api/search.&quot;
+          </li>
+          <li>
+            <strong>Classifier Agent</strong> categorizes and indexes.
+          </li>
+          <li>
+            <strong>Planner Agent</strong> drafts spec and allocates workspace.
+          </li>
+          <li>
+            <strong>Implementor Agent</strong> writes code.
+          </li>
+          <li>
+            <strong>Validator Agent</strong> runs tests, flags errors.
+          </li>
+          <li>
+            <strong>Reviewer Agent</strong> approves implementation.
+          </li>
+          <li>
+            <strong>Documenter Agent</strong> updates docs.
+          </li>
+          <li>
+            <strong>PR Agent</strong> merges and pushes.
+          </li>
+        </ul>
+
+        <p>
+          <strong>Four minutes. Zero human input.</strong> This is not science
+          fiction; it&apos;s a direct outcome of standardized agent
+          infrastructure.
+        </p>
+
+        <p>
+          Don&apos;t like this cycle? Throw it out. Build your own. Customize
+          agents to your codebase, to how your system works, to how your team
+          operates.
+        </p>
+
+        <h2>The Principles</h2>
+
+        <ul>
+          <li>
+            <strong>Determinism + Creativity</strong> — Agents reason;
+            infrastructure guarantees reliability.
+          </li>
+          <li>
+            <strong>Composability</strong> — Small, specialized agents connected
+            through clear protocols.
+          </li>
+          <li>
+            <strong>Standards Over Silos</strong> — MCP, Git, Postgres. No new
+            proprietary nonsense.
+          </li>
+          <li>
+            <strong>Production-Grade by Default</strong> — Real logging, auth,
+            and testing.
+          </li>
+          <li>
+            <strong>Multi-Vendor by Design</strong> — Claude, OpenAI, Gemini—all
+            interoperable under KotaDB.
+          </li>
+        </ul>
+
+        <h2>Why It&apos;s Hard (and Why It&apos;s a Moat)</h2>
+
+        <ul>
+          <li>
+            <strong>Security</strong> — 2,000+ exposed MCP servers prove no one
+            else is doing this safely.
+          </li>
+          <li>
+            <strong>Multi-Tenancy</strong> — Real isolation and state
+            persistence are non-trivial.
+          </li>
+          <li>
+            <strong>Production Scale</strong> — Few have run 60+ agent workflows
+            on live codebases.
+          </li>
+          <li>
+            <strong>Complex Workflows</strong> — Multi-phase SDLC automation
+            requires deep engineering DNA.
+          </li>
+        </ul>
+
+        <p>
+          <strong>KotaDB solves all four. That&apos;s the moat.</strong>
+        </p>
+
+        <h2>The Market Reality</h2>
+
+        <p>
+          There are 31 million developers worldwide—a $3 trillion productivity
+          market. Even 0.1% adoption at $75/month yields multi-million ARR. The
+          path is clear:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Today:</strong> Agentic early adopters.
+          </li>
+          <li>
+            <strong>Next 6 months:</strong> Platform teams integrating AI into
+            developer workflows.
+          </li>
+          <li>
+            <strong>Next 12 months:</strong> AI-native startups whose entire
+            engineering stack is autonomous.
+          </li>
+        </ul>
+
+        <p>
+          No one else is building multi-agent infrastructure for software
+          development. The category begins here.
+        </p>
+
+        <h2>The Future</h2>
+
+        <p>
+          In five years, the winners won&apos;t be the ones with the best
+          LLMs—they&apos;ll be the ones with the best infrastructure for agent
+          collaboration.
+        </p>
+
+        <p>
+          <strong>
+            KotaDB is that infrastructure: the operating system for autonomous
+            software development. The foundation for a world where agents write,
+            test, and ship software at scale.
+          </strong>
+        </p>
+
+        <p>
+          <strong>
+            The future of software is autonomous collaboration. The future is
+            KotaDB.
+          </strong>
+        </p>
+
+        <div className="waitlist">
+          <h2>Join the Waitlist</h2>
+          <p>
+            Be among the first to experience the future of autonomous software
+            development.
+          </p>
+          <form id="waitlist-form">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+            />
+            <button type="submit">Join Waitlist</button>
+          </form>
+          <div id="message"></div>
         </div>
 
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
-          <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-2xl border border-[var(--border)]/40 p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300">
-            <h4 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] mb-2">
-              Agent-grade answers
-            </h4>
-            <p className="text-sm sm:text-base text-[var(--foreground-secondary)]">
-              Hosted KotaDB streams knowledge so prompts land with precision.
-            </p>
-          </div>
-          <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-2xl border border-[var(--border)]/40 p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300">
-            <h4 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] mb-2">
-              Confident change windows
-            </h4>
-            <p className="text-sm sm:text-base text-[var(--foreground-secondary)]">
-              Impact analysis keeps refactors honest before you touch prod.
-            </p>
-          </div>
-          <div className="backdrop-blur-md bg-[var(--card-bg)]/60 rounded-2xl border border-[var(--border)]/40 p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300 sm:col-span-2 lg:col-span-1">
-            <h4 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] mb-2">
-              SaaS first, OSS always
-            </h4>
-            <p className="text-sm sm:text-base text-[var(--foreground-secondary)]">
-              Launch the managed service and audit the open-source code anytime.
-            </p>
-          </div>
+        <div className="footer">
+          <p>
+            Written October 13 2025 by the KotaDB team.
+            <br />© 2025 KotaDB. All rights reserved.
+          </p>
         </div>
-      </Section>
 
-      {/* Installation */}
-      <section className="py-16 sm:py-24 px-6 sm:px-8 lg:px-12 bg-[var(--background)] w-full overflow-hidden">
-        <div className="w-full max-w-5xl mx-auto">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[var(--foreground)] mb-8 sm:mb-12 md:mb-16 px-2">
-            Launch KotaDB the way your team needs
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
-            <div className="bg-[var(--card-bg)] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-[var(--card-border)] shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h4 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] mb-4 sm:mb-6 flex items-center">
-                <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-teal-500 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
-                </svg>
-                Managed SaaS (recommended)
-              </h4>
-              <div className="bg-[var(--background-secondary)] rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 overflow-x-auto">
-                <code className="text-teal-400 text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre-wrap block">
-                  1. Create an account → dashboard login 2. Connect the repos
-                  that power your agents 3. Invite teammates and monitor usage
-                  in one place
-                </code>
-              </div>
-            </div>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const button = e.target.querySelector('button');
+            const input = e.target.querySelector('input');
+            const messageDiv = document.getElementById('message');
+            const email = input.value;
 
-            <div className="bg-[var(--card-bg)] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-[var(--card-border)] shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h4 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] mb-4 sm:mb-6 flex items-center">
-                <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-emerald-500 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                Explore the open-source code
-              </h4>
-              <div className="bg-[var(--background-secondary)] rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 overflow-x-auto">
-                <code className="text-teal-400 text-xs sm:text-sm font-[family-name:var(--font-roboto-mono)] whitespace-pre-wrap break-all sm:break-normal block">
-                  MIT-licensed repo on GitHub. Review the engine, fork it, or
-                  extend it however your team likes to build.
-                </code>
-              </div>
-            </div>
-          </div>
+            button.disabled = true;
+            button.textContent = 'Joining...';
+            messageDiv.textContent = '';
+            messageDiv.className = 'message';
 
-          <div className="text-center mt-8">
-            <Link
-              href="/pricing"
-              className="text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 font-semibold inline-flex items-center gap-2 group"
-            >
-              Compare plans and see the FAQ
-              <span className="group-hover:translate-x-1 transition-transform duration-200">
-                →
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
+            try {
+              const response = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+              });
 
-      {/* Performance Stats */}
-      <section className="py-24 px-6 sm:px-8 lg:px-12 bg-[var(--background-secondary)] w-full">
-        <div className="w-full max-w-5xl mx-auto">
-          <h3 className="text-4xl font-bold text-center text-[var(--foreground)] mb-16">
-            Why platform teams trust KotaDB
-          </h3>
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-xl font-semibold text-[var(--foreground)] mb-3">
-                Unified service layer
-              </div>
-              <div className="text-sm text-[var(--foreground-secondary)] opacity-80 leading-relaxed">
-                CLI, REST, and MCP all ride the same code paths, so humans and
-                agents never drift.
-              </div>
-            </div>
-            <div>
-              <div className="text-xl font-semibold text-[var(--foreground)] mb-3">
-                Layered guardrails
-              </div>
-              <div className="text-sm text-[var(--foreground-secondary)] opacity-80 leading-relaxed">
-                Caching, retries, validation, and tracing wrap every request for
-                high-trust automation.
-              </div>
-            </div>
-            <div>
-              <div className="text-xl font-semibold text-[var(--foreground)] mb-3">
-                Zero external databases
-              </div>
-              <div className="text-sm text-[var(--foreground-secondary)] opacity-80 leading-relaxed">
-                WAL-backed storage keeps knowledge close without wiring another
-                cloud dependency.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              const data = await response.json();
 
-      <GradientCallToAction
-        title="Give your agents a hosted brain"
-        description="Sign up for KotaDB SaaS and replace guesswork with grounded context in every Claude or Codex workflow."
-        primaryCta={{ label: "Get Started", href: `${DASHBOARD_URL}/login` }}
-        secondaryCtas={[
-          { label: "View pricing", href: "/pricing" },
-          {
-            label: "Want a peek under the hood? Check out the code",
-            href: "https://github.com/kotadb/kota-db",
-            external: true,
-          },
-        ]}
-      />
-
-      <SiteFooter />
-    </div>
+              if (response.ok) {
+                messageDiv.textContent = data.message || 'Successfully joined the waitlist!';
+                messageDiv.className = 'message success';
+                input.value = '';
+              } else {
+                messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
+                messageDiv.className = 'message error';
+              }
+            } catch (error) {
+              messageDiv.textContent = 'Network error. Please try again.';
+              messageDiv.className = 'message error';
+            } finally {
+              button.disabled = false;
+              button.textContent = 'Join Waitlist';
+            }
+          });
+        `,
+          }}
+        />
+      </body>
+    </html>
   );
 }
