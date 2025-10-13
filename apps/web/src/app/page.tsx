@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "KotaDB - The Operating System for Autonomous Software Development",
+  title: "KotaDB - The Infrastructure for Autonomous Software Development",
   description:
     "The infrastructure layer for agent collaboration. The future of software is autonomous.",
 };
@@ -29,7 +29,7 @@ export default function Home() {
             line-height: 1.8;
             color: #2d3748;
             background: #fafafa;
-            padding: 4rem 2rem;
+            padding: 4rem 24rem;
             max-width: 50%;
             margin: 0 auto;
           }
@@ -95,10 +95,7 @@ export default function Home() {
           }
           .waitlist {
             margin: 4rem 0;
-            padding: 3rem;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            padding: 2rem 0;
             text-align: center;
           }
           .waitlist h2 {
@@ -119,29 +116,27 @@ export default function Home() {
             margin-right: auto;
           }
           input {
-            padding: 1rem;
+            padding: 0.5rem 0.75rem;
             font-size: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            border-radius: 2px;
             font-family: inherit;
-            transition: border-color 0.2s;
             background: #ffffff;
           }
           input:focus {
-            outline: none;
-            border-color: #4299e1;
+            outline: 1px solid #2d3748;
+            border-color: #2d3748;
           }
           button {
-            padding: 1rem 2rem;
+            padding: 0.5rem 1rem;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 400;
             background: #2d3748;
             color: #ffffff;
-            border: none;
-            border-radius: 8px;
+            border: 1px solid #2d3748;
+            border-radius: 2px;
             cursor: pointer;
             font-family: inherit;
-            transition: background 0.2s;
           }
           button:hover {
             background: #1a202c;
@@ -149,19 +144,17 @@ export default function Home() {
           button:disabled {
             background: #a0aec0;
             cursor: not-allowed;
+            opacity: 0.6;
           }
           .message {
-            padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 8px;
-            font-size: 0.9375rem;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
           }
           .message.success {
-            background: #c6f6d5;
             color: #22543d;
           }
           .message.error {
-            background: #fed7d7;
             color: #742a2a;
           }
           .date {
@@ -172,16 +165,13 @@ export default function Home() {
           }
           .top-waitlist {
             margin: 2rem 0 3rem;
-            padding: 1.5rem;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+            padding: 1rem 0;
           }
           .top-waitlist form {
             display: flex;
             gap: 0.5rem;
-            margin: 0;
-            max-width: 100%;
+            margin: 0 auto;
+            max-width: 400px;
           }
           .top-waitlist input {
             flex: 1;
@@ -195,8 +185,8 @@ export default function Home() {
             white-space: nowrap;
           }
           .top-waitlist .message {
-            margin-top: 0.75rem;
-            padding: 0.625rem;
+            margin-top: 0.5rem;
+            padding: 0.25rem;
             font-size: 0.8125rem;
           }
           .footer {
@@ -209,8 +199,8 @@ export default function Home() {
           }
           @media (max-width: 768px) {
             body {
-              padding: 3rem 1.5rem;
-              max-width: 90%;
+              padding: 3rem 4rem;
+              max-width: 70%;
             }
             h1 {
               font-size: 2rem;
@@ -222,7 +212,7 @@ export default function Home() {
               font-size: 1.125rem;
             }
             .waitlist {
-              padding: 2rem 1.5rem;
+              padding: 2rem 0;
             }
             table {
               font-size: 0.875rem;
@@ -233,8 +223,8 @@ export default function Home() {
           }
           @media (max-width: 480px) {
             body {
-              padding: 2rem 1rem;
-              max-width: 100%;
+              padding: 2rem 1.5rem;
+              max-width: 90%;
             }
             h1 {
               font-size: 1.75rem;
@@ -247,7 +237,7 @@ export default function Home() {
               font-size: 1rem;
             }
             .waitlist {
-              padding: 1.5rem 1rem;
+              padding: 1.5rem 0;
               margin: 3rem 0;
             }
             form {
@@ -266,7 +256,7 @@ export default function Home() {
       </head>
       <body>
         <div className="date">Oct 13, 2025</div>
-        <h1>kotadb: the manifesto for agentic engineering</h1>
+        <h1>kotadb: a manifesto for agentic engineering</h1>
 
         <div className="top-waitlist">
           <form id="top-waitlist-form">
@@ -276,7 +266,7 @@ export default function Home() {
               placeholder="your@email.com"
               required
             />
-            <button type="submit">Join Waitlist</button>
+            <button type="submit">join the waitlist</button>
           </form>
           <div id="top-message"></div>
         </div>
@@ -357,7 +347,8 @@ export default function Home() {
           Every Claude Code or Cursor session today starts from scratch. Agents
           don&apos;t remember what they&apos;ve done or what others are doing.
           You, the human, are acting as the memory, the orchestrator, the
-          scheduler. It&apos;s inefficient and brittle.
+          scheduler. It&apos;s inefficient and brittle. You will lose if you
+          continue to operate this way.
         </p>
 
         <p>
@@ -382,7 +373,8 @@ export default function Home() {
           reviewed. Security &amp; Multi-Tenancy with authentication, rate
           limits, and row-level security for production codebases. Workflow
           Orchestration supporting multi-agent pipelines with retry logic,
-          validation loops, and persistent state.
+          validation loops, and persistent state. KotaDB treats LLMs as
+          first-class citizens, not just tools.
         </p>
 
         <h2>the kotadb vision</h2>
@@ -407,13 +399,10 @@ export default function Home() {
         <p>
           <strong>Four minutes. Zero human input.</strong> This is not science
           fiction; it&apos;s a direct outcome of standardized agent
-          infrastructure.
-        </p>
-
-        <p>
-          Don&apos;t like this cycle? Throw it out. Build your own. Customize
-          agents to your codebase, to how your system works, to how your team
-          operates.
+          infrastructure. Your workflow will not be understood by Devon, or
+          Codex. They need to be customized to your codebase, to how your system
+          works, to how your team operates. KotaDB is the standardized
+          infrastructure that makes this possible.
         </p>
 
         <h2>the principles</h2>
@@ -421,54 +410,25 @@ export default function Home() {
         <p>
           Determinism + Creativity: Agents reason while infrastructure
           guarantees reliability. Composability through small, specialized
-          agents connected via clear protocols. Standards Over Silos using MCP,
-          Git, Postgres—no new proprietary nonsense. Production-Grade by Default
-          with real logging, auth, and testing. Multi-Vendor by Design where
-          Claude, OpenAI, Gemini—all interoperable under KotaDB.
-        </p>
-
-        <h2>why it&apos;s hard (and why it&apos;s a moat)</h2>
-
-        <p>
-          Security: 2,000+ exposed MCP servers prove no one else is doing this
-          safely. Multi-Tenancy where real isolation and state persistence are
-          non-trivial. Production Scale—few have run 60+ agent workflows on live
-          codebases. Complex Workflows where multi-phase SDLC automation
-          requires deep engineering DNA.
-        </p>
-
-        <p>
-          <strong>KotaDB solves all four. That&apos;s the moat.</strong>
-        </p>
-
-        <h2>the market reality</h2>
-
-        <p>
-          There are 31 million developers worldwide—a $3 trillion productivity
-          market. Even 0.1% adoption at $75/month yields multi-million ARR. The
-          path is clear: Today, agentic early adopters. Next 6 months, platform
-          teams integrating AI into developer workflows. Next 12 months,
-          AI-native startups whose entire engineering stack is autonomous.
-        </p>
-
-        <p>
-          No one else is building multi-agent infrastructure for software
-          development. The category begins here.
+          agents connected via clear protocols. Silo avoidance using MCP, Git,
+          Postgres—no new proprietary nonsense. Production-Grade by Default with
+          real logging, auth, and testing. Multi-Vendor by Design where Claude,
+          OpenAI, Gemini—all interoperable under KotaDB.
         </p>
 
         <h2>the future</h2>
 
         <p>
-          In five years, the winners won&apos;t be the ones with the best
-          LLMs—they&apos;ll be the ones with the best infrastructure for agent
-          collaboration.
+          Sooner than you think, the winners won&apos;t be the ones with the
+          best LLMs—they&apos;ll be the ones with the best infrastructure for
+          agent collaboration.
         </p>
 
         <p>
           <strong>
-            KotaDB is that infrastructure: the operating system for autonomous
-            software development. The foundation for a world where agents write,
-            test, and ship software at scale.
+            KotaDB is that infrastructure: the collaboration layer for
+            autonomous software development. The foundation for a world where
+            agents write, test, and ship software at scale.
           </strong>
         </p>
 
